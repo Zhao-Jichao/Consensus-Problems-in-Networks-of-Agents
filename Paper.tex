@@ -1,0 +1,155 @@
+\documentclass{article}
+
+\usepackage{xeCJK}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath}
+
+
+% 正文开始
+\begin{document}
+
+\begin{abstract}
+这篇文章，我们讨论了动态智能体网络固定和切换拓扑下的一致性问题。
+我们分析了三种情况：i）切换通铺无时滞网络，ii）固定拓扑通信时滞网络，iii）离散智能体群的最大一致性问题（或领导决定性）。
+在每一种情况，我们介绍了线性/非线性一致性协议并且提供了分布式建议算法的收敛性分析。
+此外，我们还建立了网络信息流（例如网络的动态连接性）的费德勒特征值（Fiedler eigenvaue）和响应一直协议的速度（或性能）协商之间的联系。
+这表明平衡图在解决一致性问题上扮演着重要角色。我们介绍了在一致性协议的收敛性分析问题中扮演着李雅普诺夫（Lyapunov functions）函数角色的分歧函数。
+这项研究的显著特征是来解决有向信息流网络的一致性问题。
+我们提供的分析工具基于代数图论，矩阵论和控制论。
+仿真提供了我们的理论结果的演示效率。
+\end{abstract}
+
+\section{Introduction}
+这些年，动态智能体网络的分布式决策协调问题吸引了大量的研究者。
+部分原因是因为多智能体系统（MAS）在许多领域都有广阔的应用，包括无人协同装置，类鸟集群，水下装置，分布式传感器网络，卫星簇的姿态排列，通信网络的拥挤堵塞控制。
+
+
+一致问题在计算机科学领域具有很长的历史，尤其是在自动控制理论和分布式计算方面。
+在很多包含多智能体系统，智能体组的应用需要商定大量的interest。
+Such quantities might or might not be related to the motion of the individual agents. 
+至于结果，在连接失败和创造下（即动态网络拓扑）的定向信息流，解决动态智能体网络所有形式的一致性问题是非常重要的。
+
+
+在这篇文章中，我们主要的贡献是定义和解决了基于大量假想的网络拓扑的一致性问题（固定的和动态的），是否存在通信时滞，和输入动态智能体的局限性。
+在每种情况，我们都提供了收敛性分析，并且针对线性协议建立了性能和鲁棒性之间的定向连接，包括一致性协议和网络信息流的图拉氏变换。
+
+\section{Consensus Problems}
+$G=(\mathcal{V},\mathcal{E},\mathcal{A})$是加权有向图（或无向图），具有$n$个节点，和一个加权邻接矩阵$\mathcal{A}=[a_{ij}]$。$\mathcal{A}$矩阵的所有元素$a_{i,j} \ge 0$且所有的$i,j \in \mathcal{I}={1,2,…,n},i \ne j$。
+这里，$\mathcal{V}$表示所有向量$v_i$的集合，$\mathcal{E}$表示图中所有边（$ij$或$v_i,v_j$）的集合。
+节点$i$的邻居集合表示为$N_i=\{ij\in \mathcal{E}:a_{ij}>0\}$。
+我们称节点$J$的任意子集为一个簇。
+簇$J\subset \mathcal{I}$的集合定义为
+\begin{equation}
+    N_J:=U_{i\in J}N_i=\{j\in \mathcal{I}:i\in J, ij\in \mathcal{E}\}
+\end{equation}
+
+定义$x_i\in \mathbb{R}$表示节点$i$的值。
+参考$G_x=(\mathcal{V},\mathcal{E},\mathcal{A},x)$，其中$x=(x_1,...,x_n)^T$是为代数图（algebraic graph），或$x\in \mathbb{R}$的信息流（information flow）（静态）网络（static network）$G_x=(\mathcal{V},\mathcal{E},\mathcal{A})$。
+节点的值表示物理特性，例如姿态，位置，温度，电压等等。
+我们认为当且仅当$x_i=x_j$时，节点$i$和$j$在网络中达到一致（agree）。
+我们认为网络中所有的节点当且仅当所有的$x_i=x_j$时达到一致（consensus），此时$i,j\in \mathcal{I}, i\ne j$。
+当网络中的节点达到一致时，此时所有节点的公共值叫做（组）决策值（group decision value）。
+
+假设图的每一个节点都是一个具有动态性能的动态智能体（dynamic agent）
+\begin{equation}
+    \dot{x}_i = f(x_i, u_i), i\in \mathcal{I}
+\end{equation}
+一个动态图（dynamic graph）或一个动态网络（dynamic network）由一个4元组$G_{x(t)} = (\mathcal{V},\mathcal{E},\mathcal{A},x(t))$组成，其中变化的状态$\dot{x}=F(x,u)$中$x$表示动态图的状态，$F(x,u)$是$F_i(x,u)=f(x_i,u_i)$中元素的列元素合并。
+
+定义$\chi: \mathbb{R}^n \rightarrow \mathbb{R}$是一个包含$n$个变量$x_1,\dots,x_n$的函数。
+在一个动态图中的$\chi$-一致性问题（$\chi$-consensus problem），是一种分布式的方式，通过利用输入$u_i$来计算$\chi(x(0))$，其中输入$u_i$仅依赖于节点$i$的和它的邻居的值。
+我们认为协议（protocol）
+\begin{equation}
+    u_i = k_i(x_{j_1},\dots,x_{j_{m_i}})
+\end{equation}
+其中$j_1,\dots,j_{m_i}\in \{i\} \cup N_i$和$m_i\leq n$渐进的解决了$\chi$-一致性问题，当且仅当存在一个渐进稳定的平衡$x^*$其$\dot{x}=F(x,k(x))$例如$x^*=\chi(x(0))$，所有的$i\in \mathcal{I}$。
+我们致力于解决$\chi$-一致性问题在分布式时尚方面，此方面没有节点与其他任何节点相连（i.e. 即$m_i < n$ for all $i$）。
+
+特殊的，$\chi(x)=Ave(x)=\frac{1}{n}(\sum_{i=1}^{n}x_i)$，$\chi(x)=Max(x)=max_ix_i$，$\chi(x)=Min(x)=min_ix_i$分别称作平均一致性（average-consensus），最大一致性（max-consensus）和最小一致性（min-consensus），分别由于他们在多智能体系统分布式决策方面广阔的应用。
+
+平均一致性问题，是解决线性函数$\chi(x)=Ave(x)$动态系统网络的分布式计算的典型例子。
+这是比仅达成普通一致性更加具有挑战性。
+
+
+\section{Consensus Protocols}
+这一部分，我们介绍了三种一致性协议，分别用来解决连续时间（continuous-time，CT）动态智能体模型
+\begin{equation}
+    \dot{x}_i(t) = u_i(t)
+\end{equation}
+和离散时间（discrete-time，DT）动态智能体模型的网络一致性问题，
+\begin{equation}
+    x_i(k+1) = x_i(k)+\epsilon u_i(k)
+\end{equation}
+其中步长尺寸$\epsilon>0$。
+在这篇文章，我们考虑了三种脚本：
+
+i）固定或切换拓扑的零沟通时滞：我们使用下边的线性一致性协议：
+\begin{equation}
+    u_i = \sum_{j\in N_i}a_{ij}(x_j-x_i) \tag{A1}
+\end{equation}
+在这里，节点$i$的邻居集合$N_i=N_i(G)$在切换拓扑网络中是变化的。
+
+ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和通信时滞$\tau_{ij}>0$对应于$ij\in \mathcal{E}$：我们使用下边的线性时滞一致性协议：
+\begin{equation}
+    u_i(t) = \sum_{j\in N_i}a_{ij}[x_j(t-\tau_{ij})-x_i(t-\tau_{ij})] \tag{A2}
+\end{equation}
+
+在收敛分析期间，上述两个协议（A1）和（A2）中每个协议的派生变得显而易见，之后将为每个协议介绍收敛分析。
+我们展示了在每一种情况下，一致性都是渐进到达的。
+此外，我们为网络中的有向信息流提供了充分必要的条件，以至于可以实现平均一致性（average-consensus），最大一致性（max-consensus）和最小一致性（min-consensus）。
+进一步来说，我们提供了这些一致性协议的性能表现和算法的鲁棒性分析。
+
+Remark1. 针对一个固定拓扑的无向网络，两个协议都可以通过适当的延迟技术来解决一致性问题。
+具有挑战性的是解决有向图网络和切换拓扑网络的相似一致性问题。
+在多智能体集群方面，信息流通常是有向的，并且网络的拓扑会经历自然界中本质上是离散状况的变化。
+
+所给的协议（A1），连续时间网络的智能体状态会随着下面的线性系统进行变化
+\begin{equation}
+    \dot{x}(t) = -Lx(t)
+\end{equation}
+这里，$L$是由信息流$G$引起的图拉普拉斯算子（graph Laplacian），并且定义如下
+\begin{equation}
+l_{ij} = \left\{
+    \begin{array}{ll}
+        \sum_{k=1,k\ne i}^n a_{ik}, & j=i\\
+        -a_{ij}, & j\ne i
+    \end{array}\right.
+\end{equation}
+图拉普拉斯算子的性质是代数图论中主要研究领域之一，将在第4部分详细讨论。
+
+在一个切换拓扑（switching topology）网络中，协议（A1）的收敛性分析等价于混合系统（hybrid system）的稳定性分析
+\begin{equation}
+    \dot{x}(t) = -L_kx(t),\ k=s(t)
+\end{equation}
+这里，$L_k = \mathcal{L}(G_k)$是拉普拉斯算子$G_k,s(t)$：$\mathbb{R}\rightarrow \mathcal{I}$
+
+
+\section{Algebraic Graph Theory: Properties of Laplacians}
+
+
+
+\section{A Counterexample for Average-Consensus}
+
+
+
+\section{Networks with Fixed or Switching Topology}
+
+
+
+\section{Networks with Communication Time-Delays}
+
+
+
+\section{Max-Consensus and Leader Determination}
+
+
+
+\section{Simulation Results}
+
+
+
+\section{Conclusions}
+
+
+
+\end{document}
