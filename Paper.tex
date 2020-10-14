@@ -5,9 +5,10 @@
 \usepackage{amsmath}
 \usepackage{geometry}
 \usepackage{color}
+\usepackage{graphicx}
 \geometry{a4paper,scale=0.8}
 \geometry{a4paper,left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}
-\linespread{1.25}
+\linespread{1.5}
 
 \title{Consensus Problems in Networks of Agents\\ with Switching Topology and Time-Delays}
 \author{ Jichao Zhao\thanks{E-mail: zhaojichao@imakerlab.cn}}
@@ -114,7 +115,7 @@ ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和通信时滞$\tau
 
 所给的协议（A1），连续时间网络的智能体状态会随着下面的线性系统进行变化
 \begin{equation}
-    \dot{x}(t) = -Lx(t)
+    \dot{x}(t) = -Lx(t) \label{6}
 \end{equation}
 这里，$L$是由信息流$G$引起的图拉普拉斯算子（graph Laplacian），并且定义如下
 \begin{equation}
@@ -127,12 +128,7 @@ l_{ij} = \left\{
 \end{equation}
 图拉普拉斯算子的性质是代数图论中主要研究领域之一，将在第4部分详细讨论。
 
-{\color[gray]{0.5} \em 
-关于图拉普拉斯的定义，还可查看文献[2013\_多智能体系统的协调控制研究综述-苗国英]
-\begin{equation}
-    s=a \notag
-\end{equation}
-}
+{\color[gray]{0.5} \em 关于图拉普拉斯的定义，还可查看文献[2013\_多智能体系统的协调控制研究综述-苗国英]}
 
 在一个切换拓扑（switching topology）网络中，协议(\ref{A1})的收敛性分析等价于混合系统（hybrid system）的稳定性分析
 \begin{equation}
@@ -210,15 +206,147 @@ l_{ij} = \left\{
 因此，$\text{rank}(L)=n-1$。
 对于一个所有节点都一致的连通图而言，由于$\Phi_G(x)=0$，所以$\Phi_G(x)$提供了关于智能体组非一致性有意义的量化。
 
+对于一个无向图$G$，它具有以下众所周知的性质文献[11]
+\begin{equation}
+    \min_{\substack{x\ne 0\\   \mathbf{1}^Tx=0}} \frac{x^T Lx}{||x||^2}=\lambda_2(L)
+\end{equation}
+公式的证明是基于Courant-Fischer定力的特例，参考文献[12]。
+之后我们将建立$\lambda_2(\hat{L})$和$\hat{L}=(L+L^T)/2$之间的联系，称作$\hat{L}$的费德勒特征值（Fiedler eigenvalue），参考文献[8，9]，和线性一致性协议的性能（即最坏情况下的协商速度）。
 
+系统(\ref{6})稳定性分析的关键是拉普拉斯图的光谱特性。
+接下来的结果已经众所周知（例如，文献[17]），它是基于Gesgorin圆盘定理（Gersgorin disk theorem），参考文献[12]。
 
+\noindent \textbf{Theorem} 2. (spectral localization) 定义$G=(\mathcal{V},\mathcal{E},\mathcal{A})$是关于拉普拉斯算子$L$的加权有向图。
+记图$G$的节点的最大化出度为$d_{max}(G) = \max_i \deg_{out}(v_i)$。
+那么，所有的$L=\mathcal{L}(G)$的特征值都位于下面的圆盘中
+\begin{equation}
+    D(G) = \{ z\in \mathbb{C}: |z-d_{max}(G)| \le d_{max}(G) \}
+    \label{15}
+\end{equation}
+在复平面中以$z=d_{max}(G)+0j$为中心（详见图\ref{DiskTheorem}）。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=8cm]{figures/Fig1-DiskTheorem.jpeg}
+    \caption{圆盘定理应用在图拉普拉斯的效果演示}
+    \label{DiskTheorem}
+\end{figure}
+
+\noindent \textbf{Proof.} 基于圆盘定理，所有$L=[l_{ij}]$的特征值都位于下面的$n$个圆盘的并集中
+\begin{equation}
+    D_i = \{ z\in \mathbb{C}: |z-l_{ii}| \le \sum_{j\in \mathcal{I},j\ne i}|l_{ij}| \}
+    \label{16}
+\end{equation}
+如果$l_{ii} = \Delta_{ii}$那么
+\begin{equation}
+    \sum_{j\in \mathcal{I},j\ne i}|l_{ij}|=\deg_{out}(v_i) = \Delta_{ii}
+    \notag
+\end{equation}
+因此，$D_i = \{ z\in \mathbb{C}:|z - \Delta_{ii}| \le \Delta_{ii}\}$。
+另一方面，所有的$n$个圆盘被包含在一个最大的圆盘$D(G)$中，此圆盘半径为$d_{max}(G)$。
+明显的，所有关于$-L$的特征值都位于$D(G)$关于虚轴镜像对阵的圆盘$D^\prime(G)=\{ z\in \mathbb{C}: |z+d_{max}(G)|\le d_{max}(G)\}$中。
+
+以下是一个关于有向网络协议(\ref{A1})直接推论和首次收敛证明。
+
+\noindent \textbf{Corollary 1.} 考虑到网络中的所有节点利用协议(\ref{A1})进行整合$\dot{x}_i = u_i$。
+假设图$G$是强连接图。
+那么，协议(\ref{A1})解决全局渐进一致性问题。
+
+\textbf{Proof.} 由于$G$是强连接图，$\text{rank}(L)=n-1$并且$L$有一个为0的特征值。
+基于定理2（Theorem 2），$-L$余下的特征值有负实部，并且因此线性系统(\ref{6})是稳定的。
+另一方面，任何系统(\ref{6})的平衡状态$x^*$都是一个$L$关于$\lambda=0$的右特征向量。
+由于特征空间是与0特征值有联系的1维特征向量，这里存在一个$\alpha\in \mathbb{R}$使得$x^*=\alpha\mathbf{1}$，即对于所有的$i$都有$x^*=\alpha$。
+
+谨记推论1（Corollary 1）不能保证所有节点的决策值$\alpha$是否等于$\text{Ave}(x(0))$。
+换句话说，推论1（Corollary 1）不一定能解决平均一致性问题。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=4cm]{figures/Fig2-ConnectedDigraph.jpeg}
+    \label{ConnectedDigraph}
+    \caption{一个不能使用协议(\ref{A1})解决平均一致性问题的3阶连通图}
+\end{figure}
 
 
 \section{A Counterexample for Average-Consensus}
+在推论1（Corollary 1）协议中，所有节点的每个决策值$\alpha$等于$\text{Ave}(x(0))$的充分条件是$\sum_{i=1}^{n}u_i \equiv 0$。
+如果图$G$是无定向的（即$a_{ij}=a_{ji} > 0,\forall i,j: a_{ij}\ne 0$），自动的情况$\sum_{i=1}^{n}u_i=0$，$\forall x$和$\text{Ave}(x(t))$是不变的量，参考文献[20]。
+然而，这个性质并不适用于一般有向图。
 
+一个简单的反例就是图(\ref{ConnectedDigraph})表示的3阶$n=3$强连接图，其中权重在\{0，1\}中，向量和边的集合如下所示：
+\begin{equation}
+    \mathcal{V} = \{1, 2, 3 \},\quad \mathcal{E}=\{12, 23, 31, 13\}.
+    \notag
+\end{equation}
+
+对于图$G=(\mathcal{V}, \mathcal{E})$，$\sum_{i=1}^{3}u_i = x_3 - x_1$。
+因此，如果节点1和3不一致，那么属性$\sum_{i=1}^{3}u_i = 0$不是对于所有的$x$都成立。
+另一方面，读者可以在本例中来验证这一点
+\begin{equation}
+    L = \left[
+    \begin{matrix}
+        2 & -1 & -1 \\
+        0 & 1 & -1 \\
+        -1 & 0 & 1 
+    \end{matrix}
+    \right]
+    \notag
+\end{equation}
+并且$x^*_i = [x_1(0) + x_2(0) + 2x_3(0)]/4$（此公式基于Theorem 3）。
+这个决策值在所有$x_i(0)$的凸包中是显而易见的，但是当且仅当$x_1(0) + x_2(0) \ne 2x_3(0)$时，决策值不等于$\text{Ave}(x(0))$。
+结果就是，对于所有初始条件满足$x_1(0) + x_2(0) \ne 2x_3(0)$，协议(\ref{A1})并不能解决平均一致性问题，但所有的节点仍能达到一致。
+这促使我们描述所有的图的类，来解决平均一致性问题。
+
+在提出我们第一次的主要结果之前，我们需要提供一个指数矩阵如$e^{(-Lt)}$形式的极限理论。
+这是因为系统(\ref{6})的解决办法是通过以下公式给出
+\begin{equation}
+    x(t) = exp(-Lt)x(0)
+\end{equation}
+并且通过对$exp(-Lt)$的显示计算，我们可以获得达到一致性的总图节点的决策值。
+在非负矩阵理论中，接下来的定理与著名的极限定理关系密切，即Perron-Frobenius定理（Perron-Frobenius Theorem），参考文献[12]。
+
+\textbf{Notation.} 参考文献[12]的注解，我们记$M_{m,n}$为$m\times n$的实矩阵，$M_n$为$n \times n$的方阵。
+进一步，通过这篇文章，关于$\lambda_1 = 0$的拉普拉斯矩阵$L$的右特征向量和左特征向量分别用$w_r$和$w_l$表示。
+
+\textbf{Theorem 3.} 假设$G$是一个强连接图，拉普拉斯算子$L$满足$Lw_r=0$，$w_l^TL = 0$，$w_l^Tw_r=1$。
+\begin{equation}
+    R = \lim_{t\rightarrow +\infty} exp(-Lt) = w_r w_l^T \in M_n
+\end{equation}
+
+\textbf{Proof.} 令$A=-L$，$J$为$A$的约当形，即$A=SJS^{-1}$。
+我们有$exp(At) = S exp(Jt) S^{-1}$当$s\rightarrow +\infty$，$exp(Jt)$收敛至一个具有单一非零元素$q_{11}=1$的矩阵$Q=[q_{ij}]$。
+对角矩阵$exp(Jt)$的其他块会变成0，由于对于所有的$k\ge2$，都有$Re(\lambda_k(A))<0$，这里$\lambda_k(A)$是矩阵$A$的第$k$个最大的特征值$|A|$。
+注意$R=SQS^{-1}$。
+由于$AS=SJ$，$S$的第一列为$w_r$。
+相似的，$S^{-1}A = JS^{-1}$，这也意味着$S^{-1}$的第一行是$w_l^T$。
+由于$S^{-1}S=T$，$w_l$满足如性质所述的$w_l^Tw_r=1$。
+直接的计算显示$R=w_rw_l^T\in M_n$。
 
 
 \section{Networks with Fixed or Switching Topology}
+这部分，我们提出了三种主要的结论：i）描述了所有使用协议(\ref{A1})解决平均一致性问题的连接图。
+ii）协议(\ref{A1})的性能和图的费德勒特征值（即代数连接）之间的联系。
+iii）在切换拓扑下的连接失败/生成的鲁棒一致性问题。
+
+\subsection{Balanced Graphs and Average-Consensus on Digraphs}
+下述的图类表明了在解决一致性问题的分析：
+
+\textbf{Definition 1.} （平衡图）我们认为当且仅当图$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$的节点$v_i$的入度（in-degree）等于出度（out-degree）时，节点是平衡的，即$\deg_{out}(v_i)=\deg_{in}(v_i)$。
+当图$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$的所有节点都是平衡时，图是平衡图，即$\sum_{j}a_{ij} = \sum_{j}a_{ji}, \forall i$。
+
+\textbf{Example 1.} 任意的无向图都是平衡的。
+进一步说，图\ref{BalancedGraphs}展示的图都是平衡的。
+\begin{figure}[htbp]
+    \centering
+    % \includegraphics[width=12cm]{figures/Fig3-BalancedGraphs.jpeg}
+    \includegraphics[width=12cm]{figures/Fig3-BalancedGraphs.jpeg}
+    \label{BalancedGraphs}
+    \caption{平衡图的三个例子}
+\end{figure}
+
+接下来是我们的第一个主要结论：
+
+
+
+
 
 
 
@@ -231,10 +359,73 @@ l_{ij} = \left\{
 
 
 \section{Simulation Results}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=12cm]{figures/Fig4-BalancedSC.jpeg}
+    \label{BalancedSC}
+    \caption{强连接的平衡图}
+\end{figure}
 
+图\ref{BalancedSC}展示了四个不同的网络，每个都有$n=10$个节点，这些网络都是强连接并且平衡的。
+与所有边相关的权重大小都是1。
+对于以下的节点，初始值都满足$\text{Ave(x(0))} = 0$
+\begin{equation}
+    x(0) = (−10.2999, 0.2575, −4.4997, 3.6258, 3.0922, 9.0156, 3.5099, −2.6645, 2.4552, −4.4921)^T
+    \notag
+\end{equation}
+我们已经绘制出状态轨迹，和关于这四个图的非一致函数$||\delta||^2$，如图\ref{Simulation}所示。
+可以清楚的知道，随着图的边的数量的增加，代数连接（或$\lambda^2$）增加，节点的轨迹稳定时间减小。
+长度为$n=10$或$G_a$的有向周期，具有最大的过冲情况。
+在所有的四种情况下，一致性都是逐渐达到的，并且性能随着函数$\lambda_2(\hat{G}_k)$而改善，其中$k\in \{a,b,c,d\}$。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=14.5cm]{figures/Fig5-Simulation.jpeg}
+    \label{Simulation}
+    \caption{图的轨迹}
+\end{figure}
+
+在图6（a）中，一个有限自动机包含了状态集合\{$G_a, G_b, G_c, G_d$\}，表示切换拓扑网络离散状态，作为一个混合系统。
+这个混合系统从离散状态$G_b$开始，之后每经过$T=1$秒切换至图6（a）所示的下个状态。
+网络的连续时间状态轨迹和群组非一致性（即$||\delta||^2$）如图6（b）所示。
+清楚的看到，群组非一致性是单调递减的。
+可以观看到平均一致性是逐渐达成的。
+此外，群组非一致性呈指数级快速消失。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=14.5cm]{figures/Fig6-Automaton.jpeg}
+    \label{Automaton}
+    \caption{有限自动机}
+\end{figure}
+
+之后，我们展示了关于网络信息流的沟通时滞平均一致性问题的结果，如图7所示。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=8cm]{figures/Fig7-Undirected.jpeg}
+    \label{Undirected}
+    \caption{用作沟通时滞一致性的无向图$G_e$}
+\end{figure}
+
+图8展示了$n=10$网络节点状态轨迹，网络包含沟通时滞$\tau$，$\tau$的值有$\tau=0, 0.5\tau_{max}, \tau_{max} = \pi / 2\tau_{max}(G_a) = 0.266$，对于0均值随机初始条件的随机集合。
+清楚的看到，当$\tau < \tau_{max}$时达到一致，如图8（a），（b）和（c）所示。
+针对于$\tau = \tau_{max}$的情况，同步振荡如图8（d）所示。
+三阶帕德近似（Pade approximation）被用在时滞模型作为一个有限阶线性时不变（Linear Time-Invariant, LTI）系统。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=14.5cm]{figures/Fig8-ConsensusProblem.jpeg}
+    \label{ConsensusProblem}
+    \caption{一致性问题}
+\end{figure}
 
 
 \section{Conclusions}
+我们提供了具备有向信息流和固定或切换拓扑网络的一致性协议的收敛性分析。
+我们的分析依赖于一些代数图论和矩阵论的工具。
+我们建立了线性一致性协议的性质和镜像图拉普拉斯算子的费德勒特征值之间的联系。
+介绍了简单的非一致性函数，其作为李雅普诺夫方程，允许切换拓扑网络的一致性协议的收敛性分析。
+给出的交换图，该图表明了平衡图的加权邻接矩阵采用矩阵交换的拉普拉斯算子和对称部分矩阵的运算。
+平衡图被证明对解决平均一致性问题是有帮助的。
+
 
 
 
