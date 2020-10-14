@@ -3,10 +3,19 @@
 \usepackage{xeCJK}
 \usepackage{amsfonts,amssymb}
 \usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{color}
+\geometry{a4paper,scale=0.8}
+\geometry{a4paper,left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}
+\linespread{1.25}
 
+\title{Consensus Problems in Networks of Agents\\ with Switching Topology and Time-Delays}
+\author{ Jichao Zhao\thanks{E-mail: zhaojichao@imakerlab.cn}}
+\date{13-10-2020}
 
 % 正文开始
 \begin{document}
+\maketitle
 
 \begin{abstract}
 这篇文章，我们讨论了动态智能体网络固定和切换拓扑下的一致性问题。
@@ -85,9 +94,9 @@ $G=(\mathcal{V},\mathcal{E},\mathcal{A})$是加权有向图（或无向图），
 
 i）固定或切换拓扑的零沟通时滞：我们使用下边的线性一致性协议：
 \begin{equation}
-    u_i = \sum_{j\in N_i}a_{ij}(x_j-x_i) \tag{A1}
+    u_i = \sum_{j\in N_i}a_{ij}(x_j-x_i) \tag{A1} \label{A1}
 \end{equation}
-在这里，节点$i$的邻居集合$N_i=N_i(G)$在切换拓扑网络中是变化的。
+\indent 在这里，节点$i$的邻居集合$N_i=N_i(G)$在切换拓扑网络中是变化的。
 
 ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和通信时滞$\tau_{ij}>0$对应于$ij\in \mathcal{E}$：我们使用下边的线性时滞一致性协议：
 \begin{equation}
@@ -97,9 +106,9 @@ ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和通信时滞$\tau
 在收敛分析期间，上述两个协议（A1）和（A2）中每个协议的派生变得显而易见，之后将为每个协议介绍收敛分析。
 我们展示了在每一种情况下，一致性都是渐进到达的。
 此外，我们为网络中的有向信息流提供了充分必要的条件，以至于可以实现平均一致性（average-consensus），最大一致性（max-consensus）和最小一致性（min-consensus）。
-进一步来说，我们提供了这些一致性协议的性能表现和算法的鲁棒性分析。
+更进一步的，我们提供了这些一致性协议的性能表现和算法的鲁棒性分析。
 
-Remark1. 针对一个固定拓扑的无向网络，两个协议都可以通过适当的延迟技术来解决一致性问题。
+\noindent{\em Remark} 1. 针对一个固定拓扑的无向网络，两个协议都可以通过适当的延迟技术来解决一致性问题。
 具有挑战性的是解决有向图网络和切换拓扑网络的相似一致性问题。
 在多智能体集群方面，信息流通常是有向的，并且网络的拓扑会经历自然界中本质上是离散状况的变化。
 
@@ -114,17 +123,93 @@ l_{ij} = \left\{
         \sum_{k=1,k\ne i}^n a_{ik}, & j=i\\
         -a_{ij}, & j\ne i
     \end{array}\right.
+    \label{7}
 \end{equation}
 图拉普拉斯算子的性质是代数图论中主要研究领域之一，将在第4部分详细讨论。
 
-在一个切换拓扑（switching topology）网络中，协议（A1）的收敛性分析等价于混合系统（hybrid system）的稳定性分析
+{\color[gray]{0.5} \em 
+关于图拉普拉斯的定义，还可查看文献[2013\_多智能体系统的协调控制研究综述-苗国英]
 \begin{equation}
-    \dot{x}(t) = -L_kx(t),\ k=s(t)
+    s=a \notag
 \end{equation}
-这里，$L_k = \mathcal{L}(G_k)$是拉普拉斯算子$G_k,s(t)$：$\mathbb{R}\rightarrow \mathcal{I}$
+}
+
+在一个切换拓扑（switching topology）网络中，协议(\ref{A1})的收敛性分析等价于混合系统（hybrid system）的稳定性分析
+\begin{equation}
+    \dot{x}(t) = -L_kx(t),\ k=s(t) \label{8}
+\end{equation}
+这里，$L_k = \mathcal{L}(G_k)$是$G_k$的拉普拉斯算子，$s(t)$：$\mathbb{R}\rightarrow \mathcal{I} \subset \mathbb{Z}$是切换信号，$\Gamma\ni G_k$是有序集合$\mathcal{I}_\Gamma$有限个图（节点$n$）的有限集合。
+之后，我们将会看到$\Gamma$是一个对于$n\gg 1$相对较大的集合。
+在公式(\ref{8})中，混合系统的稳定性分析是一个更加具有挑战性的部分，总的来说，部分原因是因为两个拉普拉斯矩阵的乘积并不匹配。
+
+对于离散时间的智能体模型，应用协议(\ref{A1})给出了如下的动态离散网络
+\begin{equation}
+    x(k+1) = P_\epsilon x(x)
+\end{equation}
+和
+\begin{equation}
+    P_\epsilon = I - \epsilon L
+\end{equation}
+对于所有的$\epsilon\in (0,1/d_{max})$，使$d_{max} = \max_il_{ii}$，$P_\epsilon$是一个非负随机矩阵，我们称之为门阶矩阵（Perron matrix），即$P_\epsilon$所有元素非负且所有的行总和为1。
+
+智能体离散时间协议(\ref{A1})的收敛性分析严重依赖于非负矩阵理论，并且将会在一个额外的文章中讨论。
+我们的方法提出了一个基于李雅普诺夫（Lyapunov）的，离散时间模型网络的一致收敛性分析。
+这是不同于Jadbabaie等人从事的成果方法，这非常依赖于矩阵论的性质和无限的随机矩阵的右收敛乘积（right-convergence product，RCP）。
 
 
 \section{Algebraic Graph Theory: Properties of Laplacians}
+在这一部分，我们介绍图论的基本的概念和标记，这些知识都将在文章的后边被用到。
+更多的信息参考文献[11,5]。
+更加复杂全面的关于无向图的拉普拉斯算子请参考文献[17]。
+然而，我们需要用到的关于无向图的拉普拉斯的基本概念无法在图论的书籍文献中找到，因此我们罗列在这里。
+
+定义$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$为一个加权有向图（或有向图），具有$n$个节点。
+节点$v_i$的入度（in-degree）和出度（out-degree）分别定义如下：
+\begin{equation}
+    \deg_{in}(v_i) = \sum_{j=1}^{n}a_{ji},\quad \deg_{out}(v_i) = \sum_{j=1}^{n}a_{ij}
+\end{equation}
+
+对于一个普通图，其邻接矩阵$\mathcal{A}$只有两个元素\{0，1\}，出度$\deg_{out}(v_i) = |N_i|$等于邻居元素的数量。
+图$G$的矩阵度（degree matrix）是一个对角矩阵，记为$\Delta=[\Delta_{ij}]$，其中对于所有的$i\ne j$，$\Delta_{ij}=0$和$\Delta_{ii}=\deg_{out}(v_i)$。
+加权图拉普拉斯算子矩阵（graph Laplacian matrix）和图$G$之间的联系定义如下
+\begin{equation}
+    L = \mathcal{L}(G) = \Delta-\mathcal{A}
+\end{equation}
+这和公式(\ref{7})中关于$L$中元素的定义是一致的。
+
+\noindent{\em Remark} 2. 图拉普拉斯算子$L$并不取决于$G$的邻接矩阵中的对角元素$a_{ii}$，对应于封闭环形（loops）（$v_i$，$v_i$）的权重（即cycles of length one）。
+根据上下文，在不失一般性的前提下，我们可以假设所有对于$i$的$a_{ii}=0$。
+这项工作的一个受限部分是，使用了带有循环的图，这些图的权重无法舍弃。
+
+我们有时使用$\mathcal{L}(\mathcal{A}) = \mathcal{L}(G)$表示图$G$的拉普拉斯算子。
+根据定义，拉普拉斯矩阵的每一行的和为0。
+因此，图拉普拉斯算子总是有一个为0的特征值（即$rank(L)\le n-1$)对应于一个右特征向量
+\begin{equation}
+    w_r = \mathbf{1} = (1,1,\dots,1)^T \notag
+\end{equation}
+具有相同的非零元素。
+
+当且仅当任意的两个完全分开的节点，能够通过一个关于有向图边的方向的方式进行连接，那么这样的图称作强连接（strongly connected）。
+之后的理论在定向图的SC性质和拉普拉斯矩阵的秩之间，建立了定向的关系。
+
+\noindent \textbf{Theorem 1.} 定义$G=(\mathcal{V},\mathcal{E},\mathcal{A})$是关于拉普拉斯算子$L$的加权有向图。
+那么，$G$就是强连接的，当且仅当$\text{rank}(L)=n-1$时。
+
+\noindent \textbf{Proof.} 证明详见附录A.1
+
+\noindent {\em Remark} 3. 对于一个无向图$G$，Theorem 1的证明很容易，详见文献[1，11]。
+
+\noindent {\em Remark} 4. 对一个具有对称邻接矩阵$\mathcal{A}$的无向图（undirected graph）$G$，图拉普拉斯算子$L$是对称半正定的。
+拉普拉斯算子与图$G$的潜在联系定义在文献[20]中如下
+\begin{equation}
+    \Phi_G(x) = x^T Lx = \frac{1}{2} \sum_{ij\in \mathcal{E}}(x_j - x_i)^2
+\end{equation}
+这是一个简单的关于无向图定理的证明：假设$Lx=0$，其中$x\in \mathbb{R}$。
+那么，对于所有的边$ij\in \mathcal{E}$，都有$x^TLx=0$且$x_j=x_i$。
+如果图是连接的，这就意味着所有的节点都一致且相等$x_1=\dots=x_n$。
+因此，$\text{rank}(L)=n-1$。
+对于一个所有节点都一致的连通图而言，由于$\Phi_G(x)=0$，所以$\Phi_G(x)$提供了关于智能体组非一致性有意义的量化。
+
 
 
 
