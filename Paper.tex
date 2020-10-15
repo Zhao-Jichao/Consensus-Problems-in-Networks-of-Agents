@@ -98,13 +98,17 @@ $G=(\mathcal{V},\mathcal{E},\mathcal{A})$是加权有向图（或无向图），
 
 i）固定或切换拓扑的零沟通时滞：我们使用下边的线性一致性协议：
 \begin{equation}
-    u_i = \sum_{j\in N_i}a_{ij}(x_j-x_i) \tag{A1} \label{A1}
+    u_i = \sum_{j\in N_i}a_{ij}(x_j-x_i)
+    \tag{A1}
+    \label{A1}
 \end{equation}
 \indent 在这里，节点$i$的邻居集合$N_i=N_i(G)$在切换拓扑网络中是变化的。
 
 ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和通信时滞$\tau_{ij}>0$对应于$ij\in \mathcal{E}$：我们使用下边的线性时滞一致性协议：
 \begin{equation}
-    u_i(t) = \sum_{j\in N_i}a_{ij}[x_j(t-\tau_{ij})-x_i(t-\tau_{ij})] \tag{A2}
+    u_i(t) = \sum_{j\in N_i}a_{ij}[x_j(t-\tau_{ij})-x_i(t-\tau_{ij})]
+    \tag{A2}
+    \label{A2}
 \end{equation}
 
 在收敛分析期间，上述两个协议（A1）和（A2）中每个协议的派生变得显而易见，之后将为每个协议介绍收敛分析。
@@ -254,7 +258,7 @@ l_{ij} = \left\{
 假设图$G$是强连接图。
 那么，协议(\ref{A1})解决全局渐进一致性问题。
 
-\textbf{Proof.} 由于$G$是强连接图，$\text{rank}(L)=n-1$并且$L$有一个为0的特征值。
+\noindent \textbf{Proof.} 由于$G$是强连接图，$\text{rank}(L)=n-1$并且$L$有一个为0的特征值。
 基于定理2（Theorem 2），$-L$余下的特征值有负实部，并且因此线性系统(\ref{6})是稳定的。
 另一方面，任何系统(\ref{6})的平衡状态$x^*$都是一个$L$关于$\lambda=0$的右特征向量。
 由于特征空间是与0特征值有联系的1维特征向量，这里存在一个$\alpha\in \mathbb{R}$使得$x^*=\alpha\mathbf{1}$，即对于所有的$i$都有$x^*=\alpha$。
@@ -306,15 +310,15 @@ l_{ij} = \left\{
 并且通过对$exp(-Lt)$的显示计算，我们可以获得达到一致性的总图节点的决策值。
 在非负矩阵理论中，接下来的定理与著名的极限定理关系密切，即Perron-Frobenius定理（Perron-Frobenius Theorem），参考文献[12]。
 
-\textbf{Notation.} 参考文献[12]的注解，我们记$M_{m,n}$为$m\times n$的实矩阵，$M_n$为$n \times n$的方阵。
+\noindent \textbf{Notation.} 参考文献[12]的注解，我们记$M_{m,n}$为$m\times n$的实矩阵，$M_n$为$n \times n$的方阵。
 进一步，通过这篇文章，关于$\lambda_1 = 0$的拉普拉斯矩阵$L$的右特征向量和左特征向量分别用$w_r$和$w_l$表示。
 
-\textbf{Theorem 3.} 假设$G$是一个强连接图，拉普拉斯算子$L$满足$Lw_r=0$，$w_l^TL = 0$，$w_l^Tw_r=1$。
+\noindent \textbf{Theorem 3.} 假设$G$是一个强连接图，拉普拉斯算子$L$满足$Lw_r=0$，$w_l^TL = 0$，$w_l^Tw_r=1$。
 \begin{equation}
     R = \lim_{t\rightarrow +\infty} exp(-Lt) = w_r w_l^T \in M_n
 \end{equation}
 
-\textbf{Proof.} 令$A=-L$，$J$为$A$的约当形，即$A=SJS^{-1}$。
+\noindent \textbf{Proof.} 令$A=-L$，$J$为$A$的约当形，即$A=SJS^{-1}$。
 我们有$exp(At) = S exp(Jt) S^{-1}$当$s\rightarrow +\infty$，$exp(Jt)$收敛至一个具有单一非零元素$q_{11}=1$的矩阵$Q=[q_{ij}]$。
 对角矩阵$exp(Jt)$的其他块会变成0，由于对于所有的$k\ge2$，都有$Re(\lambda_k(A))<0$，这里$\lambda_k(A)$是矩阵$A$的第$k$个最大的特征值$|A|$。
 注意$R=SQS^{-1}$。
@@ -332,10 +336,10 @@ iii）在切换拓扑下的连接失败/生成的鲁棒一致性问题。
 \subsection{Balanced Graphs and Average-Consensus on Digraphs}
 下述的图类表明了在解决一致性问题的分析：
 
-\textbf{Definition 1.} （平衡图）我们认为当且仅当图$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$的节点$v_i$的入度（in-degree）等于出度（out-degree）时，节点是平衡的，即$\deg_{out}(v_i)=\deg_{in}(v_i)$。
+\noindent \textbf{Definition 1.} （平衡图）我们认为当且仅当图$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$的节点$v_i$的入度（in-degree）等于出度（out-degree）时，节点是平衡的，即$\deg_{out}(v_i)=\deg_{in}(v_i)$。
 当图$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$的所有节点都是平衡时，图是平衡图，即$\sum_{j}a_{ij} = \sum_{j}a_{ji}, \forall i$。
 
-\textbf{Example 1.} 任意的无向图都是平衡的。
+\noindent \textbf{Example 1.} 任意的无向图都是平衡的。
 进一步说，图\ref{BalancedGraphs}展示的图都是平衡的。
 \begin{figure}[htbp]
     \centering
@@ -346,13 +350,214 @@ iii）在切换拓扑下的连接失败/生成的鲁棒一致性问题。
 
 接下来是我们的第一个主要结论：
 
+\noindent \textbf{Theorem 4.} 考虑一个有向信息流网络$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$的整合，网络是强连接的。
+那么，当且仅当图$G$是平衡图时，协议(\ref{A1})全局渐进的解决了平均一致性问题。
+
+\noindent \textbf{Proof.} 证明参考如下定理5和定理6。
+
+\noindent {\em Remark} 5. 根据定理4，如果图不是平衡图，那么协议(\ref{A1})没有办法解决平均一致性问题。
+此断言与图\ref{ConnectedDigraph}给出的反例是一致的。
+
+\noindent \textbf{Theorem 5.} 考虑一个整合智能体网络图$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$是强连接的。
+那么，当且仅当$\mathbf{1}^TL=0$时，协议(\ref{A1})全局渐进的解决了平均一致性问题。
+
+\noindent \textbf{Proof.} 参考定理3，结合$w_r = \frac{1}{\sqrt{n}}\mathbf{1}$我们可以得到
+\begin{equation}
+    x^* = \lim_{t\rightarrow +\infty}x(t) = Rx_0 = w_r(w_L^T x_0) = \frac{1}{\sqrt{n}}(w_l^Tx_0)\mathbf{1}
+    \notag
+\end{equation}
 
 
+
+
+\noindent \textbf{Corollary 2.} 假设定理5中的所有条件成立。
+
+\noindent \textbf{Proof.}
+
+\noindent \textbf{Corollary 3.} （多比例整合）
+
+\noindent \textbf{Proof.}
+
+\noindent {\em Remark} 6. 
+
+\noindent \textbf{Theorem 6.} 定义一个具有邻接矩阵$\mathcal{A}=[a_{ij}]$的图$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$。
+那么，下列所有的条件都是等价的：
+
+i）图$G$是平衡的；
+
+ii）$w_l = \mathbf{1}$是图$G$拉普拉斯算子相对于0特征值的左特征向量，即$\mathbf{1}^TL = 0$。
+
+iii）有$\sum_{i=1}^n u_i = 0$，对于所有的$\forall x \in \mathbb{R}$，$u_i = \sum_{j\in N_i}a_{ij}(x_j - x_i)$。
+
+\noindent \textbf{Proof.} 我们展示
+
+
+\noindent {\em Remark} 7. 注意在定理6中，图$G$不需要连通。
+
+\subsection{Performance of Group Agreement and Mirror Graphs}
+在这部分，我们讨论协议(\ref{A1})平衡图的一些问题。
+定理6的一个重要的结果就是对于平衡信息流网络而言，$\alpha = Ave(x)$是一个不变的量。
+对于任意的有向图，并不是确定正确的。
+$Ave(x)$的不变性允许其根据以下方程进行$x$的分解：
+\begin{equation}
+    x = \alpha \mathbf{1} + \delta
+    \tag{22}
+\end{equation}
+这里，$\alpha = Ave(x)$，$\delta\in \mathbb{R}^n$且满足$\sum_i\delta_i=0$。
+我们引用$\delta$作为（群组）非一致向量。
+向量$\delta$与$\mathbf{1}$正交，且属于一个$(n-1)$-维子空间，此子空间叫做强连通图$G$的拉普拉斯矩阵$L$的非一致特征空间。
+此外，$\delta$根据下边给出的动态非一致（群组）公式变化
+\begin{equation}
+    \dot{\delta} = -L\delta
+    \tag{23}
+\end{equation}
+
+定义图$G$的拉普拉斯非一致函数为：
+\begin{equation}
+    \Phi_G(x) = x^T Lx
+    \tag{24}
+\end{equation}
+此时$L=\mathcal{L}(G)$。
+对于图，$\Phi_G(x)$可以是负定的（例如，两个几点和一个边12的图拉普拉斯矩阵是非半正定的）。
+
+这也证明平衡图的一个有效性质是，他们的拉普拉斯算子非一致函数是半正定的。
+另外，对于任意的平衡图$G$，都存在一个具有相同拉普拉斯非一致函数的无向图$G$。
+接下来，我们正式定义这个感应无向图。
+
+\noindent \textbf{Definition 2.} （镜像图/操作）
+
+
+
+\subsection{Consensus in Networks with Switching Topology}
+考虑一个具有移动智能体的网络，之间互相沟通并且需要一致到一个感兴趣的目标或表现同步。
+由于网络节点一直在移动，不难想象，由于两个智能体之间存在障碍物，通信连接很容易丢失。
+由于智能体进入了其他智能体的有效检测范围，那么就会发生相邻智能体之间出现新连接的对立情况。
+换句话说，在用图$G$表示的有限信息流网络中，图$G$的某些边缘会增加或移除。
+在这里，我们致力于发现探索网络具有切换拓扑的情况，无论是否能够达到一致性。
+
+考虑一个具有连续状态和离散状态的混合系统，这属于有限集合图$G$
+\begin{equation}
+    \Gamma_n = \{ G: G\ \text{is a digraph of order}\ n\ \text{that is}\ strongly\ connected\ \text{and}\ balanced \}
+    \notag
+\end{equation}
+可以被分析表示成如下形式：
+\begin{equation}
+    \Gamma_n = \{ G=(\mathcal{V}, \mathcal{E}, \mathcal{A}): \text{rank}(\mathcal{L}(G)) =n-1, \mathbf{1}^T\mathcal{L}(G) = 0\}
+    \tag{31}
+    \label{31}
+\end{equation}
+
+给出节点的动态协议，那么系统的连续状态根据如下动态进行演变：
+\begin{equation}
+    \dot{x}(t) = -\mathcal{L}(G_k)x(t),\quad k=s(t), G_k\in \Gamma_n
+    \tag{32}
+    \label{32}
+\end{equation}
+这里，$s(t): \mathbb{R}_{\ge 0}\rightarrow \mathcal{I}_{\Gamma_n}$是切换信号（switching signal），并且$\mathcal{I}_{\Gamma_n}\subset \mathbb{N}$是相对于$\Gamma_n$中元素的索引集合。
+清晰的，$\Gamma_n$是一个有限集合，因为它不是一个没有边缘的图，而是一个具有$n(n-1)$个边的完整图。
+解决具有切换拓扑的移动网络的一致性问题的关键是，公式(\ref{28})提到的李雅普诺夫函数的基本性质和平衡图的性质。
+注意函数$V(\delta)=\frac{1}{2}||\delta||^2$并不依赖$G$或$L=\mathcal{L}(G)$。
+$V(\delta)$的这个性质使它成为切换拓扑系统(\ref{32})的李雅普诺夫函数稳定性分析的合适候选。
+
+\noindent \textbf{Theorem 9.} 对于任意的切换信号$s(\cdot)$，切换系统(\ref{32})的解决方法是全局渐进收敛到$Ave(x(0))$（即完成平均一致性）。
+此外，下述的平滑，正定，合适函数
+\begin{equation}
+    V(\delta) = \frac{1}{2}||\delta||^2
+    \label{33}
+    \tag{33}
+\end{equation}
+是一个下面给出的关于动态非一致性协议普遍可用的李雅普诺夫方程
+\begin{equation}
+    \dot{\delta}(t) = -\mathcal{L}(G_k)\delta(t),\quad k=s(t),G_k\in \Gamma_n.
+    \tag{34}
+    \label{34}
+\end{equation}
+
+进一步的，非一致性向量$\delta$随着关于下述的最小速率呈指数级消失
+\begin{equation}
+    k^* = \min_{G\in \Gamma_n} \lambda^2(\mathcal{L}(\hat{G})).
+    \tag{35}
+    \label{35}
+\end{equation}
+也就是说，$||\delta(t)||\le ||\delta(0)||exp(-k^*t)$。
+
+\noindent \textbf{Proof.}
 
 
 
 
 \section{Networks with Communication Time-Delays}
+考虑固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$连续时间网络，其节点$i$的状态经过一个时滞$\tau > 0$的通信通道（或连接）达到节点$j$。
+关于连接$ij$的转移函数表示如下：
+\begin{equation}
+    h_{ij}(s) = e^{-\tau_{ij}s}
+    \notag
+\end{equation}
+应用线性时滞协议(\ref{A2})，网络动态变化可写作：
+\begin{equation}
+    \dot{x}_i(t) = \sum_{j\in N_i} a_{ij} [x_j(t-\tau_{ij}) - x_i(t-\tau_{ij})].
+    \tag{37}
+    \label{37}
+\end{equation}
+通过对公式(\ref{37})两边进行拉氏变换，我们得到
+\begin{equation}
+    sX_i(s) - x_i(0) = \sum_{j\in N_i} a_{ij} h_{ij}(s) (X_j(s) - X_i(s))
+    \tag{38}
+    \label{38}
+\end{equation}
+这里$X_i(s)$表示所有$i\in \mathcal{I}$中$x_i(t)$的拉氏变换。
+公式的最后一部分可以写作如下紧凑形式：
+\begin{equation}
+    X(s) = (s+L(s))^{-1}x(0)
+    \tag{39}
+    \label{39}
+\end{equation}
+这里$L(x)$是图关于邻接矩阵$\mathcal{A}(s) = [a_{ij}h_{ij}(s)]$的拉普拉斯矩阵。
+总的来说，任何关于通道$ij$的过滤效果都可以合并成连接转换函数$h_{ij}(s)$。
+关于通信时滞智能体网络的协议(\ref{A2})收敛性分析减小为一个多输入多输出系统（MIMO）转移函数的稳定性分析
+\begin{equation}
+    G(s) = (sI+L(s))^{-1}.
+    \notag
+\end{equation}
+
+为了得到图拉普拉斯算子和一致性协议(\ref{A2})收敛性质之间进一步关键点，我们聚焦在最简单的可能情况，这里所有通道的时滞都等于一个无向固定拓扑图$G$网络中的$\tau > 0$。
+立即推，其遵循$\sum_i u_i \equiv 0$并且因此$\alpha = Ave(x(t))$是一个不变的量。
+另外，我们有
+\begin{equation}
+    L(s) = e^{-\tau s}L
+    \notag
+\end{equation}
+这里$L=\mathcal{L}(G)$。
+这是我们关于通信时滞网络(\ref{20})一致性协议的主要研究成果。
+
+\noindent \textbf{Theorem 10.} 考虑一个带有相等通信时滞$\tau > 0$的智能体网络。
+假设网络信息流$G$是无向且连通的。
+那么，当且仅当以下两个等价情况任何一个满足时，带有$\tau_{ij} = \tau$的协议(\ref{A2})能全局渐进解决平均一致性问题：
+
+i）$\tau \in (0, \tau^*)\ \text{with}\ \tau^*=\frac{\pi}{2\lambda_n}, \lambda_n=\lambda_{max}(L)$.
+
+ii）关于$\Gamma(s) = e^{-\tau s}/s$的奈奎斯特图(Nuquist plot)有在$-1/\lambda_k,\ \forall k > 1$附近的零包围。
+
+此外，对于$\tau=\tau^*$，系统有关于频率$w=\lambda_n$的全局渐进稳定振荡解决方案。
+
+\noindent \textbf{Proof.} 证明过程详见附录A.2。
+
+基于定理10的i），可以推断网络的时滞可受理通道的上界是$\lambda_n$的相反部分，即信息流拉普拉斯矩阵的最大特征值。
+根据盖尔圆定理，我们可以知道$\lambda_n\le 2d_{max}(G)$，这里$d_{max}(G)$是图$G$节点的最大出度。
+因此，收敛性协议(\ref{A2})的一个充分条件是：
+\begin{equation}
+    \tau \le \frac{\pi}{4d_{max}(G)}
+    \tag{40}
+    \label{40}
+\end{equation}
+这也就意味着具有高出度节点的网络不能忍受相当高的沟通时滞。
+另一方面，使$\tilde{\mathcal{A}}=k\mathcal{A}$，$k>0$是$\tilde{G}$的邻接矩阵。
+定义$\tilde{L}=\mathcal{L}(\tilde{G})$，并且记$\lambda_n(\tilde{L}) = k\lambda_n(L)$。
+因此，对于任意大小的延迟$\tau>0$，都存在一个足够小的$k>0$使得$\tau < \pi/(2k\lambda_n)$。
+结果就是，通过调整图权重的大小，任意大小的时滞都能忍受。
+权衡的是因子$1/k>0$协商速度。
+换句话说，在一致性算法的鲁棒性和时滞收敛速度之间存在权衡。
+
 
 
 
