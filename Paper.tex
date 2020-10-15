@@ -17,6 +17,9 @@
 % 正文开始
 \begin{document}
 \maketitle
+% 生成目录
+\tableofcontents
+
 
 \begin{abstract}
 这篇文章，我们讨论了动态智能体网络固定和切换拓扑下的一致性问题。
@@ -336,7 +339,6 @@ iii）在切换拓扑下的连接失败/生成的鲁棒一致性问题。
 进一步说，图\ref{BalancedGraphs}展示的图都是平衡的。
 \begin{figure}[htbp]
     \centering
-    % \includegraphics[width=12cm]{figures/Fig3-BalancedGraphs.jpeg}
     \includegraphics[width=12cm]{figures/Fig3-BalancedGraphs.jpeg}
     \label{BalancedGraphs}
     \caption{平衡图的三个例子}
@@ -426,7 +428,13 @@ iii）在切换拓扑下的连接失败/生成的鲁棒一致性问题。
 给出的交换图，该图表明了平衡图的加权邻接矩阵采用矩阵交换的拉普拉斯算子和对称部分矩阵的运算。
 平衡图被证明对解决平均一致性问题是有帮助的。
 
+对于无向图网络，我们给出了通信时滞网络一致性的充分必要条件。
+这表明在时滞鲁棒性和线性一致性协议的收敛速度之间存在折中。
 
+为了确定智能体群组的领导性问题，我们介绍了最大化智能体，它拥有一个简单的离散时间模型并且通过最大化的$n-1$次迭代（$n$代表智能体的总数），给出了使用分布式方式解决最大一致性问题的协议。
 
+我们提出了复杂的仿真结果以此演示了我们理论结果的有效性。
+
+综合智能体离散时间渐进的一致性问题主要依赖非负矩阵理论，这将在下个文章中指出。
 
 \end{document}
