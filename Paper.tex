@@ -6,9 +6,12 @@
 \usepackage{geometry}
 \usepackage{color}
 \usepackage{graphicx}
+
 \geometry{a4paper,scale=0.8}
 \geometry{a4paper,left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}
 \linespread{1.5}
+
+% \definecolor{red}{RGB}{255,100,100}
 
 \title{Consensus Problems in Networks of Agents\\ with Switching Topology and Time-Delays}
 \author{ Jichao Zhao\thanks{E-mail: zhaojichao@imakerlab.cn}}
@@ -23,7 +26,7 @@
 
 \begin{abstract}
 这篇文章，我们讨论了动态智能体网络固定和切换拓扑下的一致性问题。
-我们分析了三种情况：i）切换通铺无时滞网络，ii）固定拓扑通信时滞网络，iii）离散智能体群的最大一致性问题（或领导决定性）。
+我们分析了三种情况：i）切换拓扑无时滞网络，ii）固定拓扑通信时滞网络，iii）离散智能体群的最大一致性问题（或领导决定性）。
 在每一种情况，我们介绍了线性/非线性一致性协议并且提供了分布式建议算法的收敛性分析。
 此外，我们还建立了网络信息流（例如网络的动态连接性）的费德勒特征值（Fiedler eigenvaue）和响应一直协议的速度（或性能）协商之间的联系。
 这表明平衡图在解决一致性问题上扮演着重要角色。我们介绍了在一致性协议的收敛性分析问题中扮演着李雅普诺夫（Lyapunov functions）函数角色的分歧函数。
@@ -54,6 +57,8 @@ $G=(\mathcal{V},\mathcal{E},\mathcal{A})$是加权有向图（或无向图），
 簇$J\subset \mathcal{I}$的集合定义为
 \begin{equation}
     N_J:=U_{i\in J}N_i=\{j\in \mathcal{I}:i\in J, ij\in \mathcal{E}\}
+    \tag{1}
+    \label{1}
 \end{equation}
 
 定义$x_i\in \mathbb{R}$表示节点$i$的值。
@@ -66,6 +71,8 @@ $G=(\mathcal{V},\mathcal{E},\mathcal{A})$是加权有向图（或无向图），
 假设图的每一个节点都是一个具有动态性能的动态智能体（dynamic agent）
 \begin{equation}
     \dot{x}_i = f(x_i, u_i), i\in \mathcal{I}
+    \tag{2}
+    \label{2}
 \end{equation}
 一个动态图（dynamic graph）或一个动态网络（dynamic network）由一个4元组$G_{x(t)} = (\mathcal{V},\mathcal{E},\mathcal{A},x(t))$组成，其中变化的状态$\dot{x}=F(x,u)$中$x$表示动态图的状态，$F(x,u)$是$F_i(x,u)=f(x_i,u_i)$中元素的列元素合并。
 
@@ -74,11 +81,24 @@ $G=(\mathcal{V},\mathcal{E},\mathcal{A})$是加权有向图（或无向图），
 我们认为协议（protocol）
 \begin{equation}
     u_i = k_i(x_{j_1},\dots,x_{j_{m_i}})
+    \tag{3}
+    \label{3}
 \end{equation}
 其中$j_1,\dots,j_{m_i}\in \{i\} \cup N_i$和$m_i\leq n$渐进的解决了$\chi$-一致性问题，当且仅当存在一个渐进稳定的平衡$x^*$其$\dot{x}=F(x,k(x))$例如$x^*=\chi(x(0))$，所有的$i\in \mathcal{I}$。
 我们致力于解决$\chi$-一致性问题在分布式时尚方面，此方面没有节点与其他任何节点相连（i.e. 即$m_i < n$ for all $i$）。
 
 特殊的，$\chi(x)=Ave(x)=\frac{1}{n}(\sum_{i=1}^{n}x_i)$，$\chi(x)=Max(x)=max_ix_i$，$\chi(x)=Min(x)=min_ix_i$分别称作平均一致性（average-consensus），最大一致性（max-consensus）和最小一致性（min-consensus），分别由于他们在多智能体系统分布式决策方面广阔的应用。
+
+{\color{blue}
+平均一致性（average-consensus）
+$\chi(x)=Ave(x)=\frac{1}{n}(\sum_{i=1}^{n}x_i)$；
+
+最大一致性（max-consensus）
+$\chi(x)=Max(x)=max_ix_i$；
+
+最小一致性（min-consensus）
+$\chi(x)=Min(x)=min_ix_i$。
+}
 
 平均一致性问题，是解决线性函数$\chi(x)=Ave(x)$动态系统网络的分布式计算的典型例子。
 这是比仅达成普通一致性更加具有挑战性。
@@ -88,10 +108,23 @@ $G=(\mathcal{V},\mathcal{E},\mathcal{A})$是加权有向图（或无向图），
 这一部分，我们介绍了三种一致性协议，分别用来解决连续时间（continuous-time，CT）动态智能体模型
 \begin{equation}
     \dot{x}_i(t) = u_i(t)
+    \tag{4}
+    \label{4}
 \end{equation}
+\begin{equation}
+    \text{\color{blue}位置状态的一阶导数 = 输入}
+    \notag
+\end{equation}
+
 和离散时间（discrete-time，DT）动态智能体模型的网络一致性问题，
 \begin{equation}
     x_i(k+1) = x_i(k)+\epsilon u_i(k)
+    \tag{5}
+    \label{5}
+\end{equation}
+\begin{equation}
+    \color{blue}\text{ 下一时刻的状态 = 此刻的状态 + }\epsilon \text{ * 此时的输入}
+    \notag
 \end{equation}
 其中步长尺寸$\epsilon>0$。
 在这篇文章，我们考虑了三种脚本：
@@ -102,6 +135,10 @@ i）固定或切换拓扑的零沟通时滞：我们使用下边的线性一致�
     \tag{A1}
     \label{A1}
 \end{equation}
+\begin{equation}
+    \color{blue}\text{控制输入 = 对所有的\ 节点j和i的位置差值 * 两节点的权重\ 求和，其中j是所有i的邻居节点}
+    \notag
+\end{equation}
 \indent 在这里，节点$i$的邻居集合$N_i=N_i(G)$在切换拓扑网络中是变化的。
 
 ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和通信时滞$\tau_{ij}>0$对应于$ij\in \mathcal{E}$：我们使用下边的线性时滞一致性协议：
@@ -109,6 +146,10 @@ ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和通信时滞$\tau
     u_i(t) = \sum_{j\in N_i}a_{ij}[x_j(t-\tau_{ij})-x_i(t-\tau_{ij})]
     \tag{A2}
     \label{A2}
+\end{equation}
+\begin{equation}
+    \color{blue}\text{控制输入 = 对所有的\ 节点j和i的位置差值（减去时延） * 两节点的权重\ 求和，其中j是所有i的邻居节点}
+    \notag
 \end{equation}
 
 在收敛分析期间，上述两个协议（A1）和（A2）中每个协议的派生变得显而易见，之后将为每个协议介绍收敛分析。
@@ -122,7 +163,13 @@ ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和通信时滞$\tau
 
 所给的协议（A1），连续时间网络的智能体状态会随着下面的线性系统进行变化
 \begin{equation}
-    \dot{x}(t) = -Lx(t) \label{6}
+    \dot{x}(t) = -Lx(t) 
+    \tag{6}
+    \label{6}
+\end{equation}
+\begin{equation}
+    \color{blue}\text{位置状态的一阶导数 = 拉普拉斯矩阵 * 位置状态值}
+    \notag
 \end{equation}
 这里，$L$是由信息流$G$引起的图拉普拉斯算子（graph Laplacian），并且定义如下
 \begin{equation}
@@ -131,15 +178,27 @@ l_{ij} = \left\{
         \sum_{k=1,k\ne i}^n a_{ik}, & j=i\\
         -a_{ij}, & j\ne i
     \end{array}\right.
+    \tag{7}
     \label{7}
 \end{equation}
 图拉普拉斯算子的性质是代数图论中主要研究领域之一，将在第4部分详细讨论。
 
-{\color[gray]{0.5} \em 关于图拉普拉斯的定义，还可查看文献[2013\_多智能体系统的协调控制研究综述-苗国英]}
+{\color{blue} 关于图拉普拉斯的定义，还可查看文献[2013\_多智能体系统的协调控制研究综述-苗国英]
+
+拉普拉斯矩阵定义为：$L=D-A$，
+$D$是度矩阵，$A$是邻接矩阵。
+}
+
 
 在一个切换拓扑（switching topology）网络中，协议(\ref{A1})的收敛性分析等价于混合系统（hybrid system）的稳定性分析
 \begin{equation}
-    \dot{x}(t) = -L_kx(t),\ k=s(t) \label{8}
+    \dot{x}(t) = -L_kx(t),\ k=s(t) 
+    \tag{8}
+    \label{8}
+\end{equation}
+\begin{equation}
+    \color{blue}\text{位置状态的一阶导数 = 拉普拉斯矩阵（关于切换信号变换） * 位置状态值}
+    \notag
 \end{equation}
 这里，$L_k = \mathcal{L}(G_k)$是$G_k$的拉普拉斯算子，$s(t)$：$\mathbb{R}\rightarrow \mathcal{I} \subset \mathbb{Z}$是切换信号，$\Gamma\ni G_k$是有序集合$\mathcal{I}_\Gamma$有限个图（节点$n$）的有限集合。
 之后，我们将会看到$\Gamma$是一个对于$n\gg 1$相对较大的集合。
@@ -148,12 +207,24 @@ l_{ij} = \left\{
 对于离散时间的智能体模型，应用协议(\ref{A1})给出了如下的动态离散网络
 \begin{equation}
     x(k+1) = P_\epsilon x(x)
+    \tag{9}
+    \label{9}
+\end{equation}
+\begin{equation}
+    \color{blue}\text{ 下一时刻的状态 = 非负随机矩阵 * 此刻的状态}
+    \notag
 \end{equation}
 和
 \begin{equation}
     P_\epsilon = I - \epsilon L
+    \tag{10}
+    \label{10}
 \end{equation}
-对于所有的$\epsilon\in (0,1/d_{max})$，使$d_{max} = \max_il_{ii}$，$P_\epsilon$是一个非负随机矩阵，我们称之为门阶矩阵（Perron matrix），即$P_\epsilon$所有元素非负且所有的行总和为1。
+\begin{equation}
+    \color{blue}\text{ 非负随机矩阵 = 单位矩阵 - }\epsilon \text{ * 拉普拉斯矩阵}
+    \notag
+\end{equation}
+对于所有的$\epsilon\in (0,1/d_{max})$，使$d_{max} = \max_il_{ii}$({\color{blue}$d_{max}$是拉氏矩阵对角线元素中最大的值})，$P_\epsilon$是一个非负随机矩阵，我们称之为门阶矩阵（Perron matrix），即$P_\epsilon$所有元素非负且所有的行总和为1。
 
 智能体离散时间协议(\ref{A1})的收敛性分析严重依赖于非负矩阵理论，并且将会在一个额外的文章中讨论。
 我们的方法提出了一个基于李雅普诺夫（Lyapunov）的，离散时间模型网络的一致收敛性分析。
@@ -170,29 +241,38 @@ l_{ij} = \left\{
 节点$v_i$的入度（in-degree）和出度（out-degree）分别定义如下：
 \begin{equation}
     \deg_{in}(v_i) = \sum_{j=1}^{n}a_{ji},\quad \deg_{out}(v_i) = \sum_{j=1}^{n}a_{ij}
+    \tag{11}
+    \label{11}
 \end{equation}
 
-对于一个普通图，其邻接矩阵$\mathcal{A}$只有两个元素\{0，1\}，出度$\deg_{out}(v_i) = |N_i|$等于邻居元素的数量。
-图$G$的矩阵度（degree matrix）是一个对角矩阵，记为$\Delta=[\Delta_{ij}]$，其中对于所有的$i\ne j$，$\Delta_{ij}=0$和$\Delta_{ii}=\deg_{out}(v_i)$。
+对于一个普通图，其邻接矩阵$\mathcal{A}$只有集合\{0，1\}中的两种元素，出度$\deg_{out}(v_i) = |N_i|$等于邻居元素的数量。
+图$G$的度矩阵（degree matrix）是一个对角矩阵，记为$\Delta=[\Delta_{ij}]$，其中对于所有的$i\ne j$，$\Delta_{ij}=0$和$\Delta_{ii}=\deg_{out}(v_i)$。
 加权图拉普拉斯算子矩阵（graph Laplacian matrix）和图$G$之间的联系定义如下
+
 \begin{equation}
     L = \mathcal{L}(G) = \Delta-\mathcal{A}
+    \tag{12}
+    \label{12}
+\end{equation}
+\begin{equation}
+    \color{blue}\text{这和之前参考的文献中的关于拉氏矩阵定义的阐述一致} L = D - A
+    \notag
 \end{equation}
 这和公式(\ref{7})中关于$L$中元素的定义是一致的。
 
 \noindent{\em Remark} 2. 图拉普拉斯算子$L$并不取决于$G$的邻接矩阵中的对角元素$a_{ii}$，对应于封闭环形（loops）（$v_i$，$v_i$）的权重（即cycles of length one）。
-根据上下文，在不失一般性的前提下，我们可以假设所有对于$i$的$a_{ii}=0$。
+根据上下文，在不失一般性的前提下，我们可以假设所有对于$i$的$a_{ii}=0${\color{blue}（即如果节点自身有环形连通，那就选择忽略）}。
 这项工作的一个受限部分是，使用了带有循环的图，这些图的权重无法舍弃。
 
 我们有时使用$\mathcal{L}(\mathcal{A}) = \mathcal{L}(G)$表示图$G$的拉普拉斯算子。
 根据定义，拉普拉斯矩阵的每一行的和为0。
-因此，图拉普拉斯算子总是有一个为0的特征值（即$rank(L)\le n-1$)对应于一个右特征向量
+因此，图拉普拉斯算子总是有一个为0的特征值（即$rank(L)\le n-1$)对应于一个右特征向量{\color{red}（暂无法理解）}
 \begin{equation}
     w_r = \mathbf{1} = (1,1,\dots,1)^T \notag
 \end{equation}
 具有相同的非零元素。
 
-当且仅当任意的两个完全分开的节点，能够通过一个关于有向图边的方向的方式进行连接，那么这样的图称作强连接（strongly connected）。
+当且仅当任意的两个完全分开的节点，能够通过一个关于有向图边的方向的方式进行连接，那么这样的图称作强连通图（strongly connected）{\color{blue}（有向图中存在顶点a和b时，总有从a到b的通路，和从b到a的通路，不一定是直接到）}。
 之后的理论在定向图的SC性质和拉普拉斯矩阵的秩之间，建立了定向的关系。
 
 \noindent \textbf{Theorem 1.} 定义$G=(\mathcal{V},\mathcal{E},\mathcal{A})$是关于拉普拉斯算子$L$的加权有向图。
@@ -206,6 +286,8 @@ l_{ij} = \left\{
 拉普拉斯算子与图$G$的潜在联系定义在文献[20]中如下
 \begin{equation}
     \Phi_G(x) = x^T Lx = \frac{1}{2} \sum_{ij\in \mathcal{E}}(x_j - x_i)^2
+    \tag{13}
+    \label{13}
 \end{equation}
 这是一个简单的关于无向图定理的证明：假设$Lx=0$，其中$x\in \mathbb{R}$。
 那么，对于所有的边$ij\in \mathcal{E}$，都有$x^TLx=0$且$x_j=x_i$。
@@ -216,8 +298,10 @@ l_{ij} = \left\{
 对于一个无向图$G$，它具有以下众所周知的性质文献[11]
 \begin{equation}
     \min_{\substack{x\ne 0\\   \mathbf{1}^Tx=0}} \frac{x^T Lx}{||x||^2}=\lambda_2(L)
+    \tag{14}
+    \label{14}
 \end{equation}
-公式的证明是基于Courant-Fischer定力的特例，参考文献[12]。
+公式的证明是基于Courant-Fischer定理的特例，参考文献[12]。
 之后我们将建立$\lambda_2(\hat{L})$和$\hat{L}=(L+L^T)/2$之间的联系，称作$\hat{L}$的费德勒特征值（Fiedler eigenvalue），参考文献[8，9]，和线性一致性协议的性能（即最坏情况下的协商速度）。
 
 系统(\ref{6})稳定性分析的关键是拉普拉斯图的光谱特性。
@@ -228,6 +312,7 @@ l_{ij} = \left\{
 那么，所有的$L=\mathcal{L}(G)$的特征值都位于下面的圆盘中
 \begin{equation}
     D(G) = \{ z\in \mathbb{C}: |z-d_{max}(G)| \le d_{max}(G) \}
+    \tag{15}
     \label{15}
 \end{equation}
 在复平面中以$z=d_{max}(G)+0j$为中心（详见图\ref{DiskTheorem}）。
@@ -241,6 +326,7 @@ l_{ij} = \left\{
 \noindent \textbf{Proof.} 基于圆盘定理，所有$L=[l_{ij}]$的特征值都位于下面的$n$个圆盘的并集中
 \begin{equation}
     D_i = \{ z\in \mathbb{C}: |z-l_{ii}| \le \sum_{j\in \mathcal{I},j\ne i}|l_{ij}| \}
+    \tag{16}
     \label{16}
 \end{equation}
 如果$l_{ii} = \Delta_{ii}$那么
@@ -265,12 +351,6 @@ l_{ij} = \left\{
 
 谨记推论1（Corollary 1）不能保证所有节点的决策值$\alpha$是否等于$\text{Ave}(x(0))$。
 换句话说，推论1（Corollary 1）不一定能解决平均一致性问题。
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=4cm]{figures/Fig2-ConnectedDigraph.jpeg}
-    \label{ConnectedDigraph}
-    \caption{一个不能使用协议(\ref{A1})解决平均一致性问题的3阶连通图}
-\end{figure}
 
 
 \section{A Counterexample for Average-Consensus}
@@ -278,11 +358,17 @@ l_{ij} = \left\{
 如果图$G$是无定向的（即$a_{ij}=a_{ji} > 0,\forall i,j: a_{ij}\ne 0$），自动的情况$\sum_{i=1}^{n}u_i=0$，$\forall x$和$\text{Ave}(x(t))$是不变的量，参考文献[20]。
 然而，这个性质并不适用于一般有向图。
 
-一个简单的反例就是图(\ref{ConnectedDigraph})表示的3阶$n=3$强连接图，其中权重在\{0，1\}中，向量和边的集合如下所示：
+一个简单的反例就是图(\ref{2})表示的3阶$n=3$强连接图，其中权重在\{0，1\}中，向量和边的集合如下所示：
 \begin{equation}
     \mathcal{V} = \{1, 2, 3 \},\quad \mathcal{E}=\{12, 23, 31, 13\}.
     \notag
 \end{equation}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=4cm]{figures/Fig2-ConnectedDigraph.jpeg}
+    \label{ConnectedDigraph}
+    \caption{一个不能使用协议(\ref{A1})解决平均一致性问题的3阶连通图}
+\end{figure}
 
 对于图$G=(\mathcal{V}, \mathcal{E})$，$\sum_{i=1}^{3}u_i = x_3 - x_1$。
 因此，如果节点1和3不一致，那么属性$\sum_{i=1}^{3}u_i = 0$不是对于所有的$x$都成立。
@@ -297,6 +383,28 @@ l_{ij} = \left\{
     \right]
     \notag
 \end{equation}
+
+{\color{blue}
+\begin{equation}
+    D = \left[
+    \begin{matrix}
+        2 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & 0 & 1 
+    \end{matrix}
+    \right],
+    A = \left[
+    \begin{matrix}
+        0 & 1 & 1 \\
+        0 & 0 & 1 \\
+        1 & 0 & 0 
+    \end{matrix}
+    \right],
+    L = D - A
+    \notag
+\end{equation}
+}
+
 并且$x^*_i = [x_1(0) + x_2(0) + 2x_3(0)]/4$（此公式基于Theorem 3）。
 这个决策值在所有$x_i(0)$的凸包中是显而易见的，但是当且仅当$x_1(0) + x_2(0) \ne 2x_3(0)$时，决策值不等于$\text{Ave}(x(0))$。
 结果就是，对于所有初始条件满足$x_1(0) + x_2(0) \ne 2x_3(0)$，协议(\ref{A1})并不能解决平均一致性问题，但所有的节点仍能达到一致。
@@ -306,6 +414,8 @@ l_{ij} = \left\{
 这是因为系统(\ref{6})的解决办法是通过以下公式给出
 \begin{equation}
     x(t) = exp(-Lt)x(0)
+    \tag{17}
+    \label{17}
 \end{equation}
 并且通过对$exp(-Lt)$的显示计算，我们可以获得达到一致性的总图节点的决策值。
 在非负矩阵理论中，接下来的定理与著名的极限定理关系密切，即Perron-Frobenius定理（Perron-Frobenius Theorem），参考文献[12]。
@@ -316,6 +426,8 @@ l_{ij} = \left\{
 \noindent \textbf{Theorem 3.} 假设$G$是一个强连接图，拉普拉斯算子$L$满足$Lw_r=0$，$w_l^TL = 0$，$w_l^Tw_r=1$。
 \begin{equation}
     R = \lim_{t\rightarrow +\infty} exp(-Lt) = w_r w_l^T \in M_n
+    \tag{18}
+    \label{18}
 \end{equation}
 
 \noindent \textbf{Proof.} 令$A=-L$，$J$为$A$的约当形，即$A=SJS^{-1}$。
