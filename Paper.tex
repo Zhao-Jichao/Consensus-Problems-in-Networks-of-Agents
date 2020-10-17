@@ -11,7 +11,7 @@
 \geometry{a4paper,left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}
 \linespread{1.5}
 
-% \definecolor{red}{RGB}{255,100,100}
+\definecolor{userColor}{RGB}{225,144,52}
 
 \title{Consensus Problems in Networks of Agents\\ with Switching Topology and Time-Delays}
 \author{ Jichao Zhao\thanks{E-mail: zhaojichao@imakerlab.cn}}
@@ -89,7 +89,7 @@ $G=(\mathcal{V},\mathcal{E},\mathcal{A})$是加权有向图（或无向图），
 
 特殊的，$\chi(x)=Ave(x)=\frac{1}{n}(\sum_{i=1}^{n}x_i)$，$\chi(x)=Max(x)=max_ix_i$，$\chi(x)=Min(x)=min_ix_i$分别称作平均一致性（average-consensus），最大一致性（max-consensus）和最小一致性（min-consensus），分别由于他们在多智能体系统分布式决策方面广阔的应用。
 
-{\color{blue}
+{\color{userColor}
 平均一致性（average-consensus）
 $\chi(x)=Ave(x)=\frac{1}{n}(\sum_{i=1}^{n}x_i)$；
 
@@ -112,7 +112,7 @@ $\chi(x)=Min(x)=min_ix_i$。
     \label{4}
 \end{equation}
 \begin{equation}
-    \text{\color{blue}位置状态的一阶导数 = 输入}
+    \text{\color{userColor}位置状态的一阶导数 = 输入}
     \notag
 \end{equation}
 
@@ -123,7 +123,7 @@ $\chi(x)=Min(x)=min_ix_i$。
     \label{5}
 \end{equation}
 \begin{equation}
-    \color{blue}\text{ 下一时刻的状态 = 此刻的状态 + }\epsilon \text{ * 此时的输入}
+    \color{userColor}\text{ 下一时刻的状态 = 此刻的状态 + }\epsilon \text{ * 此时的输入}
     \notag
 \end{equation}
 其中步长尺寸$\epsilon>0$。
@@ -136,7 +136,7 @@ i）固定或切换拓扑的零沟通时滞：我们使用下边的线性一致�
     \label{A1}
 \end{equation}
 \begin{equation}
-    \color{blue}\text{控制输入 = 对所有的\ 节点j和i的位置差值 * 两节点的权重\ 求和，其中j是所有i的邻居节点}
+    \color{userColor}\text{控制输入 = 对所有的\ 节点j和i的位置差值 * 两节点的权重\ 求和，其中j是所有i的邻居节点}
     \notag
 \end{equation}
 \indent 在这里，节点$i$的邻居集合$N_i=N_i(G)$在切换拓扑网络中是变化的。
@@ -148,7 +148,7 @@ ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和通信时滞$\tau
     \label{A2}
 \end{equation}
 \begin{equation}
-    \color{blue}\text{控制输入 = 对所有的\ 节点j和i的位置差值（减去时延） * 两节点的权重\ 求和，其中j是所有i的邻居节点}
+    \color{userColor}\text{控制输入 = 对所有的\ 节点j和i的位置差值（减去时延） * 两节点的权重\ 求和，其中j是所有i的邻居节点}
     \notag
 \end{equation}
 
@@ -168,7 +168,7 @@ ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和通信时滞$\tau
     \label{6}
 \end{equation}
 \begin{equation}
-    \color{blue}\text{位置状态的一阶导数 = 拉普拉斯矩阵 * 位置状态值}
+    \color{userColor}\text{位置状态的一阶导数 = 拉普拉斯矩阵 * 位置状态值}
     \notag
 \end{equation}
 这里，$L$是由信息流$G$引起的图拉普拉斯算子（graph Laplacian），并且定义如下
@@ -183,7 +183,7 @@ l_{ij} = \left\{
 \end{equation}
 图拉普拉斯算子的性质是代数图论中主要研究领域之一，将在第4部分详细讨论。
 
-{\color{blue} 关于图拉普拉斯的定义，还可查看文献[2013\_多智能体系统的协调控制研究综述-苗国英]
+{\color{userColor} 关于图拉普拉斯的定义，还可查看文献[2013\_多智能体系统的协调控制研究综述-苗国英]
 
 拉普拉斯矩阵定义为：$L=D-A$，
 $D$是度矩阵，$A$是邻接矩阵。
@@ -197,7 +197,7 @@ $D$是度矩阵，$A$是邻接矩阵。
     \label{8}
 \end{equation}
 \begin{equation}
-    \color{blue}\text{位置状态的一阶导数 = 拉普拉斯矩阵（关于切换信号变换） * 位置状态值}
+    \color{userColor}\text{位置状态的一阶导数 = 拉普拉斯矩阵（关于切换信号变换） * 位置状态值}
     \notag
 \end{equation}
 这里，$L_k = \mathcal{L}(G_k)$是$G_k$的拉普拉斯算子，$s(t)$：$\mathbb{R}\rightarrow \mathcal{I} \subset \mathbb{Z}$是切换信号，$\Gamma\ni G_k$是有序集合$\mathcal{I}_\Gamma$有限个图（节点$n$）的有限集合。
@@ -211,7 +211,7 @@ $D$是度矩阵，$A$是邻接矩阵。
     \label{9}
 \end{equation}
 \begin{equation}
-    \color{blue}\text{ 下一时刻的状态 = 非负随机矩阵 * 此刻的状态}
+    \color{userColor}\text{ 下一时刻的状态 = 非负随机矩阵 * 此刻的状态}
     \notag
 \end{equation}
 和
@@ -221,10 +221,10 @@ $D$是度矩阵，$A$是邻接矩阵。
     \label{10}
 \end{equation}
 \begin{equation}
-    \color{blue}\text{ 非负随机矩阵 = 单位矩阵 - }\epsilon \text{ * 拉普拉斯矩阵}
+    \color{userColor}\text{ 非负随机矩阵 = 单位矩阵 - }\epsilon \text{ * 拉普拉斯矩阵}
     \notag
 \end{equation}
-对于所有的$\epsilon\in (0,1/d_{max})$，使$d_{max} = \max_il_{ii}$({\color{blue}$d_{max}$是拉氏矩阵对角线元素中最大的值})，$P_\epsilon$是一个非负随机矩阵，我们称之为门阶矩阵（Perron matrix），即$P_\epsilon$所有元素非负且所有的行总和为1。
+对于所有的$\epsilon\in (0,1/d_{max})$，使$d_{max} = \max_il_{ii}$({\color{userColor}$d_{max}$是拉氏矩阵对角线元素中最大的值})，$P_\epsilon$是一个非负随机矩阵，我们称之为门阶矩阵（Perron matrix），即$P_\epsilon$所有元素非负且所有的行总和为1。
 
 智能体离散时间协议(\ref{A1})的收敛性分析严重依赖于非负矩阵理论，并且将会在一个额外的文章中讨论。
 我们的方法提出了一个基于李雅普诺夫（Lyapunov）的，离散时间模型网络的一致收敛性分析。
@@ -255,13 +255,13 @@ $D$是度矩阵，$A$是邻接矩阵。
     \label{12}
 \end{equation}
 \begin{equation}
-    \color{blue}\text{这和之前参考的文献中的关于拉氏矩阵定义的阐述一致} L = D - A
+    \color{userColor}\text{这和之前参考的文献中的关于拉氏矩阵定义的阐述一致} L = D - A
     \notag
 \end{equation}
 这和公式(\ref{7})中关于$L$中元素的定义是一致的。
 
 \noindent{\em Remark} 2. 图拉普拉斯算子$L$并不取决于$G$的邻接矩阵中的对角元素$a_{ii}$，对应于封闭环形（loops）（$v_i$，$v_i$）的权重（即cycles of length one）。
-根据上下文，在不失一般性的前提下，我们可以假设所有对于$i$的$a_{ii}=0${\color{blue}（即如果节点自身有环形连通，那就选择忽略）}。
+根据上下文，在不失一般性的前提下，我们可以假设所有对于$i$的$a_{ii}=0${\color{userColor}（即如果节点自身有环形连通，那就选择忽略）}。
 这项工作的一个受限部分是，使用了带有循环的图，这些图的权重无法舍弃。
 
 我们有时使用$\mathcal{L}(\mathcal{A}) = \mathcal{L}(G)$表示图$G$的拉普拉斯算子。
@@ -272,7 +272,7 @@ $D$是度矩阵，$A$是邻接矩阵。
 \end{equation}
 具有相同的非零元素。
 
-当且仅当任意的两个完全分开的节点，能够通过一个关于有向图边的方向的方式进行连接，那么这样的图称作强连通图（strongly connected）{\color{blue}（有向图中存在顶点a和b时，总有从a到b的通路，和从b到a的通路，不一定是直接到）}。
+当且仅当任意的两个完全分开的节点，能够通过一个关于有向图边的方向的方式进行连接，那么这样的图称作强连通图（strongly connected）{\color{userColor}（有向图中存在顶点a和b时，总有从a到b的通路，和从b到a的通路，不一定是直接到）}。
 之后的理论在定向图的SC性质和拉普拉斯矩阵的秩之间，建立了定向的关系。
 
 \noindent \textbf{Theorem 1.} 定义$G=(\mathcal{V},\mathcal{E},\mathcal{A})$是关于拉普拉斯算子$L$的加权有向图。
@@ -301,11 +301,11 @@ $D$是度矩阵，$A$是邻接矩阵。
     \tag{14}
     \label{14}
 \end{equation}
-公式的证明是基于Courant-Fischer定理的特例，参考文献[12]。
+公式的证明是基于Courant-Fischer定理的特例，参考文献[12]{\color[gray]{0.5}（R. A. Horn and C. R. Johnson. Matrix Analysis. Cambridge University Press, 1987）}。
 之后我们将建立$\lambda_2(\hat{L})$和$\hat{L}=(L+L^T)/2$之间的联系，称作$\hat{L}$的费德勒特征值（Fiedler eigenvalue），参考文献[8，9]，和线性一致性协议的性能（即最坏情况下的协商速度）。
 
-系统(\ref{6})稳定性分析的关键是拉普拉斯图的光谱特性。
-接下来的结果已经众所周知（例如，文献[17]），它是基于Gesgorin圆盘定理（Gersgorin disk theorem），参考文献[12]。
+系统(\ref{6})稳定性分析的关键是拉普拉斯图的谱图特性。
+接下来的结果已经众所周知（例如，文献[17]），它是基于Gesgorin圆盘定理（Gersgorin disk theorem），参考文献[12]{\color{red}（需要重点突破）}。
 
 \noindent \textbf{Theorem} 2. (spectral localization) 定义$G=(\mathcal{V},\mathcal{E},\mathcal{A})$是关于拉普拉斯算子$L$的加权有向图。
 记图$G$的节点的最大化出度为$d_{max}(G) = \max_i \deg_{out}(v_i)$。
@@ -384,7 +384,7 @@ $D$是度矩阵，$A$是邻接矩阵。
     \notag
 \end{equation}
 
-{\color{blue}
+{\color{userColor}
 \begin{equation}
     D = \left[
     \begin{matrix}
@@ -418,20 +418,24 @@ $D$是度矩阵，$A$是邻接矩阵。
     \label{17}
 \end{equation}
 并且通过对$exp(-Lt)$的显示计算，我们可以获得达到一致性的总图节点的决策值。
-在非负矩阵理论中，接下来的定理与著名的极限定理关系密切，即Perron-Frobenius定理（Perron-Frobenius Theorem），参考文献[12]。
+在非负矩阵理论中，接下来的定理与著名的极限定理关系密切，即Perron-Frobenius定理（Perron-Frobenius Theorem），参考文献[12]{\color[gray]{0.5}（R. A. Horn and C. R. Johnson. Matrix Analysis. Cambridge University Press, 1987）}。
 
 \noindent \textbf{Notation.} 参考文献[12]的注解，我们记$M_{m,n}$为$m\times n$的实矩阵，$M_n$为$n \times n$的方阵。
 进一步，通过这篇文章，关于$\lambda_1 = 0$的拉普拉斯矩阵$L$的右特征向量和左特征向量分别用$w_r$和$w_l$表示。
 
-\noindent \textbf{Theorem 3.} 假设$G$是一个强连接图，拉普拉斯算子$L$满足$Lw_r=0$，$w_l^TL = 0$，$w_l^Tw_r=1$。
+\noindent \textbf{Theorem 3.} 假设$G$是一个强连通图，拉普拉斯算子$L$满足$Lw_r=0$，$w_l^TL = 0$，$w_l^Tw_r=1$。
 \begin{equation}
     R = \lim_{t\rightarrow +\infty} exp(-Lt) = w_r w_l^T \in M_n
     \tag{18}
     \label{18}
 \end{equation}
+\begin{equation}
+    {\color{userColor} \text{R = t趋于无穷时-Lt关于e指数值极限 = 右特征向量 * 左特征向量}}
+    \notag
+\end{equation}
 
 \noindent \textbf{Proof.} 令$A=-L$，$J$为$A$的约当形，即$A=SJS^{-1}$。
-我们有$exp(At) = S exp(Jt) S^{-1}$当$s\rightarrow +\infty$，$exp(Jt)$收敛至一个具有单一非零元素$q_{11}=1$的矩阵$Q=[q_{ij}]$。
+我们有$exp(At) = S\ exp(Jt)\ S^{-1}$当$s\rightarrow +\infty$，$exp(Jt)$收敛至一个具有单一非零元素$q_{11}=1$的矩阵$Q=[q_{ij}]$。
 对角矩阵$exp(Jt)$的其他块会变成0，由于对于所有的$k\ge2$，都有$Re(\lambda_k(A))<0$，这里$\lambda_k(A)$是矩阵$A$的第$k$个最大的特征值$|A|$。
 注意$R=SQS^{-1}$。
 由于$AS=SJ$，$S$的第一列为$w_r$。
@@ -452,7 +456,7 @@ iii）在切换拓扑下的连接失败/生成的鲁棒一致性问题。
 当图$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$的所有节点都是平衡时，图是平衡图，即$\sum_{j}a_{ij} = \sum_{j}a_{ji}, \forall i$。
 
 \noindent \textbf{Example 1.} 任意的无向图都是平衡的。
-进一步说，图\ref{BalancedGraphs}展示的图都是平衡的。
+进一步说，图\ref{3}展示的图都是平衡的{\color{userColor}（总的出度=总的入度，不是每一个节点都需要相等）}。
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=12cm]{figures/Fig3-BalancedGraphs.jpeg}
@@ -462,7 +466,7 @@ iii）在切换拓扑下的连接失败/生成的鲁棒一致性问题。
 
 接下来是我们的第一个主要结论：
 
-\noindent \textbf{Theorem 4.} 考虑一个有向信息流网络$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$的整合，网络是强连接的。
+\noindent \textbf{Theorem 4.} 考虑一个有向信息流网络$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$的整合，网络是强连通的。
 那么，当且仅当图$G$是平衡图时，协议(\ref{A1})全局渐进的解决了平均一致性问题。
 
 \noindent \textbf{Proof.} 证明参考如下定理5和定理6。
@@ -478,19 +482,72 @@ iii）在切换拓扑下的连接失败/生成的鲁棒一致性问题。
     x^* = \lim_{t\rightarrow +\infty}x(t) = Rx_0 = w_r(w_L^T x_0) = \frac{1}{\sqrt{n}}(w_l^Tx_0)\mathbf{1}
     \notag
 \end{equation}
-
-
-
+这表明协议1全局指数解决了每一个节点关于决策值$\frac{1}{\sqrt{n}}(w_l^Tx_0)$的一致性问题。
+如果这个决策值等于$Ave(x_0), \forall x_0 \in \mathbb{R}^n$，那么必要的$\frac{1}{\sqrt{n}}w_l = \frac{1}{\sqrt{n}}$，即$w_l= w_r=\frac{1}{\sqrt{n}}\mathbf{1}$。
+这表明$\mathbf{1}$是关于$L$的左特征向量。
+为了证明一致性，假设$\mathbf{1}^TL=0$。
+我们令$w_r=\frac{1}{\sqrt{n}}\mathbf{1}$，$w_l=\beta\mathbf{1},\beta\in\mathbb{R},\beta\ne0$。
+根据条件$w_l^Tw_r=1$，我们得到$\beta=\frac{1}{\sqrt{n}}$和$w_l=\frac{1}{\sqrt{n}}\mathbf{1}$。
+这意味着每一个节点的决策值是$\frac{1}{\sqrt{n}}(w_l^Tx_0)=\frac{1}{n}\mathbf{1}^Tx_0=Ave(x_0)$。
 
 \noindent \textbf{Corollary 2.} 假设定理5中的所有条件成立。
+假设$L$有一个关于特征值$\lambda=0$的左特征向量$\gamma = (\gamma_1, \dots, \gamma_n)^T$，这是一个属于$\mathbb{R}$的非负向量（即向量元素非负）且满足$\sum_i\gamma_i>0$。
+那么，达到一致的群组决策值就是：
+\begin{equation}
+    \alpha = \frac{\sum_i \gamma_ix_i(0)}{\sum_i\gamma_i}
+    \tag{19}
+    \label{19}
+\end{equation}
+即决策值是在节点初始值的凸包中。
 
-\noindent \textbf{Proof.}
+\noindent \textbf{Proof.} 
+我们有$\gamma^TL=0$并且因此$\gamma^Tu\equiv0$（因为$u=-Lx$）的集合。
+因此，$\beta=\gamma^Tx$是一个不变的量。
+假如，图$G$是不平衡的。
+那么，一致性仍是渐进达到的。
+定义$\alpha$是所有节点达到一致后的决策值。
+我们有$\gamma^Tx^*=\gamma^Tx(0)$由于不变的$\gamma^Tx(0)$。
+但是$x^*=\alpha\mathbf{1}$，因此我们得到
+\begin{equation}
+    (\sum_i\gamma_i)\alpha = \gamma^Tx(0)
+    \notag
+\end{equation}
 
-\noindent \textbf{Corollary 3.} （多比例整合）
+接下来的结果显示了，如果其中一个智能体使用了一个相当小的更新速率（或step-size），即$\gamma_{i^*}\gg\gamma_i$对所有的$i\ne i^*$。
+那么，所有节点的决策值收敛到$x_{i^*}$。
+换句话说，智能体$i^*$在领导者跟随（leader-follower）结果类型中扮演领导者的角色。
 
-\noindent \textbf{Proof.}
+\noindent \textbf{Corollary 3.} （多比例积分）考虑一个多比例积分网络，其节点动态如下：
+\begin{equation}
+    \gamma_i \dot{x}_i=u_i,\quad \gamma_i>0,\forall i \in \mathcal{I}
+    \tag{20}
+    \label{20}
+\end{equation}
+假设每一个节点满足协议(\ref{A1})。
+那么，达到一致的群组决策值就是：
+\begin{equation}
+    \alpha = \frac{\sum_i \gamma_ix_i(0)}{\sum_i\gamma_i}
+    \tag{21}
+    \label{21}
+\end{equation}
 
-\noindent {\em Remark} 6. 
+\noindent \textbf{Proof.} 网络根据下式动态变化：
+\begin{equation}
+    D\dot{x} = -Lx
+    \notag
+\end{equation}
+这里，$D=diag(\gamma)$是关于第$i$个对角元素对角矩阵，对角元素满足$\gamma_i>0$。
+后边的公式可以写成为：
+\begin{equation}
+    \dot{x} = -\tilde{L}x
+    \notag
+\end{equation}
+这里，$\tilde{L} = D^{-1}L = diag(\frac{1}{\gamma_1},\dots,\frac{1}{\gamma_n})L$是图$\tilde{G}$和邻接矩阵$\tilde{A}=D^{-1}\mathcal{A}$（即从节点$i$离开的边的权重被$\gamma_i$分割）的拉普拉斯矩阵。
+清晰的，$\gamma$是一个正元素向量，它是$\tilde{L}$的左特征向量，并且基于推论2的决策值是位于被$x_i(0)^\prime s$平均权重中被$\gamma$。
+
+\noindent {\em Remark} 6. Jadbabaie等人讨论了关于公式(\ref{20})和协议(\ref{A1})的一阶Euler渐进（Euler approximation）离散时间模型和姿态位置协议，推论3中$\gamma_i=deg_{out}(v_i)+1$的特殊选择。
+在文献[6]，拉普拉斯矩阵被定义为$I-D\mathcal{A}$，在本文中这等价于一个$\gamma_i=deg_{out}(v_i)\ge 0$多比例整合网络。
+$D$的奇异性由$\gamma_i=deg_{out}(v_i)$的选择决定，这在文献[13]中通过增加合适的正常量（即1）到$deg_{out}(v_i)$中来避免。
 
 \noindent \textbf{Theorem 6.} 定义一个具有邻接矩阵$\mathcal{A}=[a_{ij}]$的图$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$。
 那么，下列所有的条件都是等价的：
@@ -501,7 +558,13 @@ ii）$w_l = \mathbf{1}$是图$G$拉普拉斯算子相对于0特征值的左特�
 
 iii）有$\sum_{i=1}^n u_i = 0$，对于所有的$\forall x \in \mathbb{R}$，$u_i = \sum_{j\in N_i}a_{ij}(x_j - x_i)$。
 
-\noindent \textbf{Proof.} 我们展示
+\noindent \textbf{Proof.} 我们展示了i）$\Leftrightarrow$ii）和ii）$\Leftrightarrow$iii）。
+
+对于i）$\Leftrightarrow$ii）的证明：
+我们有$\Delta_{ii} = deg_{out}(v_i)$和
+
+
+
 
 
 \noindent {\em Remark} 7. 注意在定理6中，图$G$不需要连通。
