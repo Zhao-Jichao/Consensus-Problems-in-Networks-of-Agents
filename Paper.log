@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.24)  17 OCT 2020 23:24
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.24)  18 OCT 2020 23:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -569,34 +569,34 @@ File: figures/Fig2-ConnectedDigraph.jpeg Graphic file (type bmp)
  [7] [8]
 File: figures/Fig3-BalancedGraphs.jpeg Graphic file (type bmp)
 <figures/Fig3-BalancedGraphs.jpeg>
- [9] [10]
+ [9] [10] [11] [12] [13] [14]
 
-LaTeX Warning: Reference `28' on page 11 undefined on input line 633.
+LaTeX Warning: Reference `46' on page 15 undefined on input line 905.
 
-[11] [12]
+[15]
 File: figures/Fig4-BalancedSC.jpeg Graphic file (type bmp)
 <figures/Fig4-BalancedSC.jpeg>
 File: figures/Fig5-Simulation.jpeg Graphic file (type bmp)
 <figures/Fig5-Simulation.jpeg>
- [13]
 File: figures/Fig6-Automaton.jpeg Graphic file (type bmp)
 <figures/Fig6-Automaton.jpeg>
 File: figures/Fig7-Undirected.jpeg Graphic file (type bmp)
 <figures/Fig7-Undirected.jpeg>
+ [16] [17]
 File: figures/Fig8-ConsensusProblem.jpeg Graphic file (type bmp)
 <figures/Fig8-ConsensusProblem.jpeg>
- [14] [15] [16] [17] (./Paper.aux)
+ [18] [19] (./Paper.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 15450 strings out of 492916
- 352531 string characters out of 6133345
- 432741 words of memory out of 5000000
- 19401 multiletter control sequences out of 15000+600000
+ 15465 strings out of 492916
+ 352585 string characters out of 6133345
+ 434922 words of memory out of 5000000
+ 19416 multiletter control sequences out of 15000+600000
  538866 words of font info for 73 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 44i,11n,64p,436b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,17n,64p,436b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Paper.pdf (17 pages).
+Output written on Paper.pdf (19 pages).
