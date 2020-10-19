@@ -13,12 +13,12 @@
 %------------------------------------------------------------
 %This block of code defines the information to appear in the
 %Title page
-\title[About Beamer] %optional
+\title[Top/Down] %optional
 {Consensus Problems in Networks of Agents\\ with Switching Topology and Time-Delays}
 
 % \subtitle{}
 
-\author[] % (optional)
+\author[JC] % (optional)
 {赵继超}
 
 % \institute[VFU] % (optional)
@@ -76,79 +76,61 @@
 
 %---------------------------------------------------------
 %Changing visivility of the text
-\begin{frame}
-\frametitle{Sample frame title}
-This is a text in second frame. For the sake of showing an example.
+% \begin{frame}
+% \frametitle{Sample frame title}
+% This is a text in second frame. For the sake of showing an example.
 
-\begin{itemize}
-    \item<1-> $u_i = \sum_{j\in N_i}a_{ij}(x_j-x_i)$
-    \item<2-> $u_i(t) = \sum_{j\in N_i}a_{ij}[x_j(t-\tau_{ij})-x_i(t-\tau_{ij})]$
-    \item<3> Text visible on slides 3
-    \item<4-> Text visible on slide 4
-\end{itemize}
-\end{frame}
+% \begin{itemize}
+%     \item<1-> $u_i = \sum_{j\in N_i}a_{ij}(x_j-x_i)$
+%     \item<2-> $u_i(t) = \sum_{j\in N_i}a_{ij}[x_j(t-\tau_{ij})-x_i(t-\tau_{ij})]$
+%     \item<3> Text visible on slides 3
+%     \item<4-> Text visible on slide 4
+% \end{itemize}
+% \end{frame}
 
 %---------------------------------------------------------
 
 
 %---------------------------------------------------------
 %Example of the \pause command
-\begin{frame}
-In this slide \pause
+% \begin{frame}
+% In this slide %\pause
 
-the text will be partially visible \pause
+% the text will be partially visible %\pause
 
-And finally everything will be there
-\end{frame}
+% And finally everything will be there
+% \end{frame}
 %---------------------------------------------------------
 
-\section{Second section}
-
-%---------------------------------------------------------
-%Highlighting text
-\begin{frame}
-\frametitle{Sample frame title}
-
-In this slide, some important text will be
-\alert{highlighted} because it's important.
-Please, don't abuse it.
-
-\begin{block}{Remark}
-Sample text
-\end{block}
-
-\begin{alertblock}{Important theorem}
-Sample text in red box
-\end{alertblock}
-
-\begin{examples}
-Sample text in green box. The title of the block is ``Examples".
-\end{examples}
-\end{frame}
-%---------------------------------------------------------
-
+\section{Consensus Problems}
 
 %---------------------------------------------------------
 %Two columns
 \begin{frame}
-\frametitle{Two-column slide}
+    \frametitle{Some Basic Notations}
+    
+    \begin{columns}
+    
+    \column{0.5\textwidth}
+    \begin{itemize}
+    \item 邻接矩阵
+    \item 邻居节点
+    \item 决策值
+    \item $\chi$-一致性问题
+    \item 平均/最大/最小一致性
+    \end{itemize}
+    
+    \column{0.5\textwidth}
+    \begin{itemize}
+        \item $\mathcal{A}=[a_{ij}]$
+        \item $N_i$
+        \item $\alpha$
+        \item $\chi$
+        \item Ave(x)/Max(x)/Min(x)
+    \end{itemize}
 
-\begin{columns}
-
-\column{0.5\textwidth}
-This is a text in first column.
-$$E=mc^2$$
-\begin{itemize}
-\item First item
-\item Second item
-\end{itemize}
-
-\column{0.5\textwidth}
-This text will be in the second column
-and on a second tought this is a nice looking
-layout in some cases.
-\end{columns}
-\end{frame}
+    \end{columns}
+    \end{frame}
 %---------------------------------------------------------
 
 \section{Consensus Protocols}
@@ -156,26 +138,203 @@ layout in some cases.
 %---------------------------------------------------------
 %Highlighting text
 \begin{frame}
-\frametitle{一致性协议}
+\frametitle{Model Consensus Protocols}
 
-本部分主要介绍了一致性的协议。
+% 本部分主要介绍了一致性的协议。
 
-\begin{block}{A1无时延一致性}
-    $u_i = \sum_{j\in N_i}a_{ij}(x_j-x_i)$
+\begin{block}{CT Model}
+    $\dot{x}_i = u_i(t)$
 \end{block}
 
-\begin{alertblock}{A2有时延一致性}
-    $u_i(t) = \sum_{j\in N_i}a_{ij}[x_j(t-\tau_{ij})-x_i(t-\tau_{ij})]$
+\begin{alertblock}{DT Model}
+    $x_i(k+1) = x_i(k) + \epsilon u_i(k), \epsilon>0$
 \end{alertblock}
 
 % \begin{examples}
-% Sample text in green box. The title of the block is ``Examples".
+% Sample text in green box. The title of the block is "Examples".
 % \end{examples}
 
-我们主要研究平均一致性问题。
+\begin{block}{A1 Zero Communication Time-Delay}
+    $u_i = \sum_{j\in N_i}a_{ij}(x_j-x_i)$
+\end{block}
+
+\begin{alertblock}{A2 Communication Time-Delay $\tau_{ij}>0$}
+    $u_i(t) = \sum_{j\in N_i}a_{ij}[x_j(t-\tau_{ij})-x_i(t-\tau_{ij})]$
+\end{alertblock}
+
+% 我们主要研究平均一致性问题。
+
+\end{frame}
+%---------------------------------------------------------
+%Highlighting text
+\begin{frame}
+    \frametitle{Laplacians}
+    
+    % 本部分主要介绍了一致性的协议。
+    
+    \begin{block}{Laplacians}
+        $l_{ij} = \left\{
+            \begin{array}{ll}
+                \sum_{k=1,k\ne i}^n a_{ik}, & j=i\\
+                -a_{ij}, & j\ne i
+            \end{array}\right.$
+    \end{block}
+    
+    \begin{alertblock}{A1 State Evolves}
+        $\dot{x}(t) = -Lx(t)$
+    \end{alertblock}
+    
+    % \begin{examples}
+    % Sample text in green box. The title of the block is "Examples".
+    % \end{examples}
+    
+    \begin{block}{A1 State Evolves with Switchin Topology}
+        $\dot{x}(t) = -L_kx(t),\ k=s(t)$
+    \end{block}
+    
+    \begin{alertblock}{A1 DT}
+        $x(k+1) = P_\epsilon x(k),\ P_\epsilon = I - \epsilon L$
+    \end{alertblock}
+    
+    % 我们主要研究平均一致性问题。
+    
+    \end{frame}
+%---------------------------------------------------------
+
+\section{Algebric Graph Theory: Properties of Laplacians}
+
+%---------------------------------------------------------
+%Highlighting text
+\begin{frame}
+    \frametitle{Balanced Graph}
+    
+    %Example of the \pause command
+        Balanced Node
+
+        $$\deg_{out}(v_i) = \deg_{in}(v_i)$$
+
+        Balanced Graph
+
+        $$\deg_{in}(v_i) = \sum_{j=1}^{n}a_{ji},\quad \deg_{out}(v_i) = \sum_{j=1}^{n}a_{ij}$$
+
+        \begin{figure}[htbp]
+            \centering
+            % \includegraphics{}
+            \includegraphics[width=10cm]{figures/Fig3-BalancedGraphs.jpeg}
+            \label{BalancedGraphs}
+            % \caption{平衡图的三个例子}
+        \end{figure}
+    \end{frame}
+%---------------------------------------------------------
+%Highlighting text
+\begin{frame}
+\frametitle{Laplacians}
+
+%Example of the \pause command
+    $$L = \mathcal{L}(G) = \Delta-\mathcal{A}$$ %\pause
+    
+    $\Delta$ (degree matrix) diag($\deg_{out}(v_i)$) %\pause
+    
+    $\mathcal{A}$ (adjacency matrix) \{0,1\}
+
+    $w_r$
+    
+    $w_l$
+
+    $SC$ (Strongly Connected)
 
 \end{frame}
 %---------------------------------------------------------
 
+\section{A Counterexample for Average-Consensus}
+
+%---------------------------------------------------------
+%Highlighting text
+\begin{frame}
+\frametitle{Counterexample}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=4cm]{figures/Fig2-ConnectedDigraph.jpeg}
+        \label{ConnectedDigraph}
+        % \caption{一个不能使用协议(\ref{A1})解决平均一致性问题的3阶连通图}
+    \end{figure}
+
+%Example of the \pause command
+    In this slide %\pause
+    
+    the text will be partially visible %\pause
+    
+    And finally everything will be there
+
+\end{frame}
+%---------------------------------------------------------
+
+\section{Networks with Fixed or Switching Topology}
+
+%---------------------------------------------------------
+%Highlighting text
+\begin{frame}
+\frametitle{一致性协议}
+
+%Example of the \pause command
+    In this slide %\pause
+    
+    the text will be partially visible %\pause
+    
+    And finally everything will be there
+
+\end{frame}
+%---------------------------------------------------------
+
+\section{Networks with Communication Time-Delays}
+
+%---------------------------------------------------------
+%Highlighting text
+\begin{frame}
+\frametitle{一致性协议}
+
+%Example of the \pause command
+    In this slide %\pause
+    
+    the text will be partially visible %\pause
+    
+    And finally everything will be there
+
+\end{frame}
+%---------------------------------------------------------
+
+\section{Max-Consensus and Leader Determination}
+
+%---------------------------------------------------------
+%Highlighting text
+\begin{frame}
+\frametitle{一致性协议}
+
+%Example of the \pause command
+    In this slide %\pause
+    
+    the text will be partially visible %\pause
+    
+    And finally everything will be there
+
+\end{frame}
+%---------------------------------------------------------
+
+\section{Simulation Results}
+
+%---------------------------------------------------------
+%Highlighting text
+\begin{frame}
+\frametitle{一致性协议}
+
+%Example of the \pause command
+    In this slide %\pause
+    
+    the text will be partially visible %\pause
+    
+    And finally everything will be there
+
+\end{frame}
+%---------------------------------------------------------
 
 \end{document}

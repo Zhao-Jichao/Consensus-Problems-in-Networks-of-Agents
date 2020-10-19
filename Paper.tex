@@ -206,7 +206,7 @@ $D$是度矩阵，$A$是邻接矩阵。
 
 对于离散时间的智能体模型，应用协议(\ref{A1})给出了如下的动态离散网络
 \begin{equation}
-    x(k+1) = P_\epsilon x(x)
+    x(k+1) = P_\epsilon x(k)
     \tag{9}
     \label{9}
 \end{equation}
@@ -600,7 +600,7 @@ $Ave(x)$的不变性允许其根据以下方程进行$x$的分解：
     \label{24}
 \end{equation}
 此时$L=\mathcal{L}(G)$。
-对于图，$\Phi_G(x)$可以是负定的（例如，两个几点和一个边12的图拉普拉斯矩阵是非半正定的）。
+对于图，$\Phi_G(x)$可以是负定的（例如，两个节点和一个边12的图拉普拉斯矩阵是非半正定的）。
 
 这也证明平衡图的一个有效性质是，他们的拉普拉斯算子非一致函数是半正定的。
 另外，对于任意的平衡图$G$，都存在一个具有相同拉普拉斯非一致函数的无向图$G$。
@@ -738,11 +738,11 @@ $V(\delta)$的这个性质使它成为切换拓扑系统(\ref{32})的李雅普�
 
 进一步的，非一致性向量$\delta$随着关于下述的最小速率呈指数级消失
 \begin{equation}
-    k^* = \min_{G\in \Gamma_n} \lambda^2(\mathcal{L}(\hat{G})).
+    \kappa^* = \min_{G\in \Gamma_n} \lambda^2(\mathcal{L}(\hat{G})).
     \tag{35}
     \label{35}
 \end{equation}
-也就是说，$||\delta(t)||\le ||\delta(0)||exp(-k^*t)$。
+也就是说，$||\delta(t)||\le ||\delta(0)||exp(-\kappa^*t)$。
 
 \noindent \textbf{Proof.}
 根据$G_k$是平衡图的事实，对于所有的$k$和$u=-\mathcal{L}(G_k)x$，我们有$\mathbf{1}^Tu=-(\mathbf{1}^T\mathcal{L}(G_k))x\equiv0$。
@@ -838,7 +838,7 @@ ii）关于$\Gamma(s) = e^{-\tau s}/s$的奈奎斯特图(Nuquist plot)有在$-1/
 
 
 \section{Max-Consensus and Leader Determination}
-在这部分，我们讨论带有一个唯一的最大领导者（max-leader）网络的最大一致性问题，即节点$i^*=argmax_ix_i(0)$。
+在这部分，我们讨论带有一个唯一的最大领导者（max-leader）网络的最大一致性问题，即节点$i^*=\arg\max_ix_i(0)$。
 最大一致性问题描述如下。
 每一个智能体都有下述离散模型
 \begin{equation}
