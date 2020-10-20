@@ -355,7 +355,7 @@ $D$是度矩阵，$A$是邻接矩阵。
 
 \section{A Counterexample for Average-Consensus}
 在推论1（Corollary 1）协议中，所有节点的每个决策值$\alpha$等于$\text{Ave}(x(0))$的充分条件是$\sum_{i=1}^{n}u_i \equiv 0$。
-如果图$G$是无定向的（即$a_{ij}=a_{ji} > 0,\forall i,j: a_{ij}\ne 0$），自动的情况$\sum_{i=1}^{n}u_i=0$，$\forall x$和$\text{Ave}(x(t))$是不变的量，参考文献[20]。
+如果图$G$是无向图（即$a_{ij}=a_{ji} > 0,\forall i,j: a_{ij}\ne 0$），自动的情况$\sum_{i=1}^{n}u_i=0$，$\forall x$和$\text{Ave}(x(t))$是不变的量，参考文献[20]。
 然而，这个性质并不适用于一般有向图。
 
 一个简单的反例就是图(\ref{2})表示的3阶$n=3$强连接图，其中权重在\{0，1\}中，向量和边的集合如下所示：
@@ -444,7 +444,7 @@ $D$是度矩阵，$A$是邻接矩阵。
 直接的计算显示$R=w_rw_l^T\in M_n$。
 
 
-\section{Networks with Fixed or Switching Topology}
+\section{Networks with Fixed or Switching Topology 加一句话测试}
 这部分，我们提出了三种主要的结论：i）描述了所有使用协议(\ref{A1})解决平均一致性问题的连接图。
 ii）协议(\ref{A1})的性能和图的费德勒特征值（即代数连接）之间的联系。
 iii）在切换拓扑下的连接失败/生成的鲁棒一致性问题。
