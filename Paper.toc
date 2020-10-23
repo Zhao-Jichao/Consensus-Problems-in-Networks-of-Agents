@@ -3,7 +3,7 @@
 \contentsline {section}{\numberline {3}Consensus Protocols}{3}% 
 \contentsline {section}{\numberline {4}Algebraic Graph Theory: Properties of Laplacians}{5}% 
 \contentsline {section}{\numberline {5}A Counterexample for Average-Consensus}{7}% 
-\contentsline {section}{\numberline {6}Networks with Fixed or Switching Topology 加一句话测试}{8}% 
+\contentsline {section}{\numberline {6}Networks with Fixed or Switching Topology}{8}% 
 \contentsline {subsection}{\numberline {6.1}Balanced Graphs and Average-Consensus on Digraphs}{9}% 
 \contentsline {subsection}{\numberline {6.2}Performance of Group Agreement and Mirror Graphs}{11}% 
 \contentsline {subsection}{\numberline {6.3}Consensus in Networks with Switching Topology}{12}% 
