@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.24)  23 OCT 2020 16:23
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.24)  23 OCT 2020 17:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1038,37 +1038,57 @@ LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <12> not available
 
 ] [8
 
-] (./Presentation.toc) [9
+] [9
+
+] (./Presentation.toc) [10
 
 ]
 File: figures/Fig3-BalancedGraphs.jpeg Graphic file (type bmp)
 <figures/Fig3-BalancedGraphs.jpeg>
- [10
+ [11
 
-] [11
+] [12
 
-] (./Presentation.toc) [12
+] (./Presentation.toc) [13
 
 ]
 File: figures/Fig2-ConnectedDigraph.jpeg Graphic file (type bmp)
 <figures/Fig2-ConnectedDigraph.jpeg>
- [13
+ [14
 
-] (./Presentation.toc) [14
+] (./Presentation.toc) [15
 
-] [15
+] [16
 
-] (./Presentation.toc) [16
+] (./Presentation.toc) [17
 
-] [17
+] [18
 
-] (./Presentation.toc) [18
+] (./Presentation.toc) [19
 
-] [19
+] [20
 
-] (./Presentation.toc) [20
+] (./Presentation.toc) [21
 
-] [21
+]
+File: figures/Result1-Fig5a.png Graphic file (type bmp)
+<figures/Result1-Fig5a.png>
+ [22
+
+]
+File: figures/Result2-Fig5b.png Graphic file (type bmp)
+<figures/Result2-Fig5b.png>
+ [23
+
+]
+File: figures/Result3-Fig5c.png Graphic file (type bmp)
+<figures/Result3-Fig5c.png>
+ [24
+
+]
+File: figures/Result4-Fig5d.png Graphic file (type bmp)
+<figures/Result4-Fig5d.png>
+ [25
 
 ]
 \tf@nav=\write6
@@ -1080,21 +1100,21 @@ File: figures/Fig2-ConnectedDigraph.jpeg Graphic file (type bmp)
 \tf@snm=\write8
 \openout8 = `Presentation.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 340.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 340.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 403.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 403.
  (./Presentation.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 340.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 340.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 403.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 403.
 Package rerunfilecheck Info: File `Presentation.out' has not changed.
 (rerunfilecheck)             Checksum: 2BBAAB3AB91D9BD1F7B157FBE2AD8679.
  ) 
 Here is how much of TeX's memory you used:
- 33309 strings out of 492916
- 680260 string characters out of 6133345
- 803870 words of memory out of 5000000
- 36861 multiletter control sequences out of 15000+600000
- 539043 words of font info for 68 fonts, out of 8000000 for 9000
+ 33332 strings out of 492916
+ 680811 string characters out of 6133345
+ 802922 words of memory out of 5000000
+ 36876 multiletter control sequences out of 15000+600000
+ 539059 words of font info for 70 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 56i,15n,65p,859b,708s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,15n,65p,859b,716s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Presentation.pdf (21 pages).
+Output written on Presentation.pdf (25 pages).
