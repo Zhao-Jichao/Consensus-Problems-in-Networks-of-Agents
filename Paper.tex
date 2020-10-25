@@ -25,29 +25,133 @@
 
 
 \begin{abstract}
-这篇文章，我们讨论了动态智能体网络固定和切换拓扑下的一致性问题。
-我们分析了三种情况：i）切换拓扑无时滞网络，ii）固定拓扑通信时滞网络，iii）离散智能体群的最大一致性问题（或领导决定性）。
-在每一种情况，我们介绍了线性/非线性一致性协议并且提供了分布式建议算法的收敛性分析。
-此外，我们还建立了网络信息流（例如网络的动态连接性）的费德勒特征值（Fiedler eigenvaue）和响应一直协议的速度（或性能）协商之间的联系。
-这表明平衡图在解决一致性问题上扮演着重要角色。我们介绍了在一致性协议的收敛性分析问题中扮演着李雅普诺夫（Lyapunov functions）函数角色的分歧函数。
-这项研究的显著特征是来解决有向信息流网络的一致性问题。
+In this paper, we discuss consensus problems for a network of dynamic agents with ﬁxed and switching topologies. 
+We analyze three cases: i) networks with switching topology and no time-delays, ii) networks with ﬁxed topology and communication time-delays, and iii) max-consensus problems (or leader determination) for groups of discrete-time agents. 
+In each case, we introduce a linear/nonlinear consensus protocol and provide convergence analysis for the proposed distributed algorithm. 
+Moreover, we establish a connection between the Fiedler eigenvalue of the information ﬂow in a network (i.e. algebraic connectivity of the network) and the negotiation speed (or performance) of the corresponding agreement protocol. 
+It turns out that balanced digraphs play an important role in addressing average-consensus problems. 
+We introduce disagreement functions that play the role of Lyapunov functions in convergence analysis of consensus protocols. 
+A distinctive feature of this work is to address consensus problems for networks with directed information ﬂow. 
+We provide analytical tools that rely on algebraic graph theory, matrix theory, and control theory. 
+Simulations are provided that demonstrate the eﬀectiveness of our theoretical results.
+
+这篇文章，我们讨论了动态智能体网络在固定和切换拓扑下的一致性问题。
+我们分析了三种情况：i）切换拓扑无时延网络，ii）固定拓扑有时延网络，iii）智能体群离散时间下的的最大一致性问题（或领导力问题）。
+在每一种情况，我们都介绍了线性/非线性的一致性协议，并且提供了分布式建议算法的收敛性分析。
+此外，我们还建立了网络信息流的费德勒特征值（Fiedler eigenvaue）（即网络的代数连通度）和响应一致协议的收敛速度（或性能）之间的联系。
+这表明平衡图在解决一致性问题上扮演着重要角色。
+我们介绍了在一致性协议的收敛性分析问题中扮演着李雅普诺夫（Lyapunov functions）函数的非一致函数。
+这项研究的显著特征是解决了有向信息流网络的一致性问题。
 我们提供的分析工具基于代数图论，矩阵论和控制论。
-仿真提供了我们的理论结果的演示效率。
+仿真部分提供了我们的理论结果的演示效率。
 \end{abstract}
 
 \section{Introduction}
-这些年，动态智能体网络的分布式决策协调问题吸引了大量的研究者。
-部分原因是因为多智能体系统（MAS）在许多领域都有广阔的应用，包括无人协同装置，类鸟集群，水下装置，分布式传感器网络，卫星簇的姿态排列，通信网络的拥挤堵塞控制。
+Distributed decision-making for coordination of networks of dynamic agents has attracted several researchers in recent years. 
+This is partly due to broad applications of multi-agent systems in many areas including cooperative control of unmanned air vehicles (UAVs), ﬂocking of birds [22, 24, 23], schooling for underwater vehicles, distributed sensory networks, attitude alignment of clusters of satellites, and congestion control in communication networks [21].
 
+\noindent 这些年，动态智能体网络的分布式决策协调问题吸引了大量的研究者。
+部分原因是因为多智能体系统（MAS）在许多领域都有广阔的应用，包括无人协同装置，类鸟集群[22，24，23]，水下装置，分布式传感器网络，卫星簇的姿态排列，通信网络的拥挤堵塞控制[21]。
 
-一致问题在计算机科学领域具有很长的历史，尤其是在自动控制理论和分布式计算方面。
-在很多包含多智能体系统，智能体组的应用需要商定大量的interest。
+Agreement problems have a long history in the ﬁeld of computer science, particularly in automata theory and distributed computation [15]. 
+In many applications involving multiagent/multi-vehicle systems, groups of agents need to agree upon certain quantities of {\color{green}interest}. 
 Such quantities might or might not be related to the motion of the individual agents. 
-至于结果，在连接失败和创造下（即动态网络拓扑）的定向信息流，解决动态智能体网络所有形式的一致性问题是非常重要的。
+As a result, it is important to address agreement problems in their general form for networks of dynamic agents with directed information ﬂow under link failure and creation (i.e. variable network topology).
 
+一致问题在计算机科学领域具有很长的历史，尤其是在自动控制理论和分布式计算方面[15]。
+在很多包含多智能体/复合装置系统和智能体群组的应用需要就大量的利益达成一致。
+这些利益也许与单个智能体的运动（不）相关。
+至于结果，关于连接失败和新建连接下的定向信息流（即动态网络拓扑），解决动态智能体网络通用形式的一致性问题是非常重要的。
 
-在这篇文章中，我们主要的贡献是定义和解决了基于大量假想的网络拓扑的一致性问题（固定的和动态的），是否存在通信时滞，和输入动态智能体的局限性。
-在每种情况，我们都提供了收敛性分析，并且针对线性协议建立了性能和鲁棒性之间的定向连接，包括一致性协议和网络信息流的图拉氏变换。
+Our main contribution in this paper is to deﬁne and address consensus problems under a variety of assumptions on the network topology (being ﬁxed or variable), presence or lack of communication time-delays, and boundedness of the inputs of dynamic agents. 
+In each case, we provide convergence analysis and for linear protocols establish direct connections between performance and robustness of a consensus protocol and the properties of graph Laplacian of the information ﬂow in the network.
+
+在这篇文章中，我们主要的贡献是定义和解决了基于许多假设的网络拓扑的一致性问题（固定的和变化的），是否存在通信时延（time-delays），和输入动态智能体的局限性。
+在每种情况，我们都提供了收敛性分析，并且针对线性协议建立了性能和关于图的拉氏变化和一致性协议的鲁棒性之间的定向关系。
+
+In the past, a number of researchers have worked in problems that are essentially diﬀerent forms of agreement problems with diﬀerences regarding the types of agent dynamics, the properties of the graphs, and {\color{green}the names of the tasks of interest}. 
+In [25, 7, 6], graph Laplacians are used for the task of formation stabilization for groups of agents with linear dynamics. 
+Their method for formation stabilization has not yet been extended to systems with nonlinear dynamics that are not feedback linearizable. 
+Special cases of this approach are known as leader-follower type architectures and have been widely used by numerous researchers [19, 4, 14]. 
+In [18], graph Laplacians are used in the context of dynamic graph theory. 
+In [24, 23], {\color{green}ﬂocking and heading angle} alignment for multiple particles is analyzed from the point of view of statistical mechanics and a phase transition phenomenon is observed that occurs the information ﬂow in the network becomes connected. 
+The work in [13] focuses on attitude alignment for undirected graphs in which the agents have simple dynamics motivated by the model used in [24]. 
+It is claimed that the connectivity of the graph on average is suﬃcient for convergence of the heading angles of the agents. 
+In [20], the authors addressed convergence of linear and nonlinear protocols for networks with undirected graphs in presence or lack of communication time-delays. 
+Theoretically, analyzing consensus on directed graphs is more challenging and is considered in the present paper.
+
+在过去，大量研究者致力于解决本质上是不同形式的一致性问题，这是智能体是不同类型智能体（异构智能体），图拉普拉斯矩阵的性质，感兴趣任务的命名问题。
+在文献[25，7，6]中，图拉普拉斯矩阵被用来解决线性智能体模型的信息稳定问题。
+他们的方法没有扩展到非线性智能体系统上，不能反馈线性化。
+这种方法的一种熟知的特殊情况是领导者-跟随类型，并且已经被广泛应用在大量的研究中[19，4，14]。
+在文献[18]，图拉普拉斯矩阵被在动态图论中。
+文献[24，23]中，多重粒子的群集问题和航向角问题从统计力学的角度进行了分析，并且观察到发生在网络中的信息流的相转换现象变的相互连接。
+文献[13]的工作集中在无向图的姿态对齐问题，这里的智能体采用的文献[24]中的简单动态模型。
+可以断定，图的平均连通性对于智能体的航向角收敛是有效的。
+文献[20]解决了有（无）时延的无向图系统的线性和非线性系统模型一致性问题。
+理论上，有向图的一致性分析更具有挑战性，并且在接下来的文献中进行讨论。
+
+In this paper, we provide convergence analysis of consensus protocol for a network of {\color{green}integrators} with a directed information ﬂow and ﬁxed or switching topology. 
+Our analysis relies on several tools from algebraic graph theory [1, 11] and matrix theory [12]. 
+We establish a connection between the performance of the linear consensus protocol and the Fiedler eigenvalue of graph Laplacian of a graph called the mirror graph (that is closely-related to the original directed graph).
+
+本文，我们提供了有向信息流固定和切换拓扑网络的一致性协议收敛分析。
+我们的分析依赖于一些代数图论[1，11]和矩阵论[12]的工具。
+我们建立了线性一致性协议的性能和镜像图拉普拉斯算子的费德勒特征值之间的联系（镜像图与原来的有向图密切相关）。
+
+It turns out that a class of directed graphs called balanced graphs have a crucial role in derivation of an invariant quantity and a Lyapunov function for convergence analysis of average-consensus problems on directed graphs. 
+This Lyapunov function is a measure of group disagreement in the network. 
+We show that a directed graph solves the average-consensus problem using a certain protocol if and only if it is balanced. 
+Furthermore, we use properties of balanced networks to analyze the convergence of an agreement protocol for networks with switching topology. 
+This variation of the network topology is usually due to link failures or creations in networks with mobile nodes. 
+We introduce a common Lyapunov function that guarantees asymptotic convergence to a group decision value in a network with switching information ﬂow.
+
+结果表明，一类称为平衡图的有向图在求导不变量和李雅普诺夫（Lyapunov）函数对有向图上平均一致问题的收敛性分析中起着至关重要的作用。
+这个李亚普诺夫函数是对网络中群组非一致性的衡量。
+我们证明了当且仅当图是平衡图时，有向图可以使用一个确定的协议解决平均一致性问题。
+进一步，我们使用图的性质分析了切换拓扑网络的一致性收敛协议。
+网络拓扑图的变化通常是由于网络中模型节点之间连接的失败或重新建立造成的。
+我们介绍了一个常用的李亚普诺夫函数，来保证切换信息流网络能够渐进收敛到群组决策值（decision value）。
+
+Building on these basic results, we provide a number of extensions. 
+We discuss the eﬀects of communication time-delays in solving consensus problems. 
+For undirected graphs, we address average-consensus problem under the constraint that the inputs of all agents are bounded. 
+This leads to analyzing a nonlinear protocol. 
+Using a example of a network with three nodes, we demonstrate that analyzing the convergence of this protocol for general digraphs is a challenging open problem. 
+Finally, we pose and address the max-consensus problem that is useful for determining a superior or leader in a group of agents in a distributed way.
+
+在这些基本结果的基础上，我们提出了一些扩展。
+我们讨论了通信时延在解决一致性问题中的影响。
+对于无向图，我们基于所有智能体的输入都是有界的约束下解决了平均一致性问题。
+这引导分析了非线性协议。
+使用一个三节点的例子，我们演示了分析该协议对于一般有向图的收敛性是一个具有挑战性的开放问题。
+最后，我们提出并解决了最大一致性问题，这对以分布式方式决定智能体群中的先导者（superior）或领导者（leader）是有用的。
+
+Simulation results are provided that demonstrate our theoretical predictions and show the novel analytical tools that we propose are eﬀective.
+
+我们提供了仿真结果，演示了我们的理论预测，并演示了我们提出的新的分析工具的有效性。
+
+An outline of this paper is as follows. 
+In Section 2, we deﬁne consensus problems. 
+In Section 3, we give two protocols. 
+Some background on algebraic graph theory and properties of graph Laplacians are provided in Section 4. 
+A counterexample is given in Section 5 that shows not every digraph solves an average-consensus problem. 
+In Section 6, our main results on networks with switching topology are presented. 
+Average-consensus problems for networks with communication time-delays is discussed in Section 7. 
+In Section 8, our result on max-consensus problem is given. 
+The simulation results are presented in Section 9. 
+Finally, in Section 10, concluding remarks are stated.
+
+本文大纲如下。
+第2部分，我们定义了一致性问题。
+第3部分，我们给出了两个协议。
+第4部分，展示了代数图论的一些背景知识和图拉普拉斯矩阵的一些性质。
+第5部分，给出了一个反例，表明不是所有的图都能解决平均一致性问题。
+第6部分，是我们在切换拓扑方面的主要结果。
+第7部分，讨论了网络有通信时延的平均一致性问题分析。
+第8部分，给出了我们对最大一致性问题的结果。
+第9部分，展示了仿真结果。
+最后，第10部分，展示了结论和总结。
 
 \section{Consensus Problems}
 $G=(\mathcal{V},\mathcal{E},\mathcal{A})$是加权有向图（或无向图），具有$n$个节点，和一个加权邻接矩阵$\mathcal{A}=[a_{ij}]$。$\mathcal{A}$矩阵的所有元素$a_{i,j} \ge 0$且所有的$i,j \in \mathcal{I}={1,2,…,n},i \ne j$。

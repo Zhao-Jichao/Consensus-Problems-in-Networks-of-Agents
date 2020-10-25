@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.24)  25 OCT 2020 11:04
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.24)  25 OCT 2020 14:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -550,53 +550,58 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  [1
 
-] [2]
-Overfull \hbox (4.53125pt too wide) detected at line 141
+]
+Overfull \hbox (6.92125pt too wide) in paragraph at lines 56--60
+\TU/lmr/m/n/10 tomata theory and distributed computation [15]. In many applications involving multiagent/multi-
+ []
+
+[2] [3] [4] [5]
+Overfull \hbox (4.53125pt too wide) detected at line 245
 [][]
  []
 
 
-Overfull \hbox (61.20125pt too wide) detected at line 153
+Overfull \hbox (61.20125pt too wide) detected at line 257
 [][]
  []
 
-[3] [4] [5]
+[6] [7] [8]
 File: figures/Fig1-DiskTheorem.jpeg Graphic file (type bmp)
 <figures/Fig1-DiskTheorem.jpeg>
- [6]
+ [9]
 File: figures/Fig2-ConnectedDigraph.jpeg Graphic file (type bmp)
 <figures/Fig2-ConnectedDigraph.jpeg>
- [7] [8]
+ [10] [11]
 File: figures/Fig3-BalancedGraphs.jpeg Graphic file (type bmp)
 <figures/Fig3-BalancedGraphs.jpeg>
- [9] [10] [11] [12] [13] [14]
+ [12] [13] [14] [15] [16] [17]
 
-LaTeX Warning: Reference `46' on page 15 undefined on input line 905.
+LaTeX Warning: Reference `46' on page 18 undefined on input line 1009.
 
-[15]
 File: figures/Fig4-BalancedSC.jpeg Graphic file (type bmp)
 <figures/Fig4-BalancedSC.jpeg>
+[18]
 File: figures/Fig5-Simulation.jpeg Graphic file (type bmp)
 <figures/Fig5-Simulation.jpeg>
 File: figures/Fig6-Automaton.jpeg Graphic file (type bmp)
 <figures/Fig6-Automaton.jpeg>
 File: figures/Fig7-Undirected.jpeg Graphic file (type bmp)
 <figures/Fig7-Undirected.jpeg>
- [16] [17]
+ [19] [20]
 File: figures/Fig8-ConsensusProblem.jpeg Graphic file (type bmp)
 <figures/Fig8-ConsensusProblem.jpeg>
- [18] [19] (./Paper.aux)
+ [21] (./Paper.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 15465 strings out of 492916
- 352585 string characters out of 6133345
- 434922 words of memory out of 5000000
- 19416 multiletter control sequences out of 15000+600000
+ 15478 strings out of 492916
+ 353553 string characters out of 6133345
+ 432927 words of memory out of 5000000
+ 19429 multiletter control sequences out of 15000+600000
  538866 words of font info for 73 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 44i,17n,64p,436b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,17n,64p,448b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Paper.pdf (19 pages).
+Output written on Paper.pdf (21 pages).
