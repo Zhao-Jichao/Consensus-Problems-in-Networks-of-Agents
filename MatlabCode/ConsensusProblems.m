@@ -118,13 +118,15 @@ t(1) = tBegin;                                                              % 时
 
 i = 1;
 while(i <= times)
+    t(i+1) = tBegin + i * h;                                                % 添加更新后的t值
+
     Xt = X(:,i);
     Ut = -L * Xt;                                                           % u = -Lx
-    Xt1 = Xt + h * Ut;                                                      % x = x + h*u
+%     Xt1 = Xt + h * Ut;                                                      % x = x + h*u
+    Xt1 = expm(-L*(tBegin+i*h)) * X0;                                                      % x = x + h*u
        
     X(:,i+1) = Xt1;                                                         % 添加更新后的Xt值
     U(:,i+1) = Ut;                                                          % 添加更新后的Ut值  
-    t(i+1) = tBegin + i * h;                                                % 添加更新后的t值
     i = i+1;
 end
 
