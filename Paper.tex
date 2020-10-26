@@ -49,6 +49,7 @@ Simulations are provided that demonstrate the eﬀectiveness of our theoretical 
 仿真部分提供了我们的理论结果的演示效率。
 \end{abstract}
 
+% ------------------------------------------------------------------------------
 \section{Introduction}
 {\color[gray]{0.5}
 Distributed decision-making for coordination of networks of dynamic agents has attracted several researchers in recent years. 
@@ -174,7 +175,7 @@ Finally, in Section 10, concluding remarks are stated.
 第9部分，展示了仿真结果。
 最后，第10部分，展示了结论和总结。
 
-
+% ------------------------------------------------------------------------------
 \section{Consensus Problems}
 {\color[gray]{0.5}
 Let $G=(\mathcal{V},\mathcal{E},\mathcal{A})$ be a weighted directed graph (or digraph) with $n$ nodes and a weighted adjacency matrix $\mathcal{A}=[a_{ij}]$ where $a_{ij} \ge 0$ for all $i,j \in \mathcal{I}={1,2,…,n}$ with $i \ne j$. 
@@ -273,7 +274,7 @@ This is more challenging than just reaching a general agreement.
 解决一个线性函数$\chi(x)=Ave(x)$动态系统网络的平均一致性问题是一个分布式计算的典型例子。
 这比仅达成普通一致性更加具有挑战性。
 
-
+% ------------------------------------------------------------------------------
 \section{Consensus Protocols}
 {\color[gray]{0.5}
 \noindent In this section, we present three consensus protocols that solve agreement problems in a network of continuous-time (CT) {\color{green}integrator agents} with dynamics
@@ -473,7 +474,7 @@ This is diﬀerent than the approach pursued in the work by Jadbabaie et al. whi
 我们的方法提出了一个基于离散时间模型网络收敛分析的李亚普诺夫（Lyapunov）函数。
 这是不同于Jadbabaie等人从事的方法，他们非常依赖于矩阵论的性质和随机矩阵的无穷收敛级数（right-convergence product，RCP）[2, 3]。
 
-
+% ------------------------------------------------------------------------------
 \section{Algebraic Graph Theory: Properties of Laplacians}
 {\color[gray]{0.5}
 \noindent In this section, we introduce some basic concepts and notation in graph theory that will be used throughout the paper. 
@@ -738,17 +739,29 @@ In other words, Corollary 1 does not necessarily address the average-consensus p
 谨记推论1（Corollary 1）不能保证所有节点的决策值$\alpha$是否等于$\text{Ave}(x(0))$。
 换句话说，推论1（Corollary 1）不一定能解决平均一致性问题。
 
-
+% ------------------------------------------------------------------------------
 \section{A Counterexample for Average-Consensus}
-在推论1（Corollary 1）协议中，所有节点的每个决策值$\alpha$等于$\text{Ave}(x(0))$的充分条件是$\sum_{i=1}^{n}u_i \equiv 0$。
+{\color[gray]{0.5}
+\noindent A suﬃcient condition for the decision value $\alpha$ of each node in the proof of Corollary 1 to be equal to $\text{Ave}(x(0))$ is that $\sum_{i=1}^{n}u_i \equiv 0$. 
+If $G$ is undirected (i.e. $a_{ij}=a_{ji} > 0,\forall i,j: a_{ij}\ne 0$), automatically the condition $\sum_{i=1}^{n}u_i=0$, $\forall x$ holds and $\text{Ave}(x(t))$ is an invariant quantity [20]. 
+However, this property does not hold for a general digraph.
+}
+
+\noindent 在推论1（Corollary 1）协议中，所有节点的决策值$\alpha$等于$\text{Ave}(x(0))$的充分条件是$\sum_{i=1}^{n}u_i \equiv 0$。
 如果图$G$是无向图（即$a_{ij}=a_{ji} > 0,\forall i,j: a_{ij}\ne 0$），自动的情况$\sum_{i=1}^{n}u_i=0$，$\forall x$和$\text{Ave}(x(t))$是不变的量，参考文献[20]。
 然而，这个性质并不适用于一般有向图。
 
+{\color[gray]{0.5}
+A simple counterexample is a strongly connected digraph of order $n$ = 3, shown in Figure 2, with weights in \{0, 1\} and the following sets of vertices and edges:
+}
+
 一个简单的反例就是图(\ref{2})表示的3阶$n=3$强连接图，其中权重在\{0，1\}中，向量和边的集合如下所示：
+
 \begin{equation}
     \mathcal{V} = \{1, 2, 3 \},\quad \mathcal{E}=\{12, 23, 31, 13\}.
     \notag
 \end{equation}
+
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=4cm]{figures/Fig2-ConnectedDigraph.jpeg}
@@ -756,9 +769,16 @@ In other words, Corollary 1 does not necessarily address the average-consensus p
     \caption{一个不能使用协议(\ref{A1})解决平均一致性问题的3阶连通图}
 \end{figure}
 
+{\color[gray]{0.5}
+For the digraph $G=(\mathcal{V}, \mathcal{E})$, $\sum_{i=1}^{3}u_i = x_3 - x_1$. 
+Thus, if nodes 1 and 3 disagree, the property $\sum_{i=1}^{3}u_i = 0$ does not hold for all $x$. 
+On the other hand, the reader can verify that for this example
+}
+
 对于图$G=(\mathcal{V}, \mathcal{E})$，$\sum_{i=1}^{3}u_i = x_3 - x_1$。
 因此，如果节点1和3不一致，那么属性$\sum_{i=1}^{3}u_i = 0$不是对于所有的$x$都成立。
 另一方面，读者可以在本例中来验证这一点
+
 \begin{equation}
     L = \left[
     \begin{matrix}
@@ -770,66 +790,107 @@ In other words, Corollary 1 does not necessarily address the average-consensus p
     \notag
 \end{equation}
 
-{\color{userColor}
-\begin{equation}
-    D = \left[
-    \begin{matrix}
-        2 & 0 & 0 \\
-        0 & 1 & 0 \\
-        0 & 0 & 1 
-    \end{matrix}
-    \right],
-    A = \left[
-    \begin{matrix}
-        0 & 1 & 1 \\
-        0 & 0 & 1 \\
-        1 & 0 & 0 
-    \end{matrix}
-    \right],
-    L = D - A
-    \notag
-\end{equation}
+% {\color{userColor}
+% \begin{equation}
+%     D = \left[
+%     \begin{matrix}
+%         2 & 0 & 0 \\
+%         0 & 1 & 0 \\
+%         0 & 0 & 1 
+%     \end{matrix}
+%     \right],
+%     A = \left[
+%     \begin{matrix}
+%         0 & 1 & 1 \\
+%         0 & 0 & 1 \\
+%         1 & 0 & 0 
+%     \end{matrix}
+%     \right],
+%     L = D - A
+%     \notag
+% \end{equation}
+% }
+
+{\color[gray]{0.5}
+\noindent and $x^*_i = [x_1(0) + x_2(0) + 2x_3(0)]/4$ (this is due to Theorem 3). 
+This decision value is apparently in the convex hull of all the $x_i(0)$’s but it is diﬀerent from $\text{Ave}(x(0))$ if and only if $x_1(0) + x_2(0) \ne 2x_3(0)$. 
+As a result, for all initial conditions satisfying $x_1(0) + x_2(0) \ne 2x_3(0)$, Protocol (A1) does not solve the average-consensus problem but still all nodes reach an agreement. 
+This motivates us to characterize the class of all digraphs that solve the average-consensus problem.
 }
 
-并且$x^*_i = [x_1(0) + x_2(0) + 2x_3(0)]/4$（此公式基于Theorem 3）。
-这个决策值在所有$x_i(0)$的凸包中是显而易见的，但是当且仅当$x_1(0) + x_2(0) \ne 2x_3(0)$时，决策值不等于$\text{Ave}(x(0))$。
-结果就是，对于所有初始条件满足$x_1(0) + x_2(0) \ne 2x_3(0)$，协议(\ref{A1})并不能解决平均一致性问题，但所有的节点仍能达到一致。
-这促使我们描述所有的图的类，来解决平均一致性问题。
+\noindent 并且$x^*_i = [x_1(0) + x_2(0) + 2x_3(0)]/4$（此公式源于Theorem 3）。
+显而易见的这个决策值包含在所有$x_i(0)$的凸包中，但是当且仅当$x_1(0) + x_2(0) \ne 2x_3(0)$时，决策值不等于$\text{Ave}(x(0))$。
+结果就是，对于所有满足$x_1(0) + x_2(0) \ne 2x_3(0)$的初始情况，协议(\ref{A1})并不能解决平均一致性问题，但所有的节点仍能达到一致。
+这促使我们来描述所有的图的类，以解决平均一致性问题。
 
-在提出我们第一次的主要结果之前，我们需要提供一个指数矩阵如$e^{(-Lt)}$形式的极限理论。
+{\color[gray]{0.5}
+Before presenting our ﬁrst main result, we need to provide a limit theorem for exponential matrices of the form $e^{(-Lt)}$. 
+This is because the solution of (6) is given by
+}
+
+在提出我们第一次的主要结果之前，我们需要提出一个指数矩阵如$e^{(-Lt)}$形式的极限理论。
 这是因为系统(\ref{6})的解决办法是通过以下公式给出
+
 \begin{equation}
     x(t) = exp(-Lt)x(0)
     \tag{17}
     \label{17}
 \end{equation}
-并且通过对$exp(-Lt)$的显示计算，我们可以获得达到一致性的总图节点的决策值。
-在非负矩阵理论中，接下来的定理与著名的极限定理关系密切，即Perron-Frobenius定理（Perron-Frobenius Theorem），参考文献[12]{\color[gray]{0.5}（R. A. Horn and C. R. Johnson. Matrix Analysis. Cambridge University Press, 1987）}。
+
+{\color[gray]{0.5}
+\noindent and by explicit calculation of $exp(-Lt)$, we can obtain the decision value of each node after reaching consensus for a general digraph. 
+The following theorem is closely related to a famous limit theorem in the theory of nonnegative matrices known as Perron-Frobenius Theorem [12].
+}
+
+\noindent 并且通过对$exp(-Lt)$的显示计算，我们可以得到普通图在达到一致性后每个节点的决策值。
+接下来的定理在非负矩阵理论中与著名的极限定理关系密切，即Perron-Frobenius定理（Perron-Frobenius Theorem）[12]。
+
+{\color[gray]{0.5}
+\noindent \textbf{Notation.} Following the notation in [12], we denote the set of $m\times n$ real matrices by $M_{m,n}$  and the set of square $n\times n$ matrices by $M_n$ . 
+Furthermore, throughout this paper, the right and left eigenvectors of the Laplacian $L$ associated with $\lambda_1 = 0$ are denoted by $w_r$ and $w_l$ , respectively.
+}
 
 \noindent \textbf{Notation.} 参考文献[12]的注解，我们记$M_{m,n}$为$m\times n$的实矩阵，$M_n$为$n \times n$的方阵。
 进一步，通过这篇文章，关于$\lambda_1 = 0$的拉普拉斯矩阵$L$的右特征向量和左特征向量分别用$w_r$和$w_l$表示。
 
-\noindent \textbf{Theorem 3.} 假设$G$是一个强连通图，拉普拉斯算子$L$满足$Lw_r=0$，$w_l^TL = 0$，$w_l^Tw_r=1$。
+{\color[gray]{0.5}
+\noindent \textbf{Theorem 3.} Assume $G$ is a strongly connected digraph with Laplacian $L$ satisfying $Lw_r=0$，$w_l^TL = 0$，$w_l^Tw_r=1$. Then
+}
+
+\noindent \textbf{Theorem 3.} 假设$G$是一个强连通图，拉普拉斯矩阵$L$满足$Lw_r=0$，$w_l^TL = 0$，$w_l^Tw_r=1$。那么
+
 \begin{equation}
     R = \lim_{t\rightarrow +\infty} exp(-Lt) = w_r w_l^T \in M_n
     \tag{18}
     \label{18}
 \end{equation}
-\begin{equation}
-    {\color{userColor} \text{R = t趋于无穷时-Lt关于e指数值极限 = 右特征向量 * 左特征向量}}
-    \notag
-\end{equation}
+
+% \begin{equation}
+%     {\color{userColor} \text{R = t趋于无穷时-Lt关于e指数值极限 = 右特征向量 * 左特征向量}}
+%     \notag
+% \end{equation}
+
+{\color[gray]{0.5}
+\noindent \textbf{Proof.} Let $A=-L$ and let $J$ be the Jordan form associated with $A$, i.e. $A=SJS^{-1}$ . 
+We have $exp(At) = S\ exp(Jt)\ S^{-1}$ and as $s\rightarrow +\infty$, $exp(Jt)$ converges to a matrix $Q=[q_{ij}]$ with a single nonzero element $q_{11}=1$. 
+The fact that other blocks in the diagonal of $exp(Jt)$ vanish is due to the property that $Re(\lambda_k(A))<0$ for all $k\ge2$ where $\lambda_k(A)$ is the $k$th largest eigenvalue of $A$ in terms of magnitude $|\lambda_k|$ . 
+Notice that $R=SQS^{-1}$ . 
+Since $AS=SJ$ the ﬁrst column of $S$ is $w_r$ . 
+Similarly, $S^{-1}A = JS^{-1}$ that means the ﬁrst row of $S^{-1}$ is $w_l^T$. 
+Due to the fact that $S^{-1}S=I$, $w_l$ satisﬁes the property $w_l^Tw_r=1$ as stated in the question. 
+A straightforward calculation shows that $R=w_rw_l^T\in M_n$.
+}
 
 \noindent \textbf{Proof.} 令$A=-L$，$J$为$A$的约当形，即$A=SJS^{-1}$。
-我们有$exp(At) = S\ exp(Jt)\ S^{-1}$当$s\rightarrow +\infty$，$exp(Jt)$收敛至一个具有单一非零元素$q_{11}=1$的矩阵$Q=[q_{ij}]$。
-对角矩阵$exp(Jt)$的其他块会变成0，由于对于所有的$k\ge2$，都有$Re(\lambda_k(A))<0$，这里$\lambda_k(A)$是矩阵$A$的第$k$个最大的特征值$|A|$。
+我们有$exp(At) = S\ exp(Jt)\ S^{-1}$当$s\rightarrow +\infty$，$exp(Jt)$收敛至一个含有单一非零元素$q_{11}=1$的矩阵$Q=[q_{ij}]$。
+对角矩阵$exp(Jt)$的其他块会变成0，由于对于所有的$k\ge2$，都有$Re(\lambda_k(A))<0$，这里$\lambda_k(A)$是矩阵$A$关于$|\lambda_k|$的第$k$个最大的特征值。
 注意$R=SQS^{-1}$。
 由于$AS=SJ$，$S$的第一列为$w_r$。
 相似的，$S^{-1}A = JS^{-1}$，这也意味着$S^{-1}$的第一行是$w_l^T$。
-由于$S^{-1}S=T$，$w_l$满足如性质所述的$w_l^Tw_r=1$。
+由于$S^{-1}S=I$，$w_l$满足如问题中所述的性质$w_l^Tw_r=1$。
 直接的计算显示$R=w_rw_l^T\in M_n$。
 
-
+% ------------------------------------------------------------------------------
 \section{Networks with Fixed or Switching Topology}
 这部分，我们提出了三种主要的结论：i）描述了所有使用协议(\ref{A1})解决平均一致性问题的连接图。
 ii）协议(\ref{A1})的性能和图的费德勒特征值（即代数连接）之间的联系。
@@ -1149,7 +1210,7 @@ $V(\delta)$的这个性质使它成为切换拓扑系统(\ref{32})的李雅普�
 并且非一致性向量$\delta(t)$全局指数消失速度为$\kappa^* > 0$为$t\rightarrow +\infty$。
 最后，公式(\ref{35})的最小化总是存在并且是可以得到的，因为$\Gamma_n$是一个有限集合。
 
-
+% ------------------------------------------------------------------------------
 \section{Networks with Communication Time-Delays}
 考虑固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$连续时间网络，其节点$i$的状态经过一个时滞$\tau > 0$的通信通道（或连接）达到节点$j$。
 关于连接$ij$的转移函数表示如下：
@@ -1222,7 +1283,7 @@ ii）关于$\Gamma(s) = e^{-\tau s}/s$的奈奎斯特图(Nuquist plot)有在$-1/
 权衡的是因子$1/k>0$协商速度。
 换句话说，在一致性算法的鲁棒性和时滞收敛速度之间存在权衡。
 
-
+% ------------------------------------------------------------------------------
 \section{Max-Consensus and Leader Determination}
 在这部分，我们讨论带有一个唯一的最大领导者（max-leader）网络的最大一致性问题，即节点$i^*=\arg\max_ix_i(0)$。
 最大一致性问题描述如下。
@@ -1292,7 +1353,7 @@ ii）关于$\Gamma(s) = e^{-\tau s}/s$的奈奎斯特图(Nuquist plot)有在$-1/
 给出协议(\ref{A4})，很容易便可看到节点$i^*$的第$k$个邻居簇的所有节点变得等于$\alpha$，所有在$j^{(k)}\backslash {i^*}$中的节点最大标记在$k$此迭代后变为0。
 另一方面，关于$l\le n-1$的定义，$J^{(l)}=\mathcal{I}$和结果在之后。
 
-
+% ------------------------------------------------------------------------------
 \section{Simulation Results}
 \begin{figure}[htbp]
     \centering
@@ -1346,7 +1407,7 @@ ii）关于$\Gamma(s) = e^{-\tau s}/s$的奈奎斯特图(Nuquist plot)有在$-1/
 针对于$\tau = \tau_{max}$的情况，同步振荡如图8（d）所示。
 三阶帕德近似（Pade approximation）被用在时滞模型作为一个有限阶线性时不变（Linear Time-Invariant, LTI）系统。
 
-
+% ------------------------------------------------------------------------------
 \section{Conclusions}
 我们提供了具备有向信息流和固定或切换拓扑网络的一致性协议的收敛性分析。
 我们的分析依赖于一些代数图论和矩阵论的工具。

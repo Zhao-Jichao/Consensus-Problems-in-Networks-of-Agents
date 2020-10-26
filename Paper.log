@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.24)  26 OCT 2020 14:27
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.24)  26 OCT 2020 16:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -551,7 +551,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  [1
 
 ]
-Overfull \hbox (6.92125pt too wide) in paragraph at lines 62--67
+Overfull \hbox (6.92125pt too wide) in paragraph at lines 63--68
 \TU/lmr/m/n/10 tomata theory and distributed computation [15]. In many applications involving multiagent/multi-
  []
 
@@ -563,37 +563,37 @@ Missing character: There is no ∆ in font [lmroman10-regular]:mapping=tex-text;
  [12]
 File: figures/Fig2-ConnectedDigraph.jpeg Graphic file (type bmp)
 <figures/Fig2-ConnectedDigraph.jpeg>
- [13]
+ [13] [14]
 File: figures/Fig3-BalancedGraphs.jpeg Graphic file (type bmp)
 <figures/Fig3-BalancedGraphs.jpeg>
- [14] [15] [16] [17] [18] [19] [20]
+ [15] [16] [17] [18] [19] [20] [21]
 
-LaTeX Warning: Reference `46' on page 21 undefined on input line 1291.
+LaTeX Warning: Reference `46' on page 22 undefined on input line 1352.
 
 File: figures/Fig4-BalancedSC.jpeg Graphic file (type bmp)
 <figures/Fig4-BalancedSC.jpeg>
-[21]
 File: figures/Fig5-Simulation.jpeg Graphic file (type bmp)
 <figures/Fig5-Simulation.jpeg>
 File: figures/Fig6-Automaton.jpeg Graphic file (type bmp)
 <figures/Fig6-Automaton.jpeg>
+[22] [23]
 File: figures/Fig7-Undirected.jpeg Graphic file (type bmp)
 <figures/Fig7-Undirected.jpeg>
- [22] [23]
+ [24]
 File: figures/Fig8-ConsensusProblem.jpeg Graphic file (type bmp)
 <figures/Fig8-ConsensusProblem.jpeg>
- [24] (./Paper.aux)
+ [25] (./Paper.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 15415 strings out of 492916
- 349009 string characters out of 6133345
- 432932 words of memory out of 5000000
- 19366 multiletter control sequences out of 15000+600000
+ 15425 strings out of 492916
+ 349736 string characters out of 6133345
+ 436932 words of memory out of 5000000
+ 19376 multiletter control sequences out of 15000+600000
  538866 words of font info for 73 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  44i,17n,64p,448b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Paper.pdf (24 pages).
+Output written on Paper.pdf (25 pages).
