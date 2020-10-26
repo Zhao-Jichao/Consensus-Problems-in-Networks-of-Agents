@@ -10,6 +10,7 @@
 \geometry{a4paper,scale=0.8}
 \geometry{a4paper,left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}
 \linespread{1.5}
+% \setlength{\parskip}{0.5\baselineskip} % 段落间距
 
 \definecolor{userColor}{RGB}{225,144,52}
 
@@ -25,6 +26,7 @@
 
 
 \begin{abstract}
+{\color[gray]{0.5}
 In this paper, we discuss consensus problems for a network of dynamic agents with ﬁxed and switching topologies. 
 We analyze three cases: i) networks with switching topology and no time-delays, ii) networks with ﬁxed topology and communication time-delays, and iii) max-consensus problems (or leader determination) for groups of discrete-time agents. 
 In each case, we introduce a linear/nonlinear consensus protocol and provide convergence analysis for the proposed distributed algorithm. 
@@ -34,6 +36,7 @@ We introduce disagreement functions that play the role of Lyapunov functions in 
 A distinctive feature of this work is to address consensus problems for networks with directed information ﬂow. 
 We provide analytical tools that rely on algebraic graph theory, matrix theory, and control theory. 
 Simulations are provided that demonstrate the eﬀectiveness of our theoretical results.
+}
 
 这篇文章，我们讨论了动态智能体网络在固定和切换拓扑下的一致性问题。
 我们分析了三种情况：i）切换拓扑无时延网络，ii）固定拓扑有时延网络，iii）智能体群离散时间下的的最大一致性问题（或领导力问题）。
@@ -47,28 +50,35 @@ Simulations are provided that demonstrate the eﬀectiveness of our theoretical 
 \end{abstract}
 
 \section{Introduction}
+{\color[gray]{0.5}
 Distributed decision-making for coordination of networks of dynamic agents has attracted several researchers in recent years. 
 This is partly due to broad applications of multi-agent systems in many areas including cooperative control of unmanned air vehicles (UAVs), ﬂocking of birds [22, 24, 23], schooling for underwater vehicles, distributed sensory networks, attitude alignment of clusters of satellites, and congestion control in communication networks [21].
+}
 
 \noindent 这些年，动态智能体网络的分布式决策协调问题吸引了大量的研究者。
 部分原因是因为多智能体系统（MAS）在许多领域都有广阔的应用，包括无人协同装置，类鸟集群[22，24，23]，水下装置，分布式传感器网络，卫星簇的姿态排列，通信网络的拥挤堵塞控制[21]。
 
+{\color[gray]{0.5}
 Agreement problems have a long history in the ﬁeld of computer science, particularly in automata theory and distributed computation [15]. 
 In many applications involving multiagent/multi-vehicle systems, groups of agents need to agree upon certain quantities of {\color{green}interest}. 
 Such quantities might or might not be related to the motion of the individual agents. 
 As a result, it is important to address agreement problems in their general form for networks of dynamic agents with directed information ﬂow under link failure and creation (i.e. variable network topology).
+}
 
 一致问题在计算机科学领域具有很长的历史，尤其是在自动控制理论和分布式计算方面[15]。
 在很多包含多智能体/复合装置系统和智能体群组的应用需要就大量的利益达成一致。
 这些利益也许与单个智能体的运动（不）相关。
 至于结果，关于连接失败和新建连接下的定向信息流（即动态网络拓扑），解决动态智能体网络通用形式的一致性问题是非常重要的。
 
+{\color[gray]{0.5}
 Our main contribution in this paper is to deﬁne and address consensus problems under a variety of assumptions on the network topology (being ﬁxed or variable), presence or lack of communication time-delays, and boundedness of the inputs of dynamic agents. 
 In each case, we provide convergence analysis and for linear protocols establish direct connections between performance and robustness of a consensus protocol and the properties of graph Laplacian of the information ﬂow in the network.
+}
 
 在这篇文章中，我们主要的贡献是定义和解决了基于许多假设的网络拓扑的一致性问题（固定的和变化的），是否存在通信时延（time-delays），和输入动态智能体的局限性。
 在每种情况，我们都提供了收敛性分析，并且针对线性协议建立了性能和关于图的拉氏变化和一致性协议的鲁棒性之间的定向关系。
 
+{\color[gray]{0.5}
 In the past, a number of researchers have worked in problems that are essentially diﬀerent forms of agreement problems with diﬀerences regarding the types of agent dynamics, the properties of the graphs, and {\color{green}the names of the tasks of interest}. 
 In [25, 7, 6], graph Laplacians are used for the task of formation stabilization for groups of agents with linear dynamics. 
 Their method for formation stabilization has not yet been extended to systems with nonlinear dynamics that are not feedback linearizable. 
@@ -79,6 +89,7 @@ The work in [13] focuses on attitude alignment for undirected graphs in which th
 It is claimed that the connectivity of the graph on average is suﬃcient for convergence of the heading angles of the agents. 
 In [20], the authors addressed convergence of linear and nonlinear protocols for networks with undirected graphs in presence or lack of communication time-delays. 
 Theoretically, analyzing consensus on directed graphs is more challenging and is considered in the present paper.
+}
 
 在过去，大量研究者致力于解决本质上是不同形式的一致性问题，这是智能体是不同类型智能体（异构智能体），图拉普拉斯矩阵的性质，感兴趣任务的命名问题。
 在文献[25，7，6]中，图拉普拉斯矩阵被用来解决线性智能体模型的信息稳定问题。
@@ -91,20 +102,24 @@ Theoretically, analyzing consensus on directed graphs is more challenging and is
 文献[20]解决了有（无）时延的无向图系统的线性和非线性系统模型一致性问题。
 理论上，有向图的一致性分析更具有挑战性，并且在接下来的文献中进行讨论。
 
+{\color[gray]{0.5}
 In this paper, we provide convergence analysis of consensus protocol for a network of {\color{green}integrators} with a directed information ﬂow and ﬁxed or switching topology. 
 Our analysis relies on several tools from algebraic graph theory [1, 11] and matrix theory [12]. 
 We establish a connection between the performance of the linear consensus protocol and the Fiedler eigenvalue of graph Laplacian of a graph called the mirror graph (that is closely-related to the original directed graph).
+}
 
 本文，我们提供了有向信息流固定和切换拓扑网络的一致性协议收敛分析。
 我们的分析依赖于一些代数图论[1，11]和矩阵论[12]的工具。
 我们建立了线性一致性协议的性能和镜像图拉普拉斯算子的费德勒特征值之间的联系（镜像图与原来的有向图密切相关）。
 
+{\color[gray]{0.5}
 It turns out that a class of directed graphs called balanced graphs have a crucial role in derivation of an invariant quantity and a Lyapunov function for convergence analysis of average-consensus problems on directed graphs. 
 This Lyapunov function is a measure of group disagreement in the network. 
 We show that a directed graph solves the average-consensus problem using a certain protocol if and only if it is balanced. 
 Furthermore, we use properties of balanced networks to analyze the convergence of an agreement protocol for networks with switching topology. 
 This variation of the network topology is usually due to link failures or creations in networks with mobile nodes. 
 We introduce a common Lyapunov function that guarantees asymptotic convergence to a group decision value in a network with switching information ﬂow.
+}
 
 结果表明，一类称为平衡图的有向图在求导不变量和李雅普诺夫（Lyapunov）函数对有向图上平均一致问题的收敛性分析中起着至关重要的作用。
 这个李亚普诺夫函数是对网络中群组非一致性的衡量。
@@ -113,12 +128,14 @@ We introduce a common Lyapunov function that guarantees asymptotic convergence t
 网络拓扑图的变化通常是由于网络中模型节点之间连接的失败或重新建立造成的。
 我们介绍了一个常用的李亚普诺夫函数，来保证切换信息流网络能够渐进收敛到群组决策值（decision value）。
 
+{\color[gray]{0.5}
 Building on these basic results, we provide a number of extensions. 
 We discuss the eﬀects of communication time-delays in solving consensus problems. 
 For undirected graphs, we address average-consensus problem under the constraint that the inputs of all agents are bounded. 
 This leads to analyzing a nonlinear protocol. 
 Using a example of a network with three nodes, we demonstrate that analyzing the convergence of this protocol for general digraphs is a challenging open problem. 
 Finally, we pose and address the max-consensus problem that is useful for determining a superior or leader in a group of agents in a distributed way.
+}
 
 在这些基本结果的基础上，我们提出了一些扩展。
 我们讨论了通信时延在解决一致性问题中的影响。
@@ -127,10 +144,13 @@ Finally, we pose and address the max-consensus problem that is useful for determ
 使用一个三节点的例子，我们演示了分析该协议对于一般有向图的收敛性是一个具有挑战性的开放问题。
 最后，我们提出并解决了最大一致性问题，这对以分布式方式决定智能体群中的先导者（superior）或领导者（leader）是有用的。
 
+{\color[gray]{0.5}
 Simulation results are provided that demonstrate our theoretical predictions and show the novel analytical tools that we propose are eﬀective.
+}
 
 我们提供了仿真结果，演示了我们的理论预测，并演示了我们提出的新的分析工具的有效性。
 
+{\color[gray]{0.5}
 An outline of this paper is as follows. 
 In Section 2, we deﬁne consensus problems. 
 In Section 3, we give two protocols. 
@@ -141,6 +161,7 @@ Average-consensus problems for networks with communication time-delays is discus
 In Section 8, our result on max-consensus problem is given. 
 The simulation results are presented in Section 9. 
 Finally, in Section 10, concluding remarks are stated.
+}
 
 本文大纲如下。
 第2部分，我们定义了一致性问题。
@@ -153,12 +174,15 @@ Finally, in Section 10, concluding remarks are stated.
 第9部分，展示了仿真结果。
 最后，第10部分，展示了结论和总结。
 
+
 \section{Consensus Problems}
+{\color[gray]{0.5}
 Let $G=(\mathcal{V},\mathcal{E},\mathcal{A})$ be a weighted directed graph (or digraph) with $n$ nodes and a weighted adjacency matrix $\mathcal{A}=[a_{ij}]$ where $a_{ij} \ge 0$ for all $i,j \in \mathcal{I}={1,2,…,n}$ with $i \ne j$. 
 Here, $\mathcal{V}$ denotes the set of vertices $v_i$ and $\mathcal{E}$ denotes the set of edges $ij$ (or ($v_i,v_j$)) of the graph $G$. 
 The set of neighbors of node $i$ is denoted by $N_i=\{ij\in \mathcal{E}:a_{ij}>0\}$. 
 We call any subset of nodes $J$ a cluster. 
 The set of neighbors of a cluster $J\subset \mathcal{I}$ is deﬁned by
+}
 
 \noindent 定义$G=(\mathcal{V},\mathcal{E},\mathcal{A})$具有$n$个节点，和一个加权邻接矩阵$\mathcal{A}=[a_{ij}]$的加权有向图（或普通图），$\mathcal{A}$矩阵的所有元素$a_{ij} \ge 0$且所有的$i,j \in \mathcal{I}={1,2,…,n},i \ne j$。
 这里，$\mathcal{V}$表示所有向量$v_i$的集合，$\mathcal{E}$表示图中所有边$ij$（或$v_i,v_j$）的集合。
@@ -171,12 +195,14 @@ The set of neighbors of a cluster $J\subset \mathcal{I}$ is deﬁned by
     \label{1}
 \end{equation}
 
+{\color[gray]{0.5}
 Let $x_i\in \mathbb{R}$ denote the value of node $i$. 
 We refer to $G_x=(\mathcal{V},\mathcal{E},\mathcal{A},x)$ with $x=(x_1,...,x_n)^T$ as an algebraic graph or (static) network with value $x\in \mathbb{R}^n$ and information ﬂow $G=(\mathcal{V},\mathcal{E},\mathcal{A})$. 
 The value of a node might represent physical quantities including attitude, position, temperature, voltage, and so on. 
 We say nodes $i$ and $j$ in a network agree if and only $x_i=x_j$. 
 We say all the nodes in a network have reached a consensus if and only if $x_i=x_j$ for all $i,j\in \mathcal{I}, i\ne j$. 
 Whenever the nodes of a network are in agreement, the common value of all nodes is called the (group) decision value.
+}
 
 定义$x_i\in \mathbb{R}$表示节点$i$的值。
 我们将具有$x=(x_1,...,x_n)^T$的$G_x=(\mathcal{V},\mathcal{E},\mathcal{A},x)$，称作是一个代数图，或具有$x\in \mathbb{R}^n$的信息流（静态）网络$G=(\mathcal{V},\mathcal{E},\mathcal{A})$。
@@ -185,7 +211,9 @@ Whenever the nodes of a network are in agreement, the common value of all nodes 
 我们认为网络中所有的节点当且仅当所有的$x_i=x_j$时达到一致（consensus），此时$i,j\in \mathcal{I}, i\ne j$。
 当网络中的节点达到一致时，此时所有节点的公共值叫做（群组）决策值。
 
+{\color[gray]{0.5}
 Suppose each node of a graph is a dynamic agent with dynamics
+}
 
 假设图的每一个节点都是一个具有动态性能的动态智能体
 \begin{equation}
@@ -193,13 +221,17 @@ Suppose each node of a graph is a dynamic agent with dynamics
     \tag{2}
     \label{2}
 \end{equation}
-A dynamic graph (or dynamic network) is deﬁned as a 4-tuple $G_{x(t)} = (\mathcal{V},\mathcal{E},\mathcal{A},x(t))$ together with dynamics $\dot{x}=F(x,u)$ where $x$ denotes the state of the dynamic graph and {\color{green}$F(x,u)$ is the column-wise concatenation of the elements $F_i(x,u)=f(x_i,u_i)$}.
+{\color[gray]{0.5}
+\noindent A dynamic graph (or dynamic network) is deﬁned as a 4-tuple $G_{x(t)} = (\mathcal{V},\mathcal{E},\mathcal{A},x(t))$ together with dynamics $\dot{x}=F(x,u)$ where $x$ denotes the state of the dynamic graph and {\color{green}$F(x,u)$ is the column-wise concatenation of the elements $F_i(x,u)=f(x_i,u_i)$}.
+}
 
 \noindent 一个动态图或（动态网络）定义为随着$\dot{x}=F(x,u)$动态变化的的4元组$G_{x(t)} = (\mathcal{V},\mathcal{E},\mathcal{A},x(t))$，其中$x$表示动态图的状态，$F(x,u)$是$F_i(x,u)=f(x_i,u_i)$中元素的列合并。
 
+{\color[gray]{0.5}
 Let $\chi: \mathbb{R}^n \rightarrow \mathbb{R}$ be a function of $n$ variables $x_1,\dots,x_n$. 
 The $\chi$-consensus problem in a dynamic graph is a distributed way to calculate $\chi(x(0))$ by applying inputs $u_i$ that only depend on the values of node $i$ and its neighbors. 
 We say a protocol
+}
 
 定义$\chi: \mathbb{R}^n \rightarrow \mathbb{R}$是一个包含$n$个变量$x_1,\dots,x_n$的函数。
 在一个动态图中的$\chi$-一致性问题，是通过利用输入$u_i$以一种分布式的方式来计算$\chi(x(0))$，其中输入$u_i$仅依赖于节点$i$的和它的邻居的值。
@@ -209,13 +241,17 @@ We say a protocol
     \tag{3}
     \label{3}
 \end{equation}
-with $j_1,\dots,j_{m_i}\in \{i\} \cup N_i$ and $m_i\leq n$ asymptotically solves the $\chi$ -consensus problem if and only if there exists an asymptotically stable equilibrium $x^*$ of $\dot{x}=F(x,k(x))$ such that $x^*=\chi(x(0))$ for all $i\in \mathcal{I}$. 
+{\color[gray]{0.5}
+\noindent with $j_1,\dots,j_{m_i}\in \{i\} \cup N_i$ and $m_i\leq n$ asymptotically solves the $\chi$ -consensus problem if and only if there exists an asymptotically stable equilibrium $x^*$ of $\dot{x}=F(x,k(x))$ such that $x^*=\chi(x(0))$ for all $i\in \mathcal{I}$. 
 We are interested in solving the $\chi$ -consensus problem in a distributed fashion in which {\color{green}no node is connected to all other nodes (i.e. $m_i < n$ for all $i$)}.
+}
 
 \noindent 其中$j_1,\dots,j_{m_i}\in \{i\} \cup N_i$和$m_i\leq n$渐进的解决了$\chi$-一致性问题，当且仅当存在一个渐进稳定的平衡$x^*$属于$\dot{x}=F(x,k(x))$对于所有的$i\in \mathcal{I}$满足$x^*=\chi(x(0))$。
 我们致力于以一种流行的分布式方式解决$\chi$-一致性问题，这里没有节点与其他任何节点相连（i.e. 即$m_i < n$ for all $i$）。
 
+{\color[gray]{0.5}
 The special cases with $\chi(x)=Ave(x)=\frac{1}{n}(\sum_{i=1}^{n}x_i)$, $\chi(x)=Max(x)=\max_ix_i$ , and $\chi(x)=Min(x)=\min_ix_i$ are called average-consensus, max-consensus, and min-consensus, respectively due to their broad applications in distributed decision-making for multi-agent systems.
+}
 
 特殊的，$\chi(x)=Ave(x)=\frac{1}{n}(\sum_{i=1}^{n}x_i)$，$\chi(x)=Max(x)=\max_ix_i$，$\chi(x)=Min(x)=\min_ix_i$分别称作平均一致性（average-consensus），最大一致性（max-consensus）和最小一致性（min-consensus），分别由于他们在多智能体系统分布式决策方面广阔的应用。
 
@@ -229,15 +265,19 @@ The special cases with $\chi(x)=Ave(x)=\frac{1}{n}(\sum_{i=1}^{n}x_i)$, $\chi(x)
 % 最小一致性（min-consensus）
 % $\chi(x)=Min(x)=min_ix_i$。
 % }
+{\color[gray]{0.5}
 Solving average-consensus problem is an example of distributed computation of a linear function $\chi(x)=Ave(x)$ using a network of dynamic systems. 
 This is more challenging than just reaching a general agreement.
+}
 
 解决一个线性函数$\chi(x)=Ave(x)$动态系统网络的平均一致性问题是一个分布式计算的典型例子。
 这比仅达成普通一致性更加具有挑战性。
 
 
 \section{Consensus Protocols}
+{\color[gray]{0.5}
 \noindent In this section, we present three consensus protocols that solve agreement problems in a network of continuous-time (CT) {\color{green}integrator agents} with dynamics
+}
 
 \noindent 这一部分，我们介绍了三种一致性协议，分别用来解决连续时间（continuous-time，CT）动态积分器智能体
 \begin{equation}
@@ -249,7 +289,9 @@ This is more challenging than just reaching a general agreement.
 %     \text{\color{userColor}位置状态的一阶导数 = 输入}
 %     \notag
 % \end{equation}
+{\color[gray]{0.5}
 \noindent or agents with discrete-time (DT) model
+}
 
 \noindent 和离散时间（discrete-time，DT）动态智能体模型的网络一致性问题，
 \begin{equation}
@@ -261,13 +303,17 @@ This is more challenging than just reaching a general agreement.
 %     \color{userColor}\text{ 下一时刻的状态 = 此刻的状态 + }\epsilon \text{ * 此时的输入}
 %     \notag
 % \end{equation}
+{\color[gray]{0.5}
 \noindent and step-size $\epsilon>0$. 
 In this paper, we consider three scenarios:
+}
 
 \noindent 其中步长尺寸$\epsilon>0$。
 在这篇文章，我们考虑了三种脚本：
 
+{\color[gray]{0.5}
 i) Fixed or switching topology and zero communication time-delay: We use the following linear consensus protocol:
+}
 
 i）固定或切换拓扑的零通信时延：我们使用下边的线性一致性协议：
 \begin{equation}
@@ -279,12 +325,15 @@ i）固定或切换拓扑的零通信时延：我们使用下边的线性一致�
 %     \color{userColor}\text{控制输入 = 对所有的\ 节点j和i的位置差值 * 两节点的权重\ 求和，其中j是所有i的邻居节点}
 %     \notag
 % \end{equation}
+{\color[gray]{0.5}
+\noindent where the set of neighbors $N_i=N_i(G)$ of node $i$ is variable in networks with switching topology.
+}
 
-where the set of neighbors $N_i=N_i(G)$ of node $i$ is variable in networks with switching topology.
+\noindent 这里，节点$i$的邻居集合$N_i=N_i(G)$在切换拓扑网络中是一个变量。
 
-这里，节点$i$的邻居集合$N_i=N_i(G)$在切换拓扑网络中是一个变量。
-
+{\color[gray]{0.5}
 ii) Fixed topology $G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$ and communication time-delay $\tau_{ij}>0$ corresponding to the edge $ij\in \mathcal{E}$: We use the following linear time-delayed consensus protocol:
+}
 
 ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和对应于边$ij\in \mathcal{E}$的通信时延$\tau_{ij}>0$：我们使用下边的线性时滞一致性协议：
 \begin{equation}
@@ -297,25 +346,31 @@ ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和对应于边$ij\i
 %     \notag
 % \end{equation}
 
+{\color[gray]{0.5}
 The derivation of each of the aforementioned two protocols (A1) and (A2) becomes apparent during the convergence analysis that will be presented for each protocol later on. 
 We show that in each case, consensus can is asymptotically reached. 
 Moreover, we provide suﬃcient and necessary conditions on the directed information ﬂow in the network so that average-consensus, max-consensus, and min-consensus can be achieved. 
 Furthermore, we provide results on performance and algorithmic robustness of these consensus protocols.
+}
 
 在收敛分析期间，上述两个协议（A1）和（A2）中每个协议的派生变得显而易见，之后将为每个协议介绍收敛分析。
 我们证明了了在每一种情况下，一致性都是渐进到达的。
 此外，我们提供了网络中的有向信息流可以实现平均一致性，最大一致性和最小一致性的充分必要条件。
 更进一步的，我们提供了这些一致性协议的性能表现和算法的鲁棒性分析。
 
+{\color[gray]{0.5}
 \noindent{\em Remark} 1. For an undirected network with ﬁxed topology, both protocols solve the averageconsensus problem with appropriate technical conditions on delays. 
 The challenge is to address similar consensus problems for networks with directed graphs and switching topology. 
 In multi-agent ﬂocking [22], the information ﬂow is usually directed and the topology of the network goes through changes that are discrete-event type in the nature.
+}
 
 \noindent{\em Remark} 1. 针对一个固定拓扑的无向网络，两个协议都可以通过适当的延迟技术来解决一致性问题。
 具有挑战性的是解决有向图网络和切换拓扑网络的相似一致性问题。
 在多智能体集群方面[22]，信息流通常是有向的，并且网络的拓扑会经历自然界中本质上是离散状况的变化。
 
+{\color[gray]{0.5}
 Given Protocol (A1), the state of a network of continuous-time integrator agents evolves according to the following linear system
+}
 
 所给的协议（A1），连续时间网络的智能体状态会随着下面的线性系统进行变化
 \begin{equation}
@@ -327,7 +382,9 @@ Given Protocol (A1), the state of a network of continuous-time integrator agents
 %     \color{userColor}\text{位置状态的一阶导数 = 拉普拉斯矩阵 * 位置状态值}
 %     \notag
 % \end{equation}
+{\color[gray]{0.5}
 \noindent where L is called the graph Laplacian induced by the information ﬂow G and is deﬁned by
+}
 
 \noindent 这里，$L$是信息流网络$G$的图拉普拉斯矩阵，并且定义如下
 \begin{equation}
@@ -339,7 +396,9 @@ l_{ij} = \left\{
     \tag{7}
     \label{7}
 \end{equation}
+{\color[gray]{0.5}
 \noindent The properties of graph Laplacian is one of the main areas of research in algebraic graph theory and is discussed in Section 4.
+}
 
 \noindent 图拉普拉斯矩阵的性质是代数图论中重要研究领域之一，将在第4部分详细讨论。
 
@@ -347,7 +406,9 @@ l_{ij} = \left\{
 % 拉普拉斯矩阵定义为：$L=D-A$，
 % $D$是度矩阵，$A$是邻接矩阵。
 % }
+{\color[gray]{0.5}
 In a network with switching topology, convergence analysis of Protocol (A1) is equivalent to stability analysis for a hybrid system
+}
 
 在一个切换拓扑（switching topology）网络中，协议(\ref{A1})的收敛性分析等价于混合系统（hybrid system）的稳定性分析
 \begin{equation}
@@ -359,15 +420,19 @@ In a network with switching topology, convergence analysis of Protocol (A1) is e
 %     \color{userColor}\text{位置状态的一阶导数 = 拉普拉斯矩阵（关于切换信号变换） * 位置状态值}
 %     \notag
 % \end{equation}
+{\color[gray]{0.5}
 \noindent where $L_k = \mathcal{L}(G_k)$ is the Laplacian of $G_k$, $s(t)$ : $\mathbb{R}\rightarrow \mathcal{I} \subset \mathbb{Z}$ is a switching signal, and {\color{green}$\Gamma\ni G_k$ is a ﬁnite collection of digraphs (of order $n$) with the index set $\mathcal{I}_\Gamma$}. 
 Later, we will see that $\Gamma$ is a relatively large set for $n\gg 1$. 
 The task of stability analysis for the hybrid system in (8) is rather challenging partly because, in general, the product of two Laplacian matrices do not commute.
+}
 
 \noindent 这里，$L_k = \mathcal{L}(G_k)$是$G_k$的拉普拉斯矩阵，$s(t)$：$\mathbb{R}\rightarrow \mathcal{I} \subset \mathbb{Z}$是切换信号，$\Gamma\ni G_k$是图（$n$个节点）的有序集合$\mathcal{I}_\Gamma$的有限集合。
 之后，我们将会看到$\Gamma$是一个相较于$n\gg 1$非常大的集合。
 在公式(\ref{8})中，混合系统的稳定性分析是一个更加具有挑战性的任务，总的来说，部分原因是因为两个拉普拉斯矩阵的乘积并不匹配。
 
+{\color[gray]{0.5}
 For agents with discrete-time models, applying protocol (A1) gives the following discretetime network dynamics
+}
 
 对于离散时间的智能体模型，应用协议(\ref{A1})给出了如下的动态离散网络
 \begin{equation}
@@ -379,7 +444,10 @@ For agents with discrete-time models, applying protocol (A1) gives the following
 %     \color{userColor}\text{ 下一时刻的状态 = 非负随机矩阵 * 此刻的状态}
 %     \notag
 % \end{equation}
+
+{\color[gray]{0.5}
 \noindent with
+}
 
 \noindent 其中
 \begin{equation}
@@ -395,9 +463,11 @@ For agents with discrete-time models, applying protocol (A1) gives the following
 
 \noindent 定义$d_{max} = \max_il_{ii}$，那么对于$\epsilon\in (0,1/d_{max})$，$P_\epsilon$是一个非负随机矩阵，我们称之为门阶矩阵（Perron matrix），即$P_\epsilon$所有元素非负且所有的行和为1。
 
+{\color[gray]{0.5}
 The convergence analysis of Protocol (A1) for discrete-time agents heavily relies on the theory of nonnegative matrices [10, 12, 16] and will be discussed in a separate paper. 
 Our approach presents a Lyapunov-based convergence analysis for agreement in networks with discrete-time models. 
 This is diﬀerent than the approach pursued in the work by Jadbabaie et al. which strongly relies on matrix theoretic properties and {\color{green}inﬁnite right-convergent products (RCP) of stochastic matrices [2, 3]}.
+}
 
 智能体离散时间协议(\ref{A1})的收敛性分析严重依赖于非负矩阵理论[10, 12, 16]，并且将会在一个单独的文章中讨论。
 我们的方法提出了一个基于离散时间模型网络收敛分析的李亚普诺夫（Lyapunov）函数。
@@ -405,20 +475,39 @@ This is diﬀerent than the approach pursued in the work by Jadbabaie et al. whi
 
 
 \section{Algebraic Graph Theory: Properties of Laplacians}
-在这一部分，我们介绍图论的基本的概念和标记，这些知识都将在文章的后边被用到。
-更多的信息参考文献[11,5]。
-更加复杂全面的关于无向图的拉普拉斯算子请参考文献[17]。
-然而，我们需要用到的关于无向图的拉普拉斯的基本概念无法在图论的书籍文献中找到，因此我们罗列在这里。
+{\color[gray]{0.5}
+\noindent In this section, we introduce some basic concepts and notation in graph theory that will be used throughout the paper. 
+More information is available in [11, 5]. 
+A comprehensive survey on properties of Laplacians of undirected graphs can be found in [17]. 
+However, we need to work with Laplacians of directed graphs that the basic properties cannot be found in graph theory literature and will be stated here.
+}
 
-定义$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$为一个加权有向图（或有向图），具有$n$个节点。
-节点$v_i$的入度（in-degree）和出度（out-degree）分别定义如下：
+\noindent 在这一部分，我们介绍了一些图论的基本概念和注解，这些知识都将在文章的后边被用到。
+更多的信息请参考文献[11,5]。
+更加复杂全面的关于无向图的拉普拉斯矩阵研究请参考文献[17]。
+然而，我们需要用到的关于无向图的拉普拉斯矩阵的基本概念无法在图论的文献中找到，因此我们罗列在这里。
+
+{\color[gray]{0.5}
+Let $G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$ be a weighted directed graph (or digraph) with $n$ nodes. 
+The in-degree and out-degree of node $v_i$ are, respectively, deﬁned as follows:
+}
+
+定义$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$为一个具有$n$个节点的加权有向图（或有向图）。
+节点$v_i$的入度和出度分别定义如下：
+
 \begin{equation}
     \deg_{in}(v_i) = \sum_{j=1}^{n}a_{ji},\quad \deg_{out}(v_i) = \sum_{j=1}^{n}a_{ij}
     \tag{11}
     \label{11}
 \end{equation}
 
-对于一个普通图，其邻接矩阵$\mathcal{A}$只有集合\{0，1\}中的两种元素，出度$\deg_{out}(v_i) = |N_i|$等于邻居元素的数量。
+{\color[gray]{0.5}
+\noindent For an ordinary graph with adjacency matrix $\mathcal{A}$ that has binary elements in the set \{0, 1\} , $\deg_{out}(v_i) = |N_i|$. 
+The degree matrix of $G$ is a diagonal matrix denoted by $\Delta=[\Delta_{ij}]$ where $\Delta_{ij}=0$ for all $i\ne j$ and $\Delta_{ii}=\deg_{out}(v_i)$. 
+The (weighted) graph Laplacian matrix associated with $G$ is deﬁned as
+}
+
+\noindent 对于一个普通图，其邻接矩阵$\mathcal{A}$只有集合\{0，1\}中的这两种元素，出度$\deg_{out}(v_i) = |N_i|$等于邻居元素的数量。
 图$G$的度矩阵（degree matrix）是一个对角矩阵，记为$\Delta=[\Delta_{ij}]$，其中对于所有的$i\ne j$，$\Delta_{ij}=0$和$\Delta_{ii}=\deg_{out}(v_i)$。
 加权图拉普拉斯算子矩阵（graph Laplacian matrix）和图$G$之间的联系定义如下
 
@@ -427,68 +516,153 @@ This is diﬀerent than the approach pursued in the work by Jadbabaie et al. whi
     \tag{12}
     \label{12}
 \end{equation}
-\begin{equation}
-    \color{userColor}\text{这和之前参考的文献中的关于拉氏矩阵定义的阐述一致} L = D - A
-    \notag
-\end{equation}
-这和公式(\ref{7})中关于$L$中元素的定义是一致的。
+% \begin{equation}
+%     \color{userColor}\text{这和之前参考的文献中的关于拉氏矩阵定义的阐述一致} L = D - A
+%     \notag
+% \end{equation}
 
-\noindent{\em Remark} 2. 图拉普拉斯算子$L$并不取决于$G$的邻接矩阵中的对角元素$a_{ii}$，对应于封闭环形（loops）（$v_i$，$v_i$）的权重（即cycles of length one）。
-根据上下文，在不失一般性的前提下，我们可以假设所有对于$i$的$a_{ii}=0${\color{userColor}（即如果节点自身有环形连通，那就选择忽略）}。
-这项工作的一个受限部分是，使用了带有循环的图，这些图的权重无法舍弃。
+{\color[gray]{0.5}
+\noindent This is consistent with the deﬁnition of the elements of $L$ in (7).
+}
 
-我们有时使用$\mathcal{L}(\mathcal{A}) = \mathcal{L}(G)$表示图$G$的拉普拉斯算子。
+\noindent 这和公式(\ref{7})中关于$L$中元素的定义是一致的。
+
+{\color[gray]{0.5}
+\noindent{\em Remark} 2. The graph Laplacian $L$ does not depend of the diagonal elements $a_{ii}$ of the adjacency matrix of $G$ corresponding to the weights of loops ($v_i$, $v_i$) (i.e. cycles of length one). 
+Depending on the context, without loss of generality we might assume $a_{ii}=0$ for all $i$. 
+In a restricted part of this work that makes use of graphs with loops that their weight cannot be discarded.
+}
+
+\noindent{\em Remark} 2. 图拉普拉斯矩阵$L$并不取决于对应$G$的邻接矩阵中的对角元素的封闭环形权重$a_{ii}$（即cycles of length one）。
+根据上下文，在不失一般性的前提下，我们可以假设所有对于$i$的$a_{ii}=0$。
+这项工作的一个局限性是，使用了带有封闭环形的图，这些图的权重无法舍弃。
+
+{\color[gray]{0.5}
+We sometimes use $\mathcal{L}(\mathcal{A}) = \mathcal{L}(G)$ to denote the Laplacian of graph $G$. 
+By deﬁnition, every row sum of the Laplacian matrix is zero. 
+Therefore, graph Laplacian always has a zero eigenvalue (i.e. $rank(L)\le n-1$) corresponding to a right eigenvector
+}
+
+我们有时使用$\mathcal{L}(\mathcal{A}) = \mathcal{L}(G)$表示图$G$的拉普拉斯矩阵。
 根据定义，拉普拉斯矩阵的每一行的和为0。
-因此，图拉普拉斯算子总是有一个为0的特征值（即$rank(L)\le n-1$)对应于一个右特征向量{\color{red}（暂无法理解）}
+因此，图拉普拉斯算子总是有一个为0的特征值（即$rank(L)\le n-1$)对应于一个右特征向量
+
 \begin{equation}
     w_r = \mathbf{1} = (1,1,\dots,1)^T \notag
 \end{equation}
-具有相同的非零元素。
 
-当且仅当任意的两个完全分开的节点，能够通过一个关于有向图边的方向的方式进行连接，那么这样的图称作强连通图（strongly connected）{\color{userColor}（有向图中存在顶点a和b时，总有从a到b的通路，和从b到a的通路，不一定是直接到）}。
-之后的理论在定向图的SC性质和拉普拉斯矩阵的秩之间，建立了定向的关系。
+{\color[gray]{0.5}
+\noindent with identical nonzero elements.
+}
 
-\noindent \textbf{Theorem 1.} 定义$G=(\mathcal{V},\mathcal{E},\mathcal{A})$是关于拉普拉斯算子$L$的加权有向图。
-那么，$G$就是强连接的，当且仅当$\text{rank}(L)=n-1$时。
+\noindent 具有相同的非零元素1。
+
+{\color[gray]{0.5}
+A digraph is called strongly connected if and only if any two distinct nodes of the graph can be connected via a path that respects the orientation of the edges of the digraph. 
+The following theorem establishes a direct relation between the SC property of a digraph and the rank of its Laplacian.
+}
+
+当且仅当任意的两个完全分开的节点，能够通过一个关于有向图的有向边进行定向连接，那么这样的图称作强连通图。
+之后的定理建立了定向图的SC性质和拉普拉斯矩阵的秩之间的直接联系。
+
+{\color[gray]{0.5}
+\noindent \textbf{Theorem 1.} Let $G=(\mathcal{V},\mathcal{E},\mathcal{A})$ be a weighted digraph with Laplacian $L$. 
+Then, $G$ is strongly connected if and only if $\text{rank}(L)=n-1$.
+}
+
+\noindent \textbf{Theorem 1.} 定义$G=(\mathcal{V},\mathcal{E},\mathcal{A})$是关于拉普拉斯矩阵$L$的加权有向图。
+那么，当且仅当$\text{rank}(L)=n-1$时，$G$就是强连接的。
+
+{\color[gray]{0.5}
+\noindent \textbf{Proof.} See Section A.1 in the Appendix.
+}
 
 \noindent \textbf{Proof.} 证明详见附录A.1
 
+{\color[gray]{0.5}
+\noindent {\em Remark} 3. For an undirected graph $G$, the proof of Theorem 1 is easy and can be found in [1, 11].
+}
+
 \noindent {\em Remark} 3. 对于一个无向图$G$，Theorem 1的证明很容易，详见文献[1，11]。
 
-\noindent {\em Remark} 4. 对一个具有对称邻接矩阵$\mathcal{A}$的无向图（undirected graph）$G$，图拉普拉斯算子$L$是对称半正定的。
-拉普拉斯算子与图$G$的潜在联系定义在文献[20]中如下
+{\color[gray]{0.5}
+\noindent {\em Remark} 4. For an undirected graph $G$ with a symmetric adjacency matrix $\mathcal{A}$ , the graph Laplacian $L$ is symmetric and positive semideﬁnite. 
+The Laplacian potential associated with $G$ is deﬁned in [20] as follows
+}
+
+\noindent {\em Remark} 4. 对一个具有对称邻接矩阵$\mathcal{A}$的无向图$G$，图拉普拉斯矩阵$L$是对称半正定的。
+拉普拉斯矩阵与图$G$的潜在联系定义在文献[20]中如下
+
 \begin{equation}
     \Phi_G(x) = x^T Lx = \frac{1}{2} \sum_{ij\in \mathcal{E}}(x_j - x_i)^2
     \tag{13}
     \label{13}
 \end{equation}
-这是一个简单的关于无向图定理的证明：假设$Lx=0$，其中$x\in \mathbb{R}$。
-那么，对于所有的边$ij\in \mathcal{E}$，都有$x^TLx=0$且$x_j=x_i$。
-如果图是连接的，这就意味着所有的节点都一致且相等$x_1=\dots=x_n$。
-因此，$\text{rank}(L)=n-1$。
-对于一个所有节点都一致的连通图而言，由于$\Phi_G(x)=0$，所以$\Phi_G(x)$提供了关于智能体组非一致性有意义的量化。
 
-对于一个无向图$G$，它具有以下众所周知的性质文献[11]
+{\color[gray]{0.5}
+\noindent Here is a short proof of Theorem for an undirected graph: Assume $Lx=0$ for $x\in \mathbb{R}$ . 
+Then $x^TLx=0$ and $x_j=x_i$ for all the edges $ij\in \mathcal{E}$. 
+If the graph is connected, this means that all nodes agree and $x_1=\dots=x_n$. 
+Thus, $\text{rank}(L)=n-1$. 
+Since $\Phi_G(x)=0$ for a connected graph implies all nodes are in agreement, $\Phi_G(x)$ provides a meaningful quantiﬁcation of disagreement in a group of agents.
+}
+
+\noindent 这是一个简单的关于无向图定理的证明：假设$Lx=0$，其中$x\in \mathbb{R}$。
+那么，对于所有的边$ij\in \mathcal{E}$，都有$x^TLx=0$且$x_j=x_i$。
+如果图是连通的，这就意味着所有的节点都一致且相等$x_1=\dots=x_n$。
+因此，$\text{rank}(L)=n-1$。
+对于一个所有节点都一致的连通图而言，由于$\Phi_G(x)=0$，所以$\Phi_G(x)$提供了关于智能体组不一致性的有意义量化。
+
+{\color[gray]{0.5}
+For an undirected graph $G$ that is connected the following well-known property holds [11]:
+}
+
+对于一个无向图$G$，它具有以下众所周知的性质[11]
+
 \begin{equation}
     \min_{\substack{x\ne 0\\   \mathbf{1}^Tx=0}} \frac{x^T Lx}{||x||^2}=\lambda_2(L)
     \tag{14}
     \label{14}
 \end{equation}
-公式的证明是基于Courant-Fischer定理的特例，参考文献[12]{\color[gray]{0.5}（R. A. Horn and C. R. Johnson. Matrix Analysis. Cambridge University Press, 1987）}。
-之后我们将建立$\lambda_2(\hat{L})$和$\hat{L}=(L+L^T)/2$之间的联系，称作$\hat{L}$的费德勒特征值（Fiedler eigenvalue），参考文献[8，9]，和线性一致性协议的性能（即最坏情况下的协商速度）。
+
+{\color[gray]{0.5}
+\noindent The proof follows from a special case of Courant–Fischer Theorem in [12]. 
+We will later establish a connection between $\lambda_2(\hat{L})$ with $\hat{L}=(L+L^T)/2$, called the Fiedler eigenvalue of $\hat{L}$[8, 9], and the performance (i.e. worst-case negotiation speed) of a linear agreement protocol.
+}
+
+\noindent 公式的证明是基于Courant-Fischer定理的特例，参考文献[12]。
+之后我们将建立$\lambda_2(\hat{L})$和$\hat{L}=(L+L^T)/2$之间的联系，这称作$\hat{L}$的费德勒特征值（Fiedler eigenvalue）[8，9]，和线性一致性协议的性能（即最坏情况下的协商速度）。
+
+{\color[gray]{0.5}
+The key in the stability analysis of system (6) is in the spectral properties of graph Laplacian. 
+The following result is well-known (e.g. see [17]) and is based on Gerˇsgorin disk theorem [12].
+}
 
 系统(\ref{6})稳定性分析的关键是拉普拉斯图的谱图特性。
-接下来的结果已经众所周知（例如，文献[17]），它是基于Gesgorin圆盘定理（Gersgorin disk theorem），参考文献[12]{\color{red}（需要重点突破）}。
+接下来的结果已经众所周知（例如，文献[17]），它是基于Gesgorin圆盘定理（Gersgorin disk theorem），参考文献[12]。
 
-\noindent \textbf{Theorem} 2. (spectral localization) 定义$G=(\mathcal{V},\mathcal{E},\mathcal{A})$是关于拉普拉斯算子$L$的加权有向图。
+{\color[gray]{0.5}
+\noindent \textbf{Theorem} 2. (spectral localization) Let $G=(\mathcal{V},\mathcal{E},\mathcal{A})$ be a digraph with the Laplacian $L$. 
+Denote the maximum node out-degree of $G$ by $d_{max}(G) = \max_i \deg_{out}(v_i)$. 
+Then, all the eigenvalues of $L=\mathcal{L}(G)$ are located in the following disk
+}
+
+\noindent \textbf{Theorem} 2. (spectral localization) 定义$G=(\mathcal{V},\mathcal{E},\mathcal{A})$是关于拉普拉斯矩阵$L$的加权有向图。
 记图$G$的节点的最大化出度为$d_{max}(G) = \max_i \deg_{out}(v_i)$。
 那么，所有的$L=\mathcal{L}(G)$的特征值都位于下面的圆盘中
+
 \begin{equation}
     D(G) = \{ z\in \mathbb{C}: |z-d_{max}(G)| \le d_{max}(G) \}
     \tag{15}
     \label{15}
 \end{equation}
-在复平面中以$z=d_{max}(G)+0j$为中心（详见图\ref{DiskTheorem}）。
+
+{\color[gray]{0.5}
+\noindent centered at $z=d_{max}(G)+0j$ in the complex plane (see Figure 1).
+}
+
+\noindent 在复平面中以$z=d_{max}(G)+0j$为中心（详见图\ref{DiskTheorem}）。
+
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=8cm]{figures/Fig1-DiskTheorem.jpeg}
@@ -496,31 +670,70 @@ This is diﬀerent than the approach pursued in the work by Jadbabaie et al. whi
     \label{DiskTheorem}
 \end{figure}
 
+{\color[gray]{0.5}
+\noindent \textbf{Proof.}  Based on the Gerˇsgorin disk theorem, all the eigenvalues of $L=[l_{ij}]$ are located in the union of the following $n$ disks
+}
+
 \noindent \textbf{Proof.} 基于圆盘定理，所有$L=[l_{ij}]$的特征值都位于下面的$n$个圆盘的并集中
 \begin{equation}
     D_i = \{ z\in \mathbb{C}: |z-l_{ii}| \le \sum_{j\in \mathcal{I},j\ne i}|l_{ij}| \}
     \tag{16}
     \label{16}
 \end{equation}
+
+{\color[gray]{0.5}
+But l ii = ∆ ii and
+}
+
 如果$l_{ii} = \Delta_{ii}$那么
+
 \begin{equation}
     \sum_{j\in \mathcal{I},j\ne i}|l_{ij}|=\deg_{out}(v_i) = \Delta_{ii}
     \notag
 \end{equation}
-因此，$D_i = \{ z\in \mathbb{C}:|z - \Delta_{ii}| \le \Delta_{ii}\}$。
+
+{\color[gray]{0.5}
+\noindent Thus, $D_i = \{ z\in \mathbb{C}:|z - \Delta_{ii}| \le \Delta_{ii}\}$ . 
+On the other hand, all these $n$ disks are contained in the largest disk $D(G)$ with radius $d_{max}(G)$. 
+Clearly, all the eigenvalues of $−L$ are located in the disk $D^\prime(G)=\{ z\in \mathbb{C}: |z+d_{max}(G)|\le d_{max}(G)\}$ that is the mirror image of $D(G)$ with respect to the imaginary axis.
+}
+
+\noindent 因此，$D_i = \{ z\in \mathbb{C}:|z - \Delta_{ii}| \le \Delta_{ii}\}$。
 另一方面，所有的$n$个圆盘被包含在一个最大的圆盘$D(G)$中，此圆盘半径为$d_{max}(G)$。
 明显的，所有关于$-L$的特征值都位于$D(G)$关于虚轴镜像对阵的圆盘$D^\prime(G)=\{ z\in \mathbb{C}: |z+d_{max}(G)|\le d_{max}(G)\}$中。
 
-以下是一个关于有向网络协议(\ref{A1})直接推论和首次收敛证明。
+{\color[gray]{0.5}
+Here is an immediate corollary and the ﬁrst convergence proof for protocol (A1) for a directed network.
+}
 
-\noindent \textbf{Corollary 1.} 考虑到网络中的所有节点利用协议(\ref{A1})进行整合$\dot{x}_i = u_i$。
-假设图$G$是强连接图。
-那么，协议(\ref{A1})解决全局渐进一致性问题。
+以下是一个关于有向网络协议(\ref{A1})的直接推论和首次收敛证明。
+
+{\color[gray]{0.5}
+\noindent \textbf{Corollary 1.} Consider a network of integrators $\dot{x}_i = u_i$ where each node applies protocol (A1). 
+Assume $G$ is a strongly connected digraph. 
+Then, protocol (A1) globally asymptotically solves a consensus problem.
+}
+
+\noindent \textbf{Corollary 1.} 考虑一个积分器网络$\dot{x}_i = u_i$，每个节点都遵循协议(\ref{A1})。
+假设图$G$是一个强连接图。
+那么，协议(\ref{A1})能够全局解决渐进一致性问题。
+
+{\color[gray]{0.5}
+\noindent \textbf{Proof.} Since $G$ is strongly connected, $\text{rank}(L)=n-1$ and $L$ has a simple eigenvalue at zero. 
+Based on Theorem 2, the rest of the eigenvalues of $−L$ have negative real-parts and therefore the linear system in (6) is stable. 
+On the other hand, any equilibrium $x^*$ of (6) is a right eigenvector of $L$ associated with $\lambda=0$. 
+Since the eigenspace associated with the zero eigenvalue is one-dimensional, there exists an $\alpha\in \mathbb{R}$ such that $x^*=\alpha\mathbf{1}$, i.e. $x^*=\alpha$ for all $i$.
+}
 
 \noindent \textbf{Proof.} 由于$G$是强连接图，$\text{rank}(L)=n-1$并且$L$有一个为0的特征值。
 基于定理2（Theorem 2），$-L$余下的特征值有负实部，并且因此线性系统(\ref{6})是稳定的。
-另一方面，任何系统(\ref{6})的平衡状态$x^*$都是一个$L$关于$\lambda=0$的右特征向量。
+另一方面，系统(\ref{6})的任何平衡状态$x^*$都是一个$L$关于$\lambda=0$的右特征向量。
 由于特征空间是与0特征值有联系的1维特征向量，这里存在一个$\alpha\in \mathbb{R}$使得$x^*=\alpha\mathbf{1}$，即对于所有的$i$都有$x^*=\alpha$。
+
+{\color[gray]{0.5}
+Keep in mind that Corollary 1 does not guarantee whether the decision value $\alpha$ of each node is equal to $\text{Ave}(x(0))$ or not. 
+In other words, Corollary 1 does not necessarily address the average-consensus problem.
+}
 
 谨记推论1（Corollary 1）不能保证所有节点的决策值$\alpha$是否等于$\text{Ave}(x(0))$。
 换句话说，推论1（Corollary 1）不一定能解决平均一致性问题。
