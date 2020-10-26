@@ -237,61 +237,85 @@ This is more challenging than just reaching a general agreement.
 
 
 \section{Consensus Protocols}
-这一部分，我们介绍了三种一致性协议，分别用来解决连续时间（continuous-time，CT）动态智能体模型
+\noindent In this section, we present three consensus protocols that solve agreement problems in a network of continuous-time (CT) {\color{green}integrator agents} with dynamics
+
+\noindent 这一部分，我们介绍了三种一致性协议，分别用来解决连续时间（continuous-time，CT）动态积分器智能体
 \begin{equation}
     \dot{x}_i(t) = u_i(t)
     \tag{4}
     \label{4}
 \end{equation}
-\begin{equation}
-    \text{\color{userColor}位置状态的一阶导数 = 输入}
-    \notag
-\end{equation}
+% \begin{equation}
+%     \text{\color{userColor}位置状态的一阶导数 = 输入}
+%     \notag
+% \end{equation}
+\noindent or agents with discrete-time (DT) model
 
-和离散时间（discrete-time，DT）动态智能体模型的网络一致性问题，
+\noindent 和离散时间（discrete-time，DT）动态智能体模型的网络一致性问题，
 \begin{equation}
     x_i(k+1) = x_i(k)+\epsilon u_i(k)
     \tag{5}
     \label{5}
 \end{equation}
-\begin{equation}
-    \color{userColor}\text{ 下一时刻的状态 = 此刻的状态 + }\epsilon \text{ * 此时的输入}
-    \notag
-\end{equation}
-其中步长尺寸$\epsilon>0$。
+% \begin{equation}
+%     \color{userColor}\text{ 下一时刻的状态 = 此刻的状态 + }\epsilon \text{ * 此时的输入}
+%     \notag
+% \end{equation}
+\noindent and step-size $\epsilon>0$. 
+In this paper, we consider three scenarios:
+
+\noindent 其中步长尺寸$\epsilon>0$。
 在这篇文章，我们考虑了三种脚本：
 
-i）固定或切换拓扑的零沟通时滞：我们使用下边的线性一致性协议：
+i) Fixed or switching topology and zero communication time-delay: We use the following linear consensus protocol:
+
+i）固定或切换拓扑的零通信时延：我们使用下边的线性一致性协议：
 \begin{equation}
     u_i = \sum_{j\in N_i}a_{ij}(x_j-x_i)
     \tag{A1}
     \label{A1}
 \end{equation}
-\begin{equation}
-    \color{userColor}\text{控制输入 = 对所有的\ 节点j和i的位置差值 * 两节点的权重\ 求和，其中j是所有i的邻居节点}
-    \notag
-\end{equation}
-\indent 在这里，节点$i$的邻居集合$N_i=N_i(G)$在切换拓扑网络中是变化的。
+% \begin{equation}
+%     \color{userColor}\text{控制输入 = 对所有的\ 节点j和i的位置差值 * 两节点的权重\ 求和，其中j是所有i的邻居节点}
+%     \notag
+% \end{equation}
 
-ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和通信时滞$\tau_{ij}>0$对应于$ij\in \mathcal{E}$：我们使用下边的线性时滞一致性协议：
+where the set of neighbors $N_i=N_i(G)$ of node $i$ is variable in networks with switching topology.
+
+这里，节点$i$的邻居集合$N_i=N_i(G)$在切换拓扑网络中是一个变量。
+
+ii) Fixed topology $G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$ and communication time-delay $\tau_{ij}>0$ corresponding to the edge $ij\in \mathcal{E}$: We use the following linear time-delayed consensus protocol:
+
+ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和对应于边$ij\in \mathcal{E}$的通信时延$\tau_{ij}>0$：我们使用下边的线性时滞一致性协议：
 \begin{equation}
     u_i(t) = \sum_{j\in N_i}a_{ij}[x_j(t-\tau_{ij})-x_i(t-\tau_{ij})]
     \tag{A2}
     \label{A2}
 \end{equation}
-\begin{equation}
-    \color{userColor}\text{控制输入 = 对所有的\ 节点j和i的位置差值（减去时延） * 两节点的权重\ 求和，其中j是所有i的邻居节点}
-    \notag
-\end{equation}
+% \begin{equation}
+%     \color{userColor}\text{控制输入 = 对所有的\ 节点j和i的位置差值（减去时延） * 两节点的权重\ 求和，其中j是所有i的邻居节点}
+%     \notag
+% \end{equation}
+
+The derivation of each of the aforementioned two protocols (A1) and (A2) becomes apparent during the convergence analysis that will be presented for each protocol later on. 
+We show that in each case, consensus can is asymptotically reached. 
+Moreover, we provide suﬃcient and necessary conditions on the directed information ﬂow in the network so that average-consensus, max-consensus, and min-consensus can be achieved. 
+Furthermore, we provide results on performance and algorithmic robustness of these consensus protocols.
 
 在收敛分析期间，上述两个协议（A1）和（A2）中每个协议的派生变得显而易见，之后将为每个协议介绍收敛分析。
-我们展示了在每一种情况下，一致性都是渐进到达的。
-此外，我们为网络中的有向信息流提供了充分必要的条件，以至于可以实现平均一致性（average-consensus），最大一致性（max-consensus）和最小一致性（min-consensus）。
+我们证明了了在每一种情况下，一致性都是渐进到达的。
+此外，我们提供了网络中的有向信息流可以实现平均一致性，最大一致性和最小一致性的充分必要条件。
 更进一步的，我们提供了这些一致性协议的性能表现和算法的鲁棒性分析。
+
+\noindent{\em Remark} 1. For an undirected network with ﬁxed topology, both protocols solve the averageconsensus problem with appropriate technical conditions on delays. 
+The challenge is to address similar consensus problems for networks with directed graphs and switching topology. 
+In multi-agent ﬂocking [22], the information ﬂow is usually directed and the topology of the network goes through changes that are discrete-event type in the nature.
 
 \noindent{\em Remark} 1. 针对一个固定拓扑的无向网络，两个协议都可以通过适当的延迟技术来解决一致性问题。
 具有挑战性的是解决有向图网络和切换拓扑网络的相似一致性问题。
-在多智能体集群方面，信息流通常是有向的，并且网络的拓扑会经历自然界中本质上是离散状况的变化。
+在多智能体集群方面[22]，信息流通常是有向的，并且网络的拓扑会经历自然界中本质上是离散状况的变化。
+
+Given Protocol (A1), the state of a network of continuous-time integrator agents evolves according to the following linear system
 
 所给的协议（A1），连续时间网络的智能体状态会随着下面的线性系统进行变化
 \begin{equation}
@@ -299,11 +323,13 @@ ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和通信时滞$\tau
     \tag{6}
     \label{6}
 \end{equation}
-\begin{equation}
-    \color{userColor}\text{位置状态的一阶导数 = 拉普拉斯矩阵 * 位置状态值}
-    \notag
-\end{equation}
-这里，$L$是由信息流$G$引起的图拉普拉斯算子（graph Laplacian），并且定义如下
+% \begin{equation}
+%     \color{userColor}\text{位置状态的一阶导数 = 拉普拉斯矩阵 * 位置状态值}
+%     \notag
+% \end{equation}
+\noindent where L is called the graph Laplacian induced by the information ﬂow G and is deﬁned by
+
+\noindent 这里，$L$是信息流网络$G$的图拉普拉斯矩阵，并且定义如下
 \begin{equation}
 l_{ij} = \left\{
     \begin{array}{ll}
@@ -313,14 +339,15 @@ l_{ij} = \left\{
     \tag{7}
     \label{7}
 \end{equation}
-图拉普拉斯算子的性质是代数图论中主要研究领域之一，将在第4部分详细讨论。
+\noindent The properties of graph Laplacian is one of the main areas of research in algebraic graph theory and is discussed in Section 4.
 
-{\color{userColor} 关于图拉普拉斯的定义，还可查看文献[2013\_多智能体系统的协调控制研究综述-苗国英]
+\noindent 图拉普拉斯矩阵的性质是代数图论中重要研究领域之一，将在第4部分详细讨论。
 
-拉普拉斯矩阵定义为：$L=D-A$，
-$D$是度矩阵，$A$是邻接矩阵。
-}
-
+% {\color{userColor} 关于图拉普拉斯的定义，还可查看文献[2013\_多智能体系统的协调控制研究综述-苗国英]
+% 拉普拉斯矩阵定义为：$L=D-A$，
+% $D$是度矩阵，$A$是邻接矩阵。
+% }
+In a network with switching topology, convergence analysis of Protocol (A1) is equivalent to stability analysis for a hybrid system
 
 在一个切换拓扑（switching topology）网络中，协议(\ref{A1})的收敛性分析等价于混合系统（hybrid system）的稳定性分析
 \begin{equation}
@@ -328,13 +355,19 @@ $D$是度矩阵，$A$是邻接矩阵。
     \tag{8}
     \label{8}
 \end{equation}
-\begin{equation}
-    \color{userColor}\text{位置状态的一阶导数 = 拉普拉斯矩阵（关于切换信号变换） * 位置状态值}
-    \notag
-\end{equation}
-这里，$L_k = \mathcal{L}(G_k)$是$G_k$的拉普拉斯算子，$s(t)$：$\mathbb{R}\rightarrow \mathcal{I} \subset \mathbb{Z}$是切换信号，$\Gamma\ni G_k$是有序集合$\mathcal{I}_\Gamma$有限个图（节点$n$）的有限集合。
-之后，我们将会看到$\Gamma$是一个对于$n\gg 1$相对较大的集合。
-在公式(\ref{8})中，混合系统的稳定性分析是一个更加具有挑战性的部分，总的来说，部分原因是因为两个拉普拉斯矩阵的乘积并不匹配。
+% \begin{equation}
+%     \color{userColor}\text{位置状态的一阶导数 = 拉普拉斯矩阵（关于切换信号变换） * 位置状态值}
+%     \notag
+% \end{equation}
+\noindent where $L_k = \mathcal{L}(G_k)$ is the Laplacian of $G_k$, $s(t)$ : $\mathbb{R}\rightarrow \mathcal{I} \subset \mathbb{Z}$ is a switching signal, and {\color{green}$\Gamma\ni G_k$ is a ﬁnite collection of digraphs (of order $n$) with the index set $\mathcal{I}_\Gamma$}. 
+Later, we will see that $\Gamma$ is a relatively large set for $n\gg 1$. 
+The task of stability analysis for the hybrid system in (8) is rather challenging partly because, in general, the product of two Laplacian matrices do not commute.
+
+\noindent 这里，$L_k = \mathcal{L}(G_k)$是$G_k$的拉普拉斯矩阵，$s(t)$：$\mathbb{R}\rightarrow \mathcal{I} \subset \mathbb{Z}$是切换信号，$\Gamma\ni G_k$是图（$n$个节点）的有序集合$\mathcal{I}_\Gamma$的有限集合。
+之后，我们将会看到$\Gamma$是一个相较于$n\gg 1$非常大的集合。
+在公式(\ref{8})中，混合系统的稳定性分析是一个更加具有挑战性的任务，总的来说，部分原因是因为两个拉普拉斯矩阵的乘积并不匹配。
+
+For agents with discrete-time models, applying protocol (A1) gives the following discretetime network dynamics
 
 对于离散时间的智能体模型，应用协议(\ref{A1})给出了如下的动态离散网络
 \begin{equation}
@@ -342,25 +375,33 @@ $D$是度矩阵，$A$是邻接矩阵。
     \tag{9}
     \label{9}
 \end{equation}
-\begin{equation}
-    \color{userColor}\text{ 下一时刻的状态 = 非负随机矩阵 * 此刻的状态}
-    \notag
-\end{equation}
-和
+% \begin{equation}
+%     \color{userColor}\text{ 下一时刻的状态 = 非负随机矩阵 * 此刻的状态}
+%     \notag
+% \end{equation}
+\noindent with
+
+\noindent 其中
 \begin{equation}
     P_\epsilon = I - \epsilon L
     \tag{10}
     \label{10}
 \end{equation}
-\begin{equation}
-    \color{userColor}\text{ 非负随机矩阵 = 单位矩阵 - }\epsilon \text{ * 拉普拉斯矩阵}
-    \notag
-\end{equation}
-对于所有的$\epsilon\in (0,1/d_{max})$，使$d_{max} = \max_il_{ii}$({\color{userColor}$d_{max}$是拉氏矩阵对角线元素中最大的值})，$P_\epsilon$是一个非负随机矩阵，我们称之为门阶矩阵（Perron matrix），即$P_\epsilon$所有元素非负且所有的行总和为1。
+% \begin{equation}
+%     \color{userColor}\text{ 非负随机矩阵 = 单位矩阵 - }\epsilon \text{ * 拉普拉斯矩阵}
+%     \notag
+% \end{equation}
+\noindent Let $d_{max} = \max_il_{ii}$, then for $\epsilon\in (0,1/d_{max})$, $P_\epsilon$ is a nonnegative and stochastic matrix that we call Perron matrix, i.e. $P_\epsilon$ in element-wise nonnegative and all of its row sums are 1.
 
-智能体离散时间协议(\ref{A1})的收敛性分析严重依赖于非负矩阵理论，并且将会在一个额外的文章中讨论。
-我们的方法提出了一个基于李雅普诺夫（Lyapunov）的，离散时间模型网络的一致收敛性分析。
-这是不同于Jadbabaie等人从事的成果方法，这非常依赖于矩阵论的性质和无限的随机矩阵的右收敛乘积（right-convergence product，RCP）。
+\noindent 定义$d_{max} = \max_il_{ii}$，那么对于$\epsilon\in (0,1/d_{max})$，$P_\epsilon$是一个非负随机矩阵，我们称之为门阶矩阵（Perron matrix），即$P_\epsilon$所有元素非负且所有的行和为1。
+
+The convergence analysis of Protocol (A1) for discrete-time agents heavily relies on the theory of nonnegative matrices [10, 12, 16] and will be discussed in a separate paper. 
+Our approach presents a Lyapunov-based convergence analysis for agreement in networks with discrete-time models. 
+This is diﬀerent than the approach pursued in the work by Jadbabaie et al. which strongly relies on matrix theoretic properties and {\color{green}inﬁnite right-convergent products (RCP) of stochastic matrices [2, 3]}.
+
+智能体离散时间协议(\ref{A1})的收敛性分析严重依赖于非负矩阵理论[10, 12, 16]，并且将会在一个单独的文章中讨论。
+我们的方法提出了一个基于离散时间模型网络收敛分析的李亚普诺夫（Lyapunov）函数。
+这是不同于Jadbabaie等人从事的方法，他们非常依赖于矩阵论的性质和随机矩阵的无穷收敛级数（right-convergence product，RCP）[2, 3]。
 
 
 \section{Algebraic Graph Theory: Properties of Laplacians}
