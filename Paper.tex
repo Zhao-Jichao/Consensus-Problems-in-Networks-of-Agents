@@ -154,58 +154,86 @@ Finally, in Section 10, concluding remarks are stated.
 最后，第10部分，展示了结论和总结。
 
 \section{Consensus Problems}
-$G=(\mathcal{V},\mathcal{E},\mathcal{A})$是加权有向图（或无向图），具有$n$个节点，和一个加权邻接矩阵$\mathcal{A}=[a_{ij}]$。$\mathcal{A}$矩阵的所有元素$a_{i,j} \ge 0$且所有的$i,j \in \mathcal{I}={1,2,…,n},i \ne j$。
-这里，$\mathcal{V}$表示所有向量$v_i$的集合，$\mathcal{E}$表示图中所有边（$ij$或$v_i,v_j$）的集合。
+Let $G=(\mathcal{V},\mathcal{E},\mathcal{A})$ be a weighted directed graph (or digraph) with $n$ nodes and a weighted adjacency matrix $\mathcal{A}=[a_{ij}]$ where $a_{ij} \ge 0$ for all $i,j \in \mathcal{I}={1,2,…,n}$ with $i \ne j$. 
+Here, $\mathcal{V}$ denotes the set of vertices $v_i$ and $\mathcal{E}$ denotes the set of edges $ij$ (or ($v_i,v_j$)) of the graph $G$. 
+The set of neighbors of node $i$ is denoted by $N_i=\{ij\in \mathcal{E}:a_{ij}>0\}$. 
+We call any subset of nodes $J$ a cluster. 
+The set of neighbors of a cluster $J\subset \mathcal{I}$ is deﬁned by
+
+\noindent 定义$G=(\mathcal{V},\mathcal{E},\mathcal{A})$具有$n$个节点，和一个加权邻接矩阵$\mathcal{A}=[a_{ij}]$的加权有向图（或普通图），$\mathcal{A}$矩阵的所有元素$a_{ij} \ge 0$且所有的$i,j \in \mathcal{I}={1,2,…,n},i \ne j$。
+这里，$\mathcal{V}$表示所有向量$v_i$的集合，$\mathcal{E}$表示图中所有边$ij$（或$v_i,v_j$）的集合。
 节点$i$的邻居集合表示为$N_i=\{ij\in \mathcal{E}:a_{ij}>0\}$。
 我们称节点$J$的任意子集为一个簇。
 簇$J\subset \mathcal{I}$的集合定义为
 \begin{equation}
-    N_J:=U_{i\in J}N_i=\{j\in \mathcal{I}:i\in J, ij\in \mathcal{E}\}
+    N_J:=\cup_{i\in J}N_i=\{j\in \mathcal{I}:i\in J, ij\in \mathcal{E}\}
     \tag{1}
     \label{1}
 \end{equation}
 
+Let $x_i\in \mathbb{R}$ denote the value of node $i$. 
+We refer to $G_x=(\mathcal{V},\mathcal{E},\mathcal{A},x)$ with $x=(x_1,...,x_n)^T$ as an algebraic graph or (static) network with value $x\in \mathbb{R}^n$ and information ﬂow $G=(\mathcal{V},\mathcal{E},\mathcal{A})$. 
+The value of a node might represent physical quantities including attitude, position, temperature, voltage, and so on. 
+We say nodes $i$ and $j$ in a network agree if and only $x_i=x_j$. 
+We say all the nodes in a network have reached a consensus if and only if $x_i=x_j$ for all $i,j\in \mathcal{I}, i\ne j$. 
+Whenever the nodes of a network are in agreement, the common value of all nodes is called the (group) decision value.
+
 定义$x_i\in \mathbb{R}$表示节点$i$的值。
-参考$G_x=(\mathcal{V},\mathcal{E},\mathcal{A},x)$，其中$x=(x_1,...,x_n)^T$是为代数图（algebraic graph），或$x\in \mathbb{R}$的信息流（information flow）（静态）网络（static network）$G_x=(\mathcal{V},\mathcal{E},\mathcal{A})$。
+我们将具有$x=(x_1,...,x_n)^T$的$G_x=(\mathcal{V},\mathcal{E},\mathcal{A},x)$，称作是一个代数图，或具有$x\in \mathbb{R}^n$的信息流（静态）网络$G=(\mathcal{V},\mathcal{E},\mathcal{A})$。
 节点的值表示物理特性，例如姿态，位置，温度，电压等等。
 我们认为当且仅当$x_i=x_j$时，节点$i$和$j$在网络中达到一致（agree）。
 我们认为网络中所有的节点当且仅当所有的$x_i=x_j$时达到一致（consensus），此时$i,j\in \mathcal{I}, i\ne j$。
-当网络中的节点达到一致时，此时所有节点的公共值叫做（组）决策值（group decision value）。
+当网络中的节点达到一致时，此时所有节点的公共值叫做（群组）决策值。
 
-假设图的每一个节点都是一个具有动态性能的动态智能体（dynamic agent）
+Suppose each node of a graph is a dynamic agent with dynamics
+
+假设图的每一个节点都是一个具有动态性能的动态智能体
 \begin{equation}
     \dot{x}_i = f(x_i, u_i), i\in \mathcal{I}
     \tag{2}
     \label{2}
 \end{equation}
-一个动态图（dynamic graph）或一个动态网络（dynamic network）由一个4元组$G_{x(t)} = (\mathcal{V},\mathcal{E},\mathcal{A},x(t))$组成，其中变化的状态$\dot{x}=F(x,u)$中$x$表示动态图的状态，$F(x,u)$是$F_i(x,u)=f(x_i,u_i)$中元素的列元素合并。
+A dynamic graph (or dynamic network) is deﬁned as a 4-tuple $G_{x(t)} = (\mathcal{V},\mathcal{E},\mathcal{A},x(t))$ together with dynamics $\dot{x}=F(x,u)$ where $x$ denotes the state of the dynamic graph and {\color{green}$F(x,u)$ is the column-wise concatenation of the elements $F_i(x,u)=f(x_i,u_i)$}.
+
+\noindent 一个动态图或（动态网络）定义为随着$\dot{x}=F(x,u)$动态变化的的4元组$G_{x(t)} = (\mathcal{V},\mathcal{E},\mathcal{A},x(t))$，其中$x$表示动态图的状态，$F(x,u)$是$F_i(x,u)=f(x_i,u_i)$中元素的列合并。
+
+Let $\chi: \mathbb{R}^n \rightarrow \mathbb{R}$ be a function of $n$ variables $x_1,\dots,x_n$. 
+The $\chi$-consensus problem in a dynamic graph is a distributed way to calculate $\chi(x(0))$ by applying inputs $u_i$ that only depend on the values of node $i$ and its neighbors. 
+We say a protocol
 
 定义$\chi: \mathbb{R}^n \rightarrow \mathbb{R}$是一个包含$n$个变量$x_1,\dots,x_n$的函数。
-在一个动态图中的$\chi$-一致性问题（$\chi$-consensus problem），是一种分布式的方式，通过利用输入$u_i$来计算$\chi(x(0))$，其中输入$u_i$仅依赖于节点$i$的和它的邻居的值。
-我们认为协议（protocol）
+在一个动态图中的$\chi$-一致性问题，是通过利用输入$u_i$以一种分布式的方式来计算$\chi(x(0))$，其中输入$u_i$仅依赖于节点$i$的和它的邻居的值。
+我们定义一个协议
 \begin{equation}
     u_i = k_i(x_{j_1},\dots,x_{j_{m_i}})
     \tag{3}
     \label{3}
 \end{equation}
-其中$j_1,\dots,j_{m_i}\in \{i\} \cup N_i$和$m_i\leq n$渐进的解决了$\chi$-一致性问题，当且仅当存在一个渐进稳定的平衡$x^*$其$\dot{x}=F(x,k(x))$例如$x^*=\chi(x(0))$，所有的$i\in \mathcal{I}$。
-我们致力于解决$\chi$-一致性问题在分布式时尚方面，此方面没有节点与其他任何节点相连（i.e. 即$m_i < n$ for all $i$）。
+with $j_1,\dots,j_{m_i}\in \{i\} \cup N_i$ and $m_i\leq n$ asymptotically solves the $\chi$ -consensus problem if and only if there exists an asymptotically stable equilibrium $x^*$ of $\dot{x}=F(x,k(x))$ such that $x^*=\chi(x(0))$ for all $i\in \mathcal{I}$. 
+We are interested in solving the $\chi$ -consensus problem in a distributed fashion in which {\color{green}no node is connected to all other nodes (i.e. $m_i < n$ for all $i$)}.
 
-特殊的，$\chi(x)=Ave(x)=\frac{1}{n}(\sum_{i=1}^{n}x_i)$，$\chi(x)=Max(x)=max_ix_i$，$\chi(x)=Min(x)=min_ix_i$分别称作平均一致性（average-consensus），最大一致性（max-consensus）和最小一致性（min-consensus），分别由于他们在多智能体系统分布式决策方面广阔的应用。
+\noindent 其中$j_1,\dots,j_{m_i}\in \{i\} \cup N_i$和$m_i\leq n$渐进的解决了$\chi$-一致性问题，当且仅当存在一个渐进稳定的平衡$x^*$属于$\dot{x}=F(x,k(x))$对于所有的$i\in \mathcal{I}$满足$x^*=\chi(x(0))$。
+我们致力于以一种流行的分布式方式解决$\chi$-一致性问题，这里没有节点与其他任何节点相连（i.e. 即$m_i < n$ for all $i$）。
 
-{\color{userColor}
-平均一致性（average-consensus）
-$\chi(x)=Ave(x)=\frac{1}{n}(\sum_{i=1}^{n}x_i)$；
+The special cases with $\chi(x)=Ave(x)=\frac{1}{n}(\sum_{i=1}^{n}x_i)$, $\chi(x)=Max(x)=\max_ix_i$ , and $\chi(x)=Min(x)=\min_ix_i$ are called average-consensus, max-consensus, and min-consensus, respectively due to their broad applications in distributed decision-making for multi-agent systems.
 
-最大一致性（max-consensus）
-$\chi(x)=Max(x)=max_ix_i$；
+特殊的，$\chi(x)=Ave(x)=\frac{1}{n}(\sum_{i=1}^{n}x_i)$，$\chi(x)=Max(x)=\max_ix_i$，$\chi(x)=Min(x)=\min_ix_i$分别称作平均一致性（average-consensus），最大一致性（max-consensus）和最小一致性（min-consensus），分别由于他们在多智能体系统分布式决策方面广阔的应用。
 
-最小一致性（min-consensus）
-$\chi(x)=Min(x)=min_ix_i$。
-}
+% {\color{userColor}
+% 平均一致性（average-consensus）
+% $\chi(x)=Ave(x)=\frac{1}{n}(\sum_{i=1}^{n}x_i)$；
 
-平均一致性问题，是解决线性函数$\chi(x)=Ave(x)$动态系统网络的分布式计算的典型例子。
-这是比仅达成普通一致性更加具有挑战性。
+% 最大一致性（max-consensus）
+% $\chi(x)=Max(x)=max_ix_i$；
+
+% 最小一致性（min-consensus）
+% $\chi(x)=Min(x)=min_ix_i$。
+% }
+Solving average-consensus problem is an example of distributed computation of a linear function $\chi(x)=Ave(x)$ using a network of dynamic systems. 
+This is more challenging than just reaching a general agreement.
+
+解决一个线性函数$\chi(x)=Ave(x)$动态系统网络的平均一致性问题是一个分布式计算的典型例子。
+这比仅达成普通一致性更加具有挑战性。
 
 
 \section{Consensus Protocols}
