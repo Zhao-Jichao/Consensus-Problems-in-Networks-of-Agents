@@ -1,13 +1,13 @@
 \contentsline {section}{\numberline {1}Introduction}{2}% 
 \contentsline {section}{\numberline {2}Consensus Problems}{5}% 
-\contentsline {section}{\numberline {3}Consensus Protocols}{6}% 
+\contentsline {section}{\numberline {3}Consensus Protocols}{7}% 
 \contentsline {section}{\numberline {4}Algebraic Graph Theory: Properties of Laplacians}{9}% 
-\contentsline {section}{\numberline {5}A Counterexample for Average-Consensus}{13}% 
-\contentsline {section}{\numberline {6}Networks with Fixed or Switching Topology}{15}% 
-\contentsline {subsection}{\numberline {6.1}Balanced Graphs and Average-Consensus on Digraphs}{15}% 
-\contentsline {subsection}{\numberline {6.2}Performance of Group Agreement and Mirror Graphs}{17}% 
-\contentsline {subsection}{\numberline {6.3}Consensus in Networks with Switching Topology}{19}% 
-\contentsline {section}{\numberline {7}Networks with Communication Time-Delays}{20}% 
-\contentsline {section}{\numberline {8}Max-Consensus and Leader Determination}{21}% 
-\contentsline {section}{\numberline {9}Simulation Results}{22}% 
-\contentsline {section}{\numberline {10}Conclusions}{24}% 
+\contentsline {section}{\numberline {5}A Counterexample for Average-Consensus}{14}% 
+\contentsline {section}{\numberline {6}Networks with Fixed or Switching Topology}{16}% 
+\contentsline {subsection}{\numberline {6.1}Balanced Graphs and Average-Consensus on Digraphs}{16}% 
+\contentsline {subsection}{\numberline {6.2}Performance of Group Agreement and Mirror Graphs}{21}% 
+\contentsline {subsection}{\numberline {6.3}Consensus in Networks with Switching Topology}{25}% 
+\contentsline {section}{\numberline {7}Networks with Communication Time-Delays}{27}% 
+\contentsline {section}{\numberline {8}Max-Consensus and Leader Determination}{29}% 
+\contentsline {section}{\numberline {9}Simulation Results}{30}% 
+\contentsline {section}{\numberline {10}Conclusions}{30}% 

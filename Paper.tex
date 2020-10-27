@@ -10,7 +10,7 @@
 \geometry{a4paper,scale=0.8}
 \geometry{a4paper,left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}
 \linespread{1.5}
-% \setlength{\parskip}{0.5\baselineskip} % 段落间距
+\setlength{\parskip}{0.5\baselineskip} % 段落间距
 
 \definecolor{userColor}{RGB}{225,144,52}
 
@@ -39,7 +39,7 @@ Simulations are provided that demonstrate the eﬀectiveness of our theoretical 
 }
 
 这篇文章，我们讨论了动态智能体网络在固定和切换拓扑下的一致性问题。
-我们分析了三种情况：i）切换拓扑无时延网络，ii）固定拓扑有时延网络，iii）智能体群离散时间下的的最大一致性问题（或领导力问题）。
+我们分析了三种情况：i）切换拓扑无时滞网络，ii）固定拓扑有时滞网络，iii）智能体群离散时间下的的最大一致性问题（或领导力问题）。
 在每一种情况，我们都介绍了线性/非线性的一致性协议，并且提供了分布式建议算法的收敛性分析。
 此外，我们还建立了网络信息流的费德勒特征值（Fiedler eigenvaue）（即网络的代数连通度）和响应一致协议的收敛速度（或性能）之间的联系。
 这表明平衡图在解决一致性问题上扮演着重要角色。
@@ -76,7 +76,7 @@ Our main contribution in this paper is to deﬁne and address consensus problems
 In each case, we provide convergence analysis and for linear protocols establish direct connections between performance and robustness of a consensus protocol and the properties of graph Laplacian of the information ﬂow in the network.
 }
 
-在这篇文章中，我们主要的贡献是定义和解决了基于许多假设的网络拓扑的一致性问题（固定的和变化的），是否存在通信时延（time-delays），和输入动态智能体的局限性。
+在这篇文章中，我们主要的贡献是定义和解决了基于许多假设的网络拓扑的一致性问题（固定的和变化的），是否存在通信时滞（time-delays），和输入动态智能体的局限性。
 在每种情况，我们都提供了收敛性分析，并且针对线性协议建立了性能和关于图的拉氏变化和一致性协议的鲁棒性之间的定向关系。
 
 {\color[gray]{0.5}
@@ -100,7 +100,7 @@ Theoretically, analyzing consensus on directed graphs is more challenging and is
 文献[24，23]中，多重粒子的群集问题和航向角问题从统计力学的角度进行了分析，并且观察到发生在网络中的信息流的相转换现象变的相互连接。
 文献[13]的工作集中在无向图的姿态对齐问题，这里的智能体采用的文献[24]中的简单动态模型。
 可以断定，图的平均连通性对于智能体的航向角收敛是有效的。
-文献[20]解决了有（无）时延的无向图系统的线性和非线性系统模型一致性问题。
+文献[20]解决了有（无）时滞的无向图系统的线性和非线性系统模型一致性问题。
 理论上，有向图的一致性分析更具有挑战性，并且在接下来的文献中进行讨论。
 
 {\color[gray]{0.5}
@@ -139,7 +139,7 @@ Finally, we pose and address the max-consensus problem that is useful for determ
 }
 
 在这些基本结果的基础上，我们提出了一些扩展。
-我们讨论了通信时延在解决一致性问题中的影响。
+我们讨论了通信时滞在解决一致性问题中的影响。
 对于无向图，我们基于所有智能体的输入都是有界的约束下解决了平均一致性问题。
 这引导分析了非线性协议。
 使用一个三节点的例子，我们演示了分析该协议对于一般有向图的收敛性是一个具有挑战性的开放问题。
@@ -170,7 +170,7 @@ Finally, in Section 10, concluding remarks are stated.
 第4部分，展示了代数图论的一些背景知识和图拉普拉斯矩阵的一些性质。
 第5部分，给出了一个反例，表明不是所有的图都能解决平均一致性问题。
 第6部分，是我们在切换拓扑方面的主要结果。
-第7部分，讨论了网络有通信时延的平均一致性问题分析。
+第7部分，讨论了网络有通信时滞的平均一致性问题分析。
 第8部分，给出了我们对最大一致性问题的结果。
 第9部分，展示了仿真结果。
 最后，第10部分，展示了结论和总结。
@@ -316,7 +316,7 @@ In this paper, we consider three scenarios:
 i) Fixed or switching topology and zero communication time-delay: We use the following linear consensus protocol:
 }
 
-i）固定或切换拓扑的零通信时延：我们使用下边的线性一致性协议：
+i）固定或切换拓扑的零通信时滞：我们使用下边的线性一致性协议：
 \begin{equation}
     u_i = \sum_{j\in N_i}a_{ij}(x_j-x_i)
     \tag{A1}
@@ -336,14 +336,14 @@ i）固定或切换拓扑的零通信时延：我们使用下边的线性一致�
 ii) Fixed topology $G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$ and communication time-delay $\tau_{ij}>0$ corresponding to the edge $ij\in \mathcal{E}$: We use the following linear time-delayed consensus protocol:
 }
 
-ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和对应于边$ij\in \mathcal{E}$的通信时延$\tau_{ij}>0$：我们使用下边的线性时滞一致性协议：
+ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和对应于边$ij\in \mathcal{E}$的通信时滞$\tau_{ij}>0$：我们使用下边的线性时滞一致性协议：
 \begin{equation}
     u_i(t) = \sum_{j\in N_i}a_{ij}[x_j(t-\tau_{ij})-x_i(t-\tau_{ij})]
     \tag{A2}
     \label{A2}
 \end{equation}
 % \begin{equation}
-%     \color{userColor}\text{控制输入 = 对所有的\ 节点j和i的位置差值（减去时延） * 两节点的权重\ 求和，其中j是所有i的邻居节点}
+%     \color{userColor}\text{控制输入 = 对所有的\ 节点j和i的位置差值（减去时滞） * 两节点的权重\ 求和，其中j是所有i的邻居节点}
 %     \notag
 % \end{equation}
 
@@ -892,18 +892,40 @@ A straightforward calculation shows that $R=w_rw_l^T\in M_n$.
 
 % ------------------------------------------------------------------------------
 \section{Networks with Fixed or Switching Topology}
-这部分，我们提出了三种主要的结论：i）描述了所有使用协议(\ref{A1})解决平均一致性问题的连接图。
-ii）协议(\ref{A1})的性能和图的费德勒特征值（即代数连接）之间的联系。
-iii）在切换拓扑下的连接失败/生成的鲁棒一致性问题。
+{\color[gray]{0.5}
+\noindent In this section, we present three of our main results: 
+i) characterization of all connected digraphs that solve average-consensus problem using Protocol (A1), 
+and ii) the relation between the performance of Protocol (A1) and the Fiedler eigenvalue (i.e. algebraic connectivity) of graphs, 
+and iii) robust agreement under switching topology due to link failure/creation.
+}
 
+\noindent 这部分，我们提出了三种主要的结果：i）描述了所有的连接图使用协议(\ref{A1})解决平均一致性的问题。
+ii）协议(\ref{A1})的性能和图的费德勒特征值（即代数连通度）之间的联系。
+iii）由于连接失效/新建的切换拓扑下的鲁棒一致性问题。
+
+% ------------------------------------------------------------------------------
 \subsection{Balanced Graphs and Average-Consensus on Digraphs}
-下述的图类表明了在解决一致性问题的分析：
+{\color[gray]{0.5}
+\noindent The following class of digraphs turns out to be instrumental in solving average-consensus problems:
+}
+
+\noindent 下述的图类表明了在解决一致性问题的分析：
+
+{\color[gray]{0.5}
+\noindent \textbf{Definition 1.} (balanced graphs) We say the node $v_i$ of a digraph $G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$ is balanced if and only if its in-degree and out-degree are equal, i.e. $\deg_{out}(v_i)=\deg_{in}(v_i)$. 
+A graph $G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$ is called balanced if and only if all of its nodes are balanced, i.e. $\sum_{j}a_{ij} = \sum_{j}a_{ji}, \forall i$.
+}
 
 \noindent \textbf{Definition 1.} （平衡图）我们认为当且仅当图$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$的节点$v_i$的入度（in-degree）等于出度（out-degree）时，节点是平衡的，即$\deg_{out}(v_i)=\deg_{in}(v_i)$。
 当图$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$的所有节点都是平衡时，图是平衡图，即$\sum_{j}a_{ij} = \sum_{j}a_{ji}, \forall i$。
 
+{\color[gray]{0.5}
+\noindent \textbf{Example 1.} Any undirected graph is balanced. Furthermore, the digraphs shown in Figure 3 are all balanced.
+}
+
 \noindent \textbf{Example 1.} 任意的无向图都是平衡的。
-进一步说，图\ref{3}展示的图都是平衡的{\color{userColor}（总的出度=总的入度，不是每一个节点都需要相等）}。
+进一步说，图\ref{3}展示的图都是平衡的。
+
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=12cm]{figures/Fig3-BalancedGraphs.jpeg}
@@ -911,25 +933,63 @@ iii）在切换拓扑下的连接失败/生成的鲁棒一致性问题。
     \caption{平衡图的三个例子}
 \end{figure}
 
-接下来是我们的第一个主要结论：
+{\color[gray]{0.5}
+\noindent Here is our ﬁrst main result:
+}
 
-\noindent \textbf{Theorem 4.} 考虑一个有向信息流网络$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$的整合，网络是强连通的。
+\noindent 接下来是我们的第一个主要结论：
+
+{\color[gray]{0.5}
+\noindent \textbf{Theorem 4.} Consider a network of integrators with directed information ﬂow $G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$ that is strongly connected. 
+Then, protocol (A1) globally asymptotically solves the average-consensus problem using if and only if $G$ is balanced.
+}
+
+\noindent \textbf{Theorem 4.} 考虑一个含有有向信息流$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$的积分器网络，网络是强连通的。
 那么，当且仅当图$G$是平衡图时，协议(\ref{A1})全局渐进的解决了平均一致性问题。
 
+{\color[gray]{0.5}
+\noindent \textbf{Proof.} The proof follows from Theorems 5 and 6, below.
+}
+
 \noindent \textbf{Proof.} 证明参考如下定理5和定理6。
+
+{\color[gray]{0.5}
+\noindent {\em Remark} 5. According to Theorem 4, if a graph is not balanced, then protocol (A1) does not necessarily solve the average consensus-problem. This assertion is consistent with the counterexample given in Figure 2.
+}
 
 \noindent {\em Remark} 5. 根据定理4，如果图不是平衡图，那么协议(\ref{A1})没有办法解决平均一致性问题。
 此断言与图\ref{ConnectedDigraph}给出的反例是一致的。
 
-\noindent \textbf{Theorem 5.} 考虑一个整合智能体网络图$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$是强连接的。
+{\color[gray]{0.5}
+\noindent \textbf{Theorem 5.} Consider a network of integrator agents with a digraph $G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$ that is strongly connected. 
+Then, protocol (A1) globally asymptotically solves the average-consensus problem if and only if $\mathbf{1}^TL=0$.
+}
+
+\noindent \textbf{Theorem 5.} 考虑一个积分器智能体网络图$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$是强连通的。
 那么，当且仅当$\mathbf{1}^TL=0$时，协议(\ref{A1})全局渐进的解决了平均一致性问题。
 
-\noindent \textbf{Proof.} 参考定理3，结合$w_r = \frac{1}{\sqrt{n}}\mathbf{1}$我们可以得到
+{\color[gray]{0.5}
+\noindent \textbf{Proof.} From Theorem 3, with $w_r = \frac{1}{\sqrt{n}}\mathbf{1}$ we obtain 
+}
+
+\noindent \textbf{Proof.} 参考定理3，当$w_r = \frac{1}{\sqrt{n}}\mathbf{1}$时我们有
+
 \begin{equation}
-    x^* = \lim_{t\rightarrow +\infty}x(t) = Rx_0 = w_r(w_L^T x_0) = \frac{1}{\sqrt{n}}(w_l^Tx_0)\mathbf{1}
+    x^* = \lim_{t\rightarrow +\infty}x(t) = Rx_0 = w_r(w_l^T x_0) = \frac{1}{\sqrt{n}}(w_l^Tx_0)\mathbf{1}
     \notag
 \end{equation}
-这表明协议1全局指数解决了每一个节点关于决策值$\frac{1}{\sqrt{n}}(w_l^Tx_0)$的一致性问题。
+
+{\color[gray]{0.5}
+\noindent This implies Protocol 1 globally exponentially solves a consensus problem with the decision value $\frac{1}{\sqrt{n}}(w_l^Tx_0)$ for each node. 
+If this decision value is equal to $Ave(x_0), \forall x_0 \in \mathbb{R}^n$ , then necessarily $\frac{1}{\sqrt{n}}w_l = \frac{1}{\sqrt{n}}$ , i.e. $w_l= w_r=\frac{1}{\sqrt{n}}\mathbf{1}$. 
+This implies that $\mathbf{1}$ is the left eigenvector of $L$. 
+To prove the converse, assume that $\mathbf{1}^TL=0$. 
+Let us take $w_r=\frac{1}{\sqrt{n}}\mathbf{1}$, $w_l=\beta\mathbf{1},$ with $\beta\in\mathbb{R},\beta\ne0$. 
+From condition $w_l^Tw_r=1$, we get $\beta=\frac{1}{\sqrt{n}}$ and $w_l=\frac{1}{\sqrt{n}}\mathbf{1}$. 
+This means that the decision value for every node is $\frac{1}{\sqrt{n}}(w_l^Tx_0)=\frac{1}{n}\mathbf{1}^Tx_0=Ave(x_0)$.
+}
+
+\noindent 这表明协议1全局指数解决了每一个节点关于决策值$\frac{1}{\sqrt{n}}(w_l^Tx_0)$的一致性问题。
 如果这个决策值等于$Ave(x_0), \forall x_0 \in \mathbb{R}^n$，那么必要的$\frac{1}{\sqrt{n}}w_l = \frac{1}{\sqrt{n}}$，即$w_l= w_r=\frac{1}{\sqrt{n}}\mathbf{1}$。
 这表明$\mathbf{1}$是关于$L$的左特征向量。
 为了证明一致性，假设$\mathbf{1}^TL=0$。
@@ -937,64 +997,146 @@ iii）在切换拓扑下的连接失败/生成的鲁棒一致性问题。
 根据条件$w_l^Tw_r=1$，我们得到$\beta=\frac{1}{\sqrt{n}}$和$w_l=\frac{1}{\sqrt{n}}\mathbf{1}$。
 这意味着每一个节点的决策值是$\frac{1}{\sqrt{n}}(w_l^Tx_0)=\frac{1}{n}\mathbf{1}^Tx_0=Ave(x_0)$。
 
+{\color[gray]{0.5}
+\noindent \textbf{Corollary 2.} Assume all the conditions in Theorem 5 hold. 
+Suppose $L$ has a left eigenvector $\gamma = (\gamma_1, \dots, \gamma_n)^T$ associated with $\lambda=0$ that is a nonnegative vector in $\mathbb{R}^n$ (i.e. a vector with non-negative elements) satisfying $\sum_i\gamma_i>0$. 
+Then, the group decision value after reaching consensus is given by
+}
+
 \noindent \textbf{Corollary 2.} 假设定理5中的所有条件成立。
-假设$L$有一个关于特征值$\lambda=0$的左特征向量$\gamma = (\gamma_1, \dots, \gamma_n)^T$，这是一个属于$\mathbb{R}$的非负向量（即向量元素非负）且满足$\sum_i\gamma_i>0$。
-那么，达到一致的群组决策值就是：
+假设$L$有一个关于特征值$\lambda=0$的左特征向量$\gamma = (\gamma_1, \dots, \gamma_n)^T$，此特征向量是一个属于$\mathbb{R}^n$的非负向量（即向量元素非负）且满足$\sum_i\gamma_i>0$。
+那么，群组达到一致的决策值就是：
+
 \begin{equation}
     \alpha = \frac{\sum_i \gamma_ix_i(0)}{\sum_i\gamma_i}
     \tag{19}
     \label{19}
 \end{equation}
-即决策值是在节点初始值的凸包中。
+
+{\color[gray]{0.5}
+\noindent i.e. the decision value is in the convex hull of initial values of the nodes.
+}
+
+\noindent 即决策值包含在在节点初始值的凸包中。
+
+{\color[gray]{0.5}
+\noindent \textbf{Proof.} We have $\gamma^TL=0$ and thus $\gamma^Tu\equiv0$ (because $u=-Lx$). 
+Therefore, $\beta=\gamma^Tx$ is an invariant quantity. 
+Assume, the digraph $G$ is not balanced. 
+Then, still an agreement is asymptotically reached. 
+Let $\alpha$ be the decision value of all nodes after reaching consensus. 
+We have $\gamma^Tx^*=\gamma^Tx(0)$ due to invariance of $\gamma^Tx(0)$. 
+But $x^*=\alpha\mathbf{1}$, thus we obtain
+}
 
 \noindent \textbf{Proof.} 
-我们有$\gamma^TL=0$并且因此$\gamma^Tu\equiv0$（因为$u=-Lx$）的集合。
+我们有$\gamma^TL=0$那么因此$\gamma^Tu\equiv0$（因为$u=-Lx$）的集合。
 因此，$\beta=\gamma^Tx$是一个不变的量。
 假如，图$G$是不平衡的。
 那么，一致性仍是渐进达到的。
 定义$\alpha$是所有节点达到一致后的决策值。
-我们有$\gamma^Tx^*=\gamma^Tx(0)$由于不变的$\gamma^Tx(0)$。
+我们有$\gamma^Tx^*=\gamma^Tx(0)$由于$\gamma^Tx(0)$是不变的。
 但是$x^*=\alpha\mathbf{1}$，因此我们得到
+
 \begin{equation}
     (\sum_i\gamma_i)\alpha = \gamma^Tx(0)
     \notag
 \end{equation}
 
-接下来的结果显示了，如果其中一个智能体使用了一个相当小的更新速率（或step-size），即$\gamma_{i^*}\gg\gamma_i$对所有的$i\ne i^*$。
-那么，所有节点的决策值收敛到$x_{i^*}$。
-换句话说，智能体$i^*$在领导者跟随（leader-follower）结果类型中扮演领导者的角色。
+{\color[gray]{0.5}
+\noindent and the result follows.
+}
+
+\noindent 结果如下。
+
+{\color[gray]{0.5}
+The following result shows that if one of the agents uses a relatively small update rate (or step-size), i.e. $\gamma_{i^*}\gg\gamma_i$ for all $i\ne i^*$. 
+Then, the value of all nodes converges to the value of $x_{i^*}$. 
+In other words, the agent $i^*$ plays the role of a leader in leader-follower type architecture.
+}
+
+接下来的结果表明，如果一个智能体使用了一个相当小的更新速率（或step-size），即$\gamma_{i^*}\gg\gamma_i$且所有的$i\ne i^*$。
+那么，所有节点的决策值收敛至$x_{i^*}$。
+换句话说，智能体$i^*$在领导者跟随（leader-follower）类型结构中扮演领导者的角色。
+
+{\color[gray]{0.5}
+\noindent \textbf{Corollary 3.} (multi-rate integrators) Consider a network of multi-rate integrators with the node dynamics
+}
 
 \noindent \textbf{Corollary 3.} （多比例积分）考虑一个多比例积分网络，其节点动态如下：
+
 \begin{equation}
     \gamma_i \dot{x}_i=u_i,\quad \gamma_i>0,\forall i \in \mathcal{I}
     \tag{20}
     \label{20}
 \end{equation}
-假设每一个节点满足协议(\ref{A1})。
+
+{\color[gray]{0.5}
+\noindent Assume each node applies Protocol (A1). 
+Then, an agreement is globally asymptotically reached and the decision value of the group is
+}
+
+\noindent 假设每一个节点满足协议(\ref{A1})。
 那么，达到一致的群组决策值就是：
+
 \begin{equation}
     \alpha = \frac{\sum_i \gamma_ix_i(0)}{\sum_i\gamma_i}
     \tag{21}
     \label{21}
 \end{equation}
 
+{\color[gray]{0.5}
+\noindent \textbf{Proof.} The dynamics of the network evolves according to
+}
+
 \noindent \textbf{Proof.} 网络根据下式动态变化：
+
 \begin{equation}
     D\dot{x} = -Lx
     \notag
 \end{equation}
-这里，$D=diag(\gamma)$是关于第$i$个对角元素对角矩阵，对角元素满足$\gamma_i>0$。
-后边的公式可以写成为：
+
+{\color[gray]{0.5}
+\noindent where $D=diag(\gamma)$ is a diagonal matrix with the $i$th diagonal element that is equal to $\gamma_i>0$. 
+The last equation can be rewritten as
+}
+
+\noindent 这里，$D=diag(\gamma)$是具有$i$个对角元素的对角矩阵，对角元素满足$\gamma_i>0$。
+上边的公式可以改写为：
+
 \begin{equation}
     \dot{x} = -\tilde{L}x
     \notag
 \end{equation}
-这里，$\tilde{L} = D^{-1}L = diag(\frac{1}{\gamma_1},\dots,\frac{1}{\gamma_n})L$是图$\tilde{G}$和邻接矩阵$\tilde{A}=D^{-1}\mathcal{A}$（即从节点$i$离开的边的权重被$\gamma_i$分割）的拉普拉斯矩阵。
-清晰的，$\gamma$是一个正元素向量，它是$\tilde{L}$的左特征向量，并且基于推论2的决策值是位于被$x_i(0)^\prime s$平均权重中被$\gamma$。
 
-\noindent {\em Remark} 6. Jadbabaie等人讨论了关于公式(\ref{20})和协议(\ref{A1})的一阶Euler渐进（Euler approximation）离散时间模型和姿态位置协议，推论3中$\gamma_i=deg_{out}(v_i)+1$的特殊选择。
-在文献[6]，拉普拉斯矩阵被定义为$I-D\mathcal{A}$，在本文中这等价于一个$\gamma_i=deg_{out}(v_i)\ge 0$多比例整合网络。
-$D$的奇异性由$\gamma_i=deg_{out}(v_i)$的选择决定，这在文献[13]中通过增加合适的正常量（即1）到$deg_{out}(v_i)$中来避免。
+{\color[gray]{0.5}
+\noindent where $\tilde{L} = D^{-1}L = diag(\frac{1}{\gamma_1},\dots,\frac{1}{\gamma_n})L$ is a valid Laplacian matrix for a digraph $\tilde{G}$ with adjacency matrix $\tilde{A}=D^{-1}\mathcal{A}$ (i.e. the weights of the edges leaving node $i$ are divided by $\gamma_i$ ). 
+{\color{green}Clearly, $\gamma$ is a vector with positive elements that is the left eigenvector of $\tilde{L}$ and based on Corollary 2 the decision value is in the weighted average of $x_i(0)$’s with weights speciﬁed by $\gamma$} .
+}
+
+\noindent 这里，$\tilde{L} = D^{-1}L = diag(\frac{1}{\gamma_1},\dots,\frac{1}{\gamma_n})L$是图$\tilde{G}$和邻接矩阵$\tilde{A}=D^{-1}\mathcal{A}$（即从节点$i$出发的边的权重被$\gamma_i$分割）的拉普拉斯矩阵。
+清晰的，$\gamma$是一个正元素向量，它是$\tilde{L}$的左特征向量，并且基于推论2的决策值是位于被$x_i(0)$的平均权重中被$\gamma$。
+
+{\color[gray]{0.5}
+\noindent {\em Remark} 6. The discrete-time model and attitude alignment protocol discussed in Jadbabaie et al. [13] correspond to the ﬁrst-order Euler approximation of equation (20) with protocol (A1) and the special choice of $\gamma_i=deg_{out}(v_i)+1$ in Corollary 3. 
+In [6], a Laplacian matrix is deﬁned as $I-D\mathcal{A}$ which in the context of this paper is equivalent to a multi-rate network of integrators with $\gamma_i=deg_{out}(v_i)\ge 0$. 
+The singularity of $D$ that is caused by the choice of $\gamma_i=deg_{out}(v_i)$ is avoided in [13] by properly adding a positive constant (e.g. 1) to $deg_{out}(v_i)$.
+}
+
+\noindent {\em Remark} 6. Jadbabaie等人讨论了关于公式(\ref{20})和协议(\ref{A1})的一阶Euler渐进（Euler approximation）离散时间模型和姿态位置协议，以及推论3中的特殊选择$\gamma_i=deg_{out}(v_i)+1$。
+在文献[6]，拉普拉斯矩阵被定义为$I-D\mathcal{A}$，在本文中这等价于一个$\gamma_i=deg_{out}(v_i)\ge 0$多比例积分网络。
+$D$的奇异性由$\gamma_i=deg_{out}(v_i)$的选择决定，这在文献[13]中通过增加合适的正常量（即1）到$deg_{out}(v_i)$上来避免。
+
+{\color[gray]{0.5}
+\noindent \textbf{Theorem 6.} Let $G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$ be a digraph with an adjacency matrix $\mathcal{A}=[a_{ij}]$. 
+Then, all the following statements are equivalent:
+
+i) G is balanced, 
+
+ii) $w_l = \mathbf{1}$ is the left eigenvector of the Laplacian of $G$ associates with the zero eigenvalue, i.e. $\mathbf{1}^TL = 0$.
+
+iii) $\sum_{i=1}^n u_i = 0$, $\forall x \in \mathbb{R}^n$ with $u_i = \sum_{j\in N_i}a_{ij}(x_j - x_i)$.
+}
 
 \noindent \textbf{Theorem 6.} 定义一个具有邻接矩阵$\mathcal{A}=[a_{ij}]$的图$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$。
 那么，下列所有的条件都是等价的：
@@ -1003,69 +1145,144 @@ i）图$G$是平衡的；
 
 ii）$w_l = \mathbf{1}$是图$G$拉普拉斯算子相对于0特征值的左特征向量，即$\mathbf{1}^TL = 0$。
 
-iii）有$\sum_{i=1}^n u_i = 0$，对于所有的$\forall x \in \mathbb{R}$，$u_i = \sum_{j\in N_i}a_{ij}(x_j - x_i)$。
+iii）对$\forall x \in \mathbb{R}^n$有$\sum_{i=1}^n u_i = 0$，且$u_i = \sum_{j\in N_i}a_{ij}(x_j - x_i)$。
 
-\noindent \textbf{Proof.} 我们展示了i）$\Leftrightarrow$ii）和ii）$\Leftrightarrow$iii）。
+{\color[gray]{0.5}
+\noindent \textbf{Proof.} We show i) $\Leftrightarrow$ ii) and ii) $\Leftrightarrow$ iii).
+}
 
-对于i）$\Leftrightarrow$ii）的证明：
+\noindent \textbf{Proof.} 我们证明了i）$\Leftrightarrow$ ii）和ii）$\Leftrightarrow$ iii）。
+
+{\color[gray]{0.5}
+Proof of i) $\Leftrightarrow$ ii): We have $\Delta_{ii} = deg_{out}(v_i)$ and $deg_{in}(v_i)=\sum_{j,j\ne i}a_{ji}$, thus the $i$th column sum of $L$ is equal to
+}
+
+关于i）$\Leftrightarrow$ ii）的证明：
 我们有$\Delta_{ii} = deg_{out}(v_i)$和$deg_{in}(v_i)=\sum_{j,j\ne i}a_{ji}$，因此矩阵$L$第$i$列的和等于
+
 \begin{equation}
-    \sum_il_{ji} = \sum_{i,j\ne i}l_{ji}+l_{ii} = -deg_{in}(v_i) + deg_{out}(v_i) = 0 \Leftrightarrow \text{图}G\text{的节点}i\text{是平衡的}
+    \sum_il_{ji} = \sum_{i,j\ne i}l_{ji}+l_{ii} = -deg_{in}(v_i) + deg_{out}(v_i) = 0 \Leftrightarrow \text{图}G\text{的节点}v_i\text{是平衡的}
     \notag
 \end{equation}
-注意到矩阵$L$第$i$列的和等于向量$\mathbf{1}^TL$的第$i$个行元素，可以推断如果图$G$的所有节点是平衡，那么$\mathbf{1}^TL$，即图$G$是不平衡的。
 
-对于ii）$\Leftrightarrow$iii）的证明：
+{\color[gray]{0.5}
+\noindent Noting that the $i$ column sum of $L$ is the same as the $i$th element of the row vector $\mathbf{1}^TL$, one concludes that $\mathbf{1}^TL=0$ iﬀ all the nodes of $G$ are balanced, i.e. $G$ is balanced.
+}
+
+\noindent 注意到矩阵$L$第$i$列的和等于向量$\mathbf{1}^TL$的第$i$个行元素，可以断定当且仅当图$G$的所有节点是平衡的，即图$G$是平衡的，有$\mathbf{1}^TL=0$。
+
+{\color[gray]{0.5}
+Proof of ii) $\Leftrightarrow$ iii): 
+Since $u=-Lx$, ($\sum_iu_i=0,\forall x$) $\Leftrightarrow$ ($\mathbf{1}^Tu=-(\mathbf{1}^TL)x=0, \forall x$) $\Leftrightarrow$ $\mathbf{1}^TL=0$.
+}
+
+对于ii）$\Leftrightarrow$ iii）的证明：
 由于$u=-Lx$，（$\sum_iu_i=0,\forall x$）$\Leftrightarrow$ （$\mathbf{1}^Tu=-(\mathbf{1}^TL)x=0, \forall x$）$\Leftrightarrow$ $\mathbf{1}^TL=0$。
+
+{\color[gray]{0.5}
+\noindent {\em Remark} 7. Notice that in Theorem 6, the graph $G$ does not need to be connected.
+}
 
 \noindent {\em Remark} 7. 注意在定理6中，图$G$不需要连通。
 
+% ------------------------------------------------------------------------------
 \subsection{Performance of Group Agreement and Mirror Graphs}
-在这部分，我们讨论协议(\ref{A1})平衡图的一些问题。
+{\color[gray]{0.5}
+\noindent In this section, we discuss performance issues of Protocol (A1) with balanced graphs. 
+An important consequence of Theorem 6 is that for networks with balanced information ﬂow, $\alpha = Ave(x)$ is an invariant quantity. 
+This is certainly not true for an arbitrary digraph. 
+The invariance of $Ave(x)$ allows decomposition of $x$ according to the following equation:
+}
+
+\noindent 在这部分，我们讨论平衡图的协议(\ref{A1})性能的一些问题。
 定理6的一个重要的结果就是对于平衡信息流网络而言，$\alpha = Ave(x)$是一个不变的量。
 对于任意的有向图，并不是确定正确的。
-$Ave(x)$的不变性允许其根据以下方程进行$x$的分解：
+$Ave(x)$的不变性允许$x$的进行以下分解：
+
 \begin{equation}
     x = \alpha \mathbf{1} + \delta
     \tag{22}
     \label{22}
 \end{equation}
-这里，$\alpha = Ave(x)$，$\delta\in \mathbb{R}^n$且满足$\sum_i\delta_i=0$。
+
+{\color[gray]{0.5}
+\noindent where $\alpha = Ave(x)$ and $\delta\in \mathbb{R}^n$ satisﬁes $\sum_i\delta_i=0$. 
+We refer to $\delta$ as the (group) disagreement vector. 
+The vector $\delta$ is orthogonal to $\mathbf{1}$ and belongs to an $(n-1)$-dimensional subspace called the disagreement eigenspace of $L$ provided that $G$ is strongly connected. 
+Moreover, $\delta$ evolves according to the (group) disagreement dynamics given by
+}
+
+\noindent 这里，$\alpha = Ave(x)$，$\delta\in \mathbb{R}^n$且满足$\sum_i\delta_i=0$。
 我们引用$\delta$作为（群组）非一致向量。
 向量$\delta$与$\mathbf{1}$正交，且属于一个$(n-1)$-维子空间，此子空间叫做强连通图$G$的拉普拉斯矩阵$L$的非一致特征空间。
-此外，$\delta$根据下边给出的动态非一致（群组）公式变化
+此外，$\delta$还根据下边的（群组）非一致公式动态变化
+
 \begin{equation}
     \dot{\delta} = -L\delta
     \tag{23}
     \label{23}
 \end{equation}
 
-定义图$G$的拉普拉斯非一致函数为：
+{\color[gray]{0.5}
+Deﬁne the Laplacian disagreement function of a digraph $G$ as
+}
+
+定义图$G$的拉普拉斯矩阵非一致函数为：
+
 \begin{equation}
     \Phi_G(x) = x^T Lx
     \tag{24}
     \label{24}
 \end{equation}
-此时$L=\mathcal{L}(G)$。
+
+{\color[gray]{0.5}
+\noindent with $L=\mathcal{L}(G)$. 
+For digraphs, $\Phi_G(x)$ can be negative (e.g. the Laplacian of a digraph with two nodes and a single edge 12 is not positive semideﬁnite).
+}
+
+\noindent 这里$L=\mathcal{L}(G)$。
 对于图，$\Phi_G(x)$可以是负定的（例如，两个节点和一个边12的图拉普拉斯矩阵是非半正定的）。
 
-这也证明平衡图的一个有效性质是，他们的拉普拉斯算子非一致函数是半正定的。
+{\color[gray]{0.5}
+It turns out that a useful property of balanced digraphs is that their Laplacian disagreement function is positive semideﬁnite. 
+In addition, for any balanced digraph $G$, there exists an undirected graph that has the same Laplacian disagreement function as $G$. 
+In the following, we formally deﬁne this induced undirected graph.
+}
+
+平衡图的一个有效性质是，它们的拉普拉斯矩阵非一致函数是半正定的。
 另外，对于任意的平衡图$G$，都存在一个具有相同拉普拉斯非一致函数的无向图$G$。
 接下来，我们正式定义这个感应无向图。
 
+{\color[gray]{0.5}
+\noindent \textbf{Definition 2.} (mirror graph/operation) Let $G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$ be weighted digraph. 
+Let $\tilde{\mathcal{E}}$ be the set of reverse edges of $G$ obtained by reversing the order of nodes of all the pairs in $\mathcal{E}$. 
+The mirror of $G$ denoted by $\hat{G}=\mathcal{M}(G)$ is an undirected graph in the form $\hat{G}=(\mathcal{V}, \hat{\mathcal{E}}, \hat{\mathcal{A}})$ with the same set of nodes as $G$, the set of edges $\hat{\mathcal{E}}=\mathcal{E}\cup \tilde{\mathcal{E}}$, and the symmetric adjacency matrix $\hat{\mathcal{A}}=[\hat{a}_{ij}]$ with elements
+}
+
 \noindent \textbf{Definition 2.} （镜像图/操作）定义加权有向图$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$。
-定义$\tilde{\mathcal{E}}$是图$G$的反转边（reverse edges）的一部分，图$G$通过反转$\mathcal{E}$中所有成对节点的顺序得到。
-图$G$的镜像（mirror）定义为$\hat{G}=\mathcal{M}(G)$，它是一个形式为$\hat{G}=(\mathcal{V}, \hat{\mathcal{E}}, \hat{\mathcal{A}})$的无向图，具有和$G$一样的节点，边$\hat{\mathcal{E}}=\mathcal{E}\cup \tilde{\mathcal{E}}$，和渐进邻接矩阵$\hat{\mathcal{A}}=[\hat{a}_{ij}]$元素为
+定义$\tilde{\mathcal{E}}$是图$G$的反转边的一部分，图$G$通过反转$\mathcal{E}$中所有成对节点的顺序得到。
+图$G$的镜像定义为$\hat{G}=\mathcal{M}(G)$，它是一个形式为$\hat{G}=(\mathcal{V}, \hat{\mathcal{E}}, \hat{\mathcal{A}})$的无向图，具有和$G$一样的节点，边$\hat{\mathcal{E}}=\mathcal{E}\cup \tilde{\mathcal{E}}$，和渐进邻接矩阵$\hat{\mathcal{A}}=[\hat{a}_{ij}]$元素为
+
 \begin{equation}
     \hat{a}_{ij}=\hat{a}_{ji}=\frac{a_{ij}+a_{ji}}{2}\ge 0
     \tag{25}
     \label{25}
 \end{equation}
 
-接下来的结果展示了关于$\mathcal{L}$和在加权邻接矩阵$\mathcal{A}$进行交换时符号的操作。
+{\color[gray]{0.5}
+The following result shows that the operations of $\mathcal{L}$ and $Sym$ on a weighted adjacency matrix $\mathcal{A}$ commute.
+}
+
+接下来的结果展示了关于$\mathcal{L}$和在加权邻接矩阵$\mathcal{A}$进行交换时的符号操作。
+
+{\color[gray]{0.5}
+\noindent \textbf{Theorem 7.} Let $G$ be a digraph with adjacency matrix $\mathcal{A}=adj(G)$ and Laplacian $L=\mathcal{L}(G)$. 
+Then $L_s = Sym(L) = (L+L^T)/2$ is a valid Laplacian matrix for $\hat{G}=\mathcal{M}(G)$ if and only if $G$ is balanced, i.e. the following diagram commutes iﬀ $G$ is balanced
+}
 
 \noindent \textbf{Theorem 7.} 定义$G$是一个具有邻接矩阵$\mathcal{A}=adj(G)$和拉普拉斯矩阵$L=\mathcal{L}(G)$的图。
-那么$L_s = Sym(L) = (L+L^T)/2$是一个关于$\hat{G}=\mathcal{M}(G)$的可用拉普拉斯矩阵，此时$G$是平衡图，即下述图转换当且仅当$G$是平衡的
+那么当且仅当$G$是平衡图时，$L_s = Sym(L) = (L+L^T)/2$是一个关于$\hat{G}=\mathcal{M}(G)$的可用拉普拉斯矩阵，即有下述转换形式
+
 \begin{equation}
     \begin{aligned}
                     &G \xrightarrow{adj}         &\mathcal{A} \xrightarrow{\mathcal{L}}          &L \\
@@ -1075,139 +1292,300 @@ $Ave(x)$的不变性允许其根据以下方程进行$x$的分解：
     \tag{26}
     \label{26}
 \end{equation}
-此外，如果$G$是平衡图，那么$G$的拉普拉斯非一致函数和$\hat{G}$是相等的。
 
-\noindent\textbf{Proof.} 我们知道$G$是平衡的当且仅当$\textbf{1}^TL=0$。
+{\color[gray]{0.5}
+\noindent Moreover, if $G$ is balanced, the Laplacian disagreement functions of $G$ and $\hat{G}$ are equal.
+}
+
+\noindent 此外，如果$G$是平衡图，那么$G$的拉普拉斯非一致函数和$\hat{G}$是相等的。
+
+{\color[gray]{0.5}
+\noindent\textbf{Proof.} We know that $G$ is balanced iﬀ $\textbf{1}^TL=0$. 
+Since $L\textbf{1}=0$, we have $\mathbf{1}^TL=0$ $\Leftrightarrow$ $\frac{1}{2}(L+L^T)\mathbf{1}=0$. 
+Thus, $G$ is balanced iff $L_s$ has a right eigenvector of $\mathbf{1}$ associated with $\lambda=0$, i.e. $L_s$ is a valid Laplacian matrix.
+Now, we prove that $L_s=\mathcal{L}(\hat{G})$. 
+For doing so, let us calculate $\hat{\Delta}$ element-wise, we get
+}
+
+\noindent\textbf{Proof.} 我们知道当且仅当$\textbf{1}^TL=0$时图$G$是平衡的。
 由于$L\textbf{1}=0$，我们有$\mathbf{1}^TL=0$ $\Leftrightarrow$ $\frac{1}{2}(L+L^T)\mathbf{1}=0$。
-因此$G$是平衡的当且仅当$L_s$有一个关于$\lambda=0$右特征向量$\mathbf{1}$，即$L_s$是一个可用拉普拉斯矩阵。
-现在，我们证明$L_s=\mathcal{L}(\hat{G})$。为了证明，我们计算$\hat{\Delta}$的元素，可以得到：
+因此当且仅当$L_s$有一个特征值是$\lambda=0$的右特征向量$\mathbf{1}$时，$G$是平衡的，即$L_s$是一个有效的拉普拉斯矩阵。
+现在，我们证明$L_s=\mathcal{L}(\hat{G})$。
+为了证明，我们计算$\hat{\Delta}$的元素，可以得到：
+
 \begin{equation}
     \hat{\Delta}_{ii}=\sum_j \frac{a_{ij}+a_{ji}}{2}=\frac{1}{2}(deg_{out}(v_i)+deg_{in}(v_i))=deg_{out}(v_i)=\Delta_{ii}
     \notag
 \end{equation}
-因此，$\hat{\Delta}=\Delta$。
+
+{\color[gray]{0.5}
+\noindent Thus, $\hat{\Delta}=\Delta$. 
+On the other hand, we have
+}
+
+\noindent 因此，$\hat{\Delta}=\Delta$。
 另一方面，我们有
+
 \begin{equation}
     L_s = \frac{1}{2}(L+L^T) = \Delta-\frac{A+A^T}{2}=\hat{\Delta}-\hat{A}=\hat{L}=\mathcal{L}(\hat{G})
     \notag
 \end{equation}
-最后一部分来源于$\hat{L}$等于$L$的渐进部分，且$x^T(L-L^T)x\equiv0$。
 
-\noindent\textbf{Notation.} 为了简化符号，在代数图论部分，$\lambda_k(G)$用来表示$\lambda_k(\mathcal{L}(G))$。
+{\color[gray]{0.5}
+\noindent The last part simply follows from the fact that $\hat{L}$ is equal to the symmetric part of $L$ and $x^T(L-L^T)x\equiv0$.
+}
 
-现在，我们准备展示对协议(\ref{A1})关于群组达到一致性速度的研究结果。
+\noindent 最后一部分来源于$\hat{L}$等于$L$的渐进部分，且$x^T(L-L^T)x\equiv0$。
 
-\noindent\textbf{Theorem 8.} （一致性的性能）考虑带有有向信息流$G$且是平衡和强连通的积分器网络。
+{\color[gray]{0.5}
+\noindent\textbf{Notation.} For simplicity of notation, in the context of algebraic graph theory, $\lambda_k(G)$ is used to denote $\lambda_k(\mathcal{L}(G))$.
+}
+
+\noindent\textbf{Notation.} 为了简化符号，在代数图论部分，用$\lambda_k(G)$来表示$\lambda_k(\mathcal{L}(G))$。
+
+{\color[gray]{0.5}
+Now, we are ready to present our main result on performance of the Protocol (A1) in terms of the speed of reaching a consensus as a group.
+}
+
+现在，我们准备演示对协议(\ref{A1})关于群组达到一致性的速度的研究结果。
+
+{\color[gray]{0.5}
+\noindent\textbf{Theorem 8.} (performance of agreement) Consider a network of integrators with a directed information ﬂow $G$ that is balanced and strongly connected. 
+Then, given Protocol (A1), the following statements hold:
+}
+
+\noindent\textbf{Theorem 8.} （一致性的性能）考虑带有有向信息流$G$是平衡和强连通的积分器网络。
 那么，给出协议(\ref{A1})，下述状态满足：
 
-i）群组的非一致向量$\delta$是非一致变化在公式(\ref{23})全局渐进消失的答案，消失速度等于$\kappa=\lambda_2(\hat{G})$（或图$G$镜像的费德勒特征值），即
+{\color[gray]{0.5}
+i) the group disagreement (vector) $\delta$ as the solution of the disagreement dynamics in (23) globally asymptotically vanishes with a speed that is equal to $\kappa=\lambda_2(\hat{G})$ (or the Fiedler eigenvalue of the mirror graph of $G$), i.e.
+}
+
+i）群组的非一致向量$\delta$是非一致变化在公式(\ref{23})全局渐进消失的结果，消失速度等于$\kappa=\lambda_2(\hat{G})$（或图$G$镜像的费德勒特征值），即
+
 \begin{equation}
     \tag{27}
     \label{27}
     ||\delta(t)||\le ||\delta(0)||exp(-kt)
 \end{equation}
 
-ii）下述的流畅的，正向无限制，前者函数
+{\color[gray]{0.5}
+ii) the following smooth, positive deﬁnite, and proper function
+}
+
+ii）下述的流畅的，正定的，适当的函数
+
 \begin{equation}
     \tag{28}
     \label{28}
     V(\delta) = \frac{1}{2}||\delta||^2
 \end{equation}
-是一个可用的非一致动态变化的李雅普诺夫函数。
+
+{\color[gray]{0.5}
+is a valid Lyapunov function for the disagreement dynamics.
+}
+
+是一个关于非一致动态变化的有效李亚普诺夫函数。
+
+{\color[gray]{0.5}
+\noindent\textbf{Proof.} We have
+}
 
 \noindent\textbf{Proof.} 我们有
+
 \begin{equation}
     \tag{29}
     \label{29}
     \dot{V} = -\delta^TL\delta = -\delta^TL_s\delta = -\delta^T\hat{L}\delta \le -\lambda_2(\hat{G})||\delta||^2 = -2\kappa V(\delta) < 0, \forall \delta \ne 0
 \end{equation}
-这证明$V(\delta)$是一个可用的关于群组动态非一致的李雅普诺夫函数。
-此外，$\delta(t)$全局指数消失速度为$\kappa$由$t\rightarrow +\infty ..$。
-事实上$L_s = \hat{L}$是一个关于无向图（即$G$的镜像）的可用拉普拉斯矩阵，来源定理7且不相等
+
+{\color[gray]{0.5}
+\noindent This proves that $V(\delta)$ is a valid Lyapunov function for the group disagreement dynamics. 
+Moreover, $\delta(t)$ vanishes globally exponentially fast with a speed of $\kappa$ as $t\rightarrow +\infty ..$ 
+The fact that $L_s = \hat{L}$ is a valid Laplacian matrix for an undirected graph (i.e. mirror of $G$) follows from Theorem 7 and the inequality
+}
+
+\noindent 这证明$V(\delta)$是一个关于群组动态非一致的有效李亚普诺夫函数。
+此外，$\delta(t)$全局指数消失随着$t\rightarrow +\infty .$速度为$\kappa$。
+事实上$L_s = \hat{L}$是一个关于无向图（即$G$的镜像）的有效拉普拉斯矩阵，来源于定理7且有不相等性
+
 \begin{equation}
     \tag{30}
     \label{30}
     \delta^T \hat{L} \delta \ge \lambda_2(\hat{G})||\delta||^2,\quad \forall\delta:\mathbf{1}^T\delta=0
 \end{equation}
-这来源于公式(\ref{14})。
 
-众所周知的现象关于无向图的费德勒特征值，对于密集图$\lambda_2$是相当大的，而对于稀疏图$\lambda_2$是相当小的[11]（这是为什么$\lambda_2$被叫做代数连通度）。
-根据这个现象，根据定理8，可以推断具备密集内连接的网络比一个连接但稀疏的网络能更快的解决一致性问题。
-这和关于关于群组一致性的常识是一致的。
-特殊的，能创造一个$n$节点平衡图长度为$n$的图解决了一致性问题。
+{\color[gray]{0.5}
+\noindent which is due to equation (14).
+}
+
+\noindent 这来源于公式(\ref{14})。
+
+{\color[gray]{0.5}
+A well-known observation regarding the Fiedler eigenvalue of an undirected graph is that for dense graphs $\lambda_2$ is relatively large and for sparse graphs $\lambda_2$ is relatively small [11] (this is why $\lambda_2$ is called the algebraic connectivity). 
+According to this observation, from Theorem 8, one can conclude that a network with dense interconnections solves an agreement problem faster than a connected but sparse network. 
+This is consistent with common sense regarding agreement in a group. 
+As a special case, {\color{green}a cycle of length $n$ that creates a balanced digraph on $n$ nodes solves an agreement problem.} 
+However, this is a relatively slow way to solve such a consensus problem.
+}
+
+一个关于无向图费德勒特征值众所周知的知识，对于密集图$\lambda_2$是相当大的，而对于稀疏图$\lambda_2$是相当小的[11]（这是为什么$\lambda_2$被叫做代数连通度）。
+根据这个情况，结合定理8，可以推断一个具备内部密集连接的网络比一个内部稀疏连接的网络能更快的解决一致性问题。
+这和群组一致性问题具有一致的现象。
+特殊的，一个由长度为$n$的环创造出的具备$n$节点的平衡图，可以解决一致性问题。
 然而，这是一种很慢的解决一致性问题的方式。
 
-
+% ------------------------------------------------------------------------------
 \subsection{Consensus in Networks with Switching Topology}
-考虑一个具有移动智能体的网络，之间互相沟通并且需要一致到一个感兴趣的目标或表现同步。
-由于网络节点一直在移动，不难想象，由于两个智能体之间存在障碍物，通信连接很容易丢失。
-由于智能体进入了其他智能体的有效检测范围，那么就会发生相邻智能体之间出现新连接的对立情况。
+{\color[gray]{0.5}
+\noindent Consider a network of mobile agents that communicate with each other and need to agree upon a certain objective of interest or perform synchronization. 
+Since, the nodes of the network are moving, it is not hard to imagine that some of the existing communication links can fail simply due to the existence of an obstacle between two agents. 
+The opposite situation can arise where new links between nearby agents are created because the agents come to an eﬀective range of detection with respect to each other. 
+In other words, in the graph $G$ representing the information ﬂow of the network, certain edges can be added or removed from $G$. 
+Here, we are interested to investigate that in case of a network with switching topology whether it is still possible to reach a consensus or not.
+}
+
+\noindent 考虑一个节点间互相沟通的移动智能体网络，需要一致到一个感兴趣的目标或表现同步。
+由于网络节点一直在移动，不难猜想，由于两个智能体之间存在障碍物，通信连接很容易丢失。
+由于智能体进入了其他智能体的有效检测范围，那么就会发生相邻智能体之间出现新连接的相反情况。
 换句话说，在用图$G$表示的有限信息流网络中，图$G$的某些边缘会增加或移除。
 在这里，我们致力于发现探索网络具有切换拓扑的情况，无论是否能够达到一致性。
 
-考虑一个具有连续状态和离散状态的混合系统，这属于有限集合图$G$
+{\color[gray]{0.5}
+Consider a hybrid system with a continuous-state $x \in \mathbb{R}^n$ nand a discrete-state $G$ that belongs to a ﬁnite set of digraphs
+}
+
+考虑一个具有连续状态$x \in \mathbb{R}^n$和离散状态$G$的混合系统，这属于图的一个有限集合
+
 \begin{equation}
     \Gamma_n = \{ G: G\ \text{is a digraph of order}\ n\ \text{that is}\ strongly\ connected\ \text{and}\ balanced \}
     \notag
 \end{equation}
-可以被分析表示成如下形式：
+
+{\color[gray]{0.5}
+\noindent that can be analytically expressed in the form
+}
+
+\noindent 可以被分析表示成如下形式：
+
 \begin{equation}
     \Gamma_n = \{ G=(\mathcal{V}, \mathcal{E}, \mathcal{A}): \text{rank}(\mathcal{L}(G)) =n-1, \mathbf{1}^T\mathcal{L}(G) = 0\}
     \tag{31}
     \label{31}
 \end{equation}
 
-给出节点的动态协议，那么系统的连续状态根据如下动态进行演变：
+{\color[gray]{0.5}
+\noindent Given the node dynamics and protocol, the continuous-state of the system evolves according to the following dynamics
+}
+
+\noindent 给出节点的动态变化协议，那么系统的连续状态根据如下公式变化：
+
 \begin{equation}
     \dot{x}(t) = -\mathcal{L}(G_k)x(t),\quad k=s(t), G_k\in \Gamma_n
     \tag{32}
     \label{32}
 \end{equation}
-这里，$s(t): \mathbb{R}_{\ge 0}\rightarrow \mathcal{I}_{\Gamma_n}$是切换信号（switching signal），并且$\mathcal{I}_{\Gamma_n}\subset \mathbb{N}$是相对于$\Gamma_n$中元素的索引集合。
-清晰的，$\Gamma_n$是一个有限集合，因为它不是一个没有边缘的图，而是一个具有$n(n-1)$个边的完整图。
-解决具有切换拓扑的移动网络的一致性问题的关键是，公式(\ref{28})提到的李雅普诺夫函数的基本性质和平衡图的性质。
-注意函数$V(\delta)=\frac{1}{2}||\delta||^2$并不依赖$G$或$L=\mathcal{L}(G)$。
-$V(\delta)$的这个性质使它成为切换拓扑系统(\ref{32})的李雅普诺夫函数稳定性分析的合适候选。
 
-\noindent \textbf{Theorem 9.} 对于任意的切换信号$s(\cdot)$，切换系统(\ref{32})的解决方法是全局渐进收敛到$Ave(x(0))$（即完成平均一致性）。
+{\color[gray]{0.5}
+\noindent where $s(t): \mathbb{R}_{\ge 0}\rightarrow \mathcal{I}_{\Gamma_n}$ is a switching signal and $\mathcal{I}_{\Gamma_n}\subset \mathbb{N}$ is the index set associated with the elements of $\Gamma_n$. 
+Clearly, $\Gamma_n$ is a ﬁnite set, because either a digraph has no edges or it is a complete graph with $n(n-1)$ directed edges.
+}
+
+\noindent 这里，$s(t): \mathbb{R}_{\ge 0}\rightarrow \mathcal{I}_{\Gamma_n}$是切换信号（switching signal），并且$\mathcal{I}_{\Gamma_n}\subset \mathbb{N}$是相对于$\Gamma_n$中元素的索引集合。
+无疑地，$\Gamma_n$是一个有限集合，因为它既不是一个没有边缘的图，而是一个具有$n(n-1)$个有向边的完整图。
+
+{\color[gray]{0.5}
+The key in solving the agreement problem for mobile networks with switching topology is a basic property of the Lyapunov function in (28) and the properties of balanced graphs. 
+Note that the function $V(\delta)=\frac{1}{2}||\delta||^2$ does not depend on $G$ or $L=\mathcal{L}(G)$. 
+This property of $V(\delta)$ makes it an {\color{green}appropriate candidate} as a common Lyapunov function for stability analysis of the switching system (32).
+}
+
+解决具有切换拓扑的移动网络的一致性问题的关键是公式(\ref{28})提到的李亚普诺夫函数的基本性质和平衡图的性质。
+注意函数$V(\delta)=\frac{1}{2}||\delta||^2$并不依赖$G$或$L=\mathcal{L}(G)$。
+$V(\delta)$的这个性质使它成为切换拓扑系统(\ref{32})稳定性分析的李亚普诺夫函数合适候选。
+
+{\color[gray]{0.5}
+\noindent \textbf{Theorem 9.} For any arbitrary switching signal $s(\cdot)$, the solution of the switching system (32) globally asymptotically converges to $Ave(x(0))$ (i.e. average-consensus is reached). 
+Moreover, the following smooth, positive deﬁnite, and proper function
+}
+
+\noindent \textbf{Theorem 9.} 对于任意的切换信号$s(\cdot)$，切换系统(\ref{32})的解决方法是全局渐进收敛到$Ave(x(0))$（即达成平均一致性）。
 此外，下述的平滑，正定，合适函数
+
 \begin{equation}
     V(\delta) = \frac{1}{2}||\delta||^2
     \label{33}
     \tag{33}
 \end{equation}
-是一个下面给出的关于动态非一致性协议普遍可用的李雅普诺夫方程
+
+{\color[gray]{0.5}
+\noindent is a valid common Lyapunov function for the disagreement dynamics given by
+}
+
+\noindent 是一个由下式给出的关于动态非一致性协议的有效李亚普诺夫方程
+
 \begin{equation}
     \dot{\delta}(t) = -\mathcal{L}(G_k)\delta(t),\quad k=s(t),G_k\in \Gamma_n.
     \tag{34}
     \label{34}
 \end{equation}
 
-进一步的，非一致性向量$\delta$随着关于下述的最小速率呈指数级消失
+{\color[gray]{0.5}
+\noindent Furthermore, the disagreement vector $\delta$ vanishes exponentially fast with the least rate of
+}
+
+\noindent 进一步的，非一致性向量$\delta$随着下述的最小速率呈指数级消失
+
 \begin{equation}
     \kappa^* = \min_{G\in \Gamma_n} \lambda^2(\mathcal{L}(\hat{G})).
     \tag{35}
     \label{35}
 \end{equation}
-也就是说，$||\delta(t)||\le ||\delta(0)||exp(-\kappa^*t)$。
+
+{\color[gray]{0.5}
+\noindent In the other words, $||\delta(t)||\le ||\delta(0)||exp(-\kappa^*t)$.
+}
+
+\noindent 也就是说，$||\delta(t)||\le ||\delta(0)||exp(-\kappa^*t)$。
+
+{\color[gray]{0.5}
+\noindent \textbf{Proof.} Due the fact that $G_k$ is balanced for all $k$ and $u=-\mathcal{L}(G_k)x$, we have $\mathbf{1}^Tu=-(\mathbf{1}^T\mathcal{L}(G_k))x\equiv0$. 
+Thus, $\alpha=Ave(x)$ is an invariant quantity which allows us to decompose $x$ as $x=\alpha \mathbf{1}+\delta$.
+Therefore, the disagreement switching system induced by (32) takes the form (34). 
+Calculating $\dot{V}$, we get
+}
 
 \noindent \textbf{Proof.}
-根据$G_k$是平衡图的事实，对于所有的$k$和$u=-\mathcal{L}(G_k)x$，我们有$\mathbf{1}^Tu=-(\mathbf{1}^T\mathcal{L}(G_k))x\equiv0$。
-因此，$\alpha=Ave(x)$是一个不变量，允许分解$x$为$x=\alpha \mathbf{1}+\delta$。
-因此，由公式(\ref{32})引起的非一致切换系统变为公式(\ref{34})的形式。
+对于所有的$k$和$u=-\mathcal{L}(G_k)x$，$G_k$是平衡图的情况，我们有$\mathbf{1}^Tu=-(\mathbf{1}^T\mathcal{L}(G_k))x\equiv0$。
+因此，$\alpha=Ave(x)$是一个不变量，这允许我们将$x$分解为$x=\alpha \mathbf{1}+\delta$。
+因此，由公式(\ref{32})得出的非一致切换系统变为公式(\ref{34})的形式。
 计算$\dot{V}$，我们得到
+
 \begin{equation}
     \tag{36}
     \label{36}
     \dot{V} = \delta^T\mathcal{L}(G_k)\delta = -\delta^T\mathcal{L}(\hat{G}_k)\delta \le -\lambda_2(\mathcal{L}(\hat{G}_k))||\delta||^2 \le -\kappa^*||\delta||^2 = -2\kappa^*V(\delta)<0,\forall \delta \ne 0
 \end{equation}
-这保证了$V(\delta)$是一个关于非一致切换系统(\ref{34})的普通李雅普诺夫函数。
+
+{\color[gray]{0.5}
+\noindent This guarantees that $V(\delta)$ is a valid common Lyapunov function for the disagreement switching system (34). 
+Moreover, we have
+}
+
+\noindent 这保证了$V(\delta)$是一个关于非一致切换系统(\ref{34})的有效通用李亚普诺夫方程。
 此外，我们有
+
 \begin{equation}
     \notag
     V(\delta(t)) \le V(\delta(0))exp(-2\kappa^*t) \Rightarrow ||\delta(t)|| \le ||\delta(0)||exp(-\kappa^*t)
 \end{equation}
-并且非一致性向量$\delta(t)$全局指数消失速度为$\kappa^* > 0$为$t\rightarrow +\infty$。
+
+{\color[gray]{0.5}
+\noindent and the disagreement vector $\delta(t)$ globally exponentially vanishes with a speed of $\kappa^* > 0$ as $t\rightarrow +\infty$. 
+Finally, the minimum in (35) always exists and is achieved because $\Gamma_n$ is a ﬁnite set.
+}
+
+\noindent 并且非一致向量$\delta(t)$全局指数消失速度随着$t\rightarrow +\infty$为$\kappa^* > 0$为。
 最后，公式(\ref{35})的最小化总是存在并且是可以得到的，因为$\Gamma_n$是一个有限集合。
 
 % ------------------------------------------------------------------------------
