@@ -51,6 +51,7 @@ Simulations are provided that demonstrate the eﬀectiveness of our theoretical 
 % 生成目录
 \tableofcontents
 
+\clearpage
 % ------------------------------------------------------------------------------
 \section{Introduction}
 {\color[gray]{0.5}
@@ -1701,7 +1702,7 @@ i）$\tau \in (0, \tau^*)\ \text{with}\ \tau^*=\frac{\pi}{2\lambda_n}, \lambda_n
 ii）关于$\Gamma(s) = e^{-\tau s}/s$的奈奎斯特图(Nyquist plot)有在$-1/\lambda_k,\ \forall k > 1$附近的零包围。
 
 {\color[gray]{0.5}
-\noindent Moreover, for $\tau=\tau^*$ the system has a globally asymptotically stabel oscillatory solution with frequency $w=\lambda_n$. 
+\noindent Moreover, for $\tau=\tau^*$ the system has a globally asymptotically stable oscillatory solution with frequency $w=\lambda_n$. 
 }
 
 \noindent 此外，对于$\tau=\tau^*$，系统有关于频率$w=\lambda_n$的全局渐进稳定振荡解决。
@@ -2021,5 +2022,432 @@ The consensus problems for discrete-time approximation of integrator agents reli
 
 积分器智能体的离散时间渐进一致性问题主要依赖非负矩阵理论，这将在下个文章中指出。
 
+% ------------------------------------------------------------------------------
+\section*{A Appendix}
+{\color[gray]{0.5}
+This section contains the proofs of some of the theorems of the paper.
+}
+
+这部分包含了文章中一些定理的证明。
+
+\subsection*{A.1 Proof of Theorem 1}
+{\color[gray]{0.5}
+\noindent \textbf{Proof.} Deﬁne $\phi_{ij}(z) = a_{ij}z$ for all $ij \in \mathcal{E}$. 
+It is trivial that if $x_i=x_j$ for all $ij \in \mathcal{E}$, then $u=0$. 
+Thus, we prove the converse: $u=0$ implies that all nodes are in agreement. 
+If the values of all nodes are equal, the result follows. 
+Thus, assume there exists a node $i^*$, called max-leader, such that $x_{i^*}\ge x_j$ for all $j\ne i^*$, i.e. $i^* = arg\max_{j\in \mathcal{I}} x_j$ (if $i^*$ is not unique, choose one arbitrarily).
+}
+
+\noindent 定义所有的$ij \in \mathcal{E}$有$\phi_{ij}(z) = a_{ij}z$。
+不必强调的，对于所有的$ij \in \mathcal{E}$如果有$x_i = x_j$，那么$u=0$。
+因此，我们证明收敛性：$u=$表明所有的节点都是一致的。
+如果所有节点的值豆娘等，那么结果正确。
+因此，假设存在一个节点$i^*$，称作最大领导者，那么对所有的$j\ne i^*$有$x_{i^*}\ge x_j$，即$i^* = arg\max_{j\in \mathcal{I} x_j}$（即如果$i^*$并不是唯一的，可以任意选择）。
+
+{\color[gray]{0.5}
+Deﬁne the initial cluster $J^{(0)}=\{ i^* \}$ and denote the indices of all the ﬁrst-neighbors of $i^*$ by $J^{(1)}=N_{i^*}$. 
+Then, $u_{i^*}=0$ implies that
+}
+
+定义初始化簇$J^{(0)}=\{ i^* \}$并且用$J^{(1)}=N_{i^*}$来表示所有关于$i^*$的第一邻居序列。
+那么，$u_{i^*}=0$意味着
+
+\begin{equation}
+    \tag{45}
+    \label{45}
+    \sum_{j\in N_{i^*}} \phi_{i^*j}(x_j-x_{i^*}) = 0
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent Since $x_j\le x_{i^*}$ for all $j\in N_{i^*}$ and $\phi_{ij}(z)\le 0$ for $z\le 0$ (i.e. all weights are nonnegative), we get $x_{i^*}=x_j$ for all the ﬁrst-neighbors $j\in J^{(1)}$, (i.e. the max-leader and all of its ﬁrst-neighbors are in agreement). 
+Next, we deﬁne the $k$th-neighbors of $i^*$ and show that the max-leader is in agreement with all of its $k$th-neighbors for $k = 1,\dots, n − 1$. 
+The set of $k$th-neighbors of $i^*$ is defined by the following recursive equation
+}
+
+\noindent 由于对所有的$j\in N_{i^*}$有$x_j\le x_{i^*}$，对$z\le 0$有$\phi_{ij}(z)\le 0$（即所有的权重都是非负的），我们对所有的第一邻居$j\in J^{(1)}$有$x_{i^*}=x_j$（即最大领导者和所有它的第一邻居是一致的）。
+下一步，我们定义$i^*$的第$k$个邻居并证明当最大领导者一致时所有它的$k$个邻居都是一致的，$k = 1,\dots, n − 1$。
+关于$i^*$的第$k$个邻居定义为下述递归公式
+
+\begin{equation}
+    \tag{46}
+    \label{46}
+    J^{(k)} = J^{(k-1)} \cup N_{J^{(k-1)}},\quad k\ge 1, J^{(0)}=\{i^*\}
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent where $N_J$ denotes the set of neighbors of cluster $J\subseteq\mathcal{I}$ (see equation (1)). 
+By definition, $\{i^*\}\subset J^{(k)} \subseteq \mathcal{I}$ for $k\ge1$ and $J^{(k)}$ is a monotonically increasing sequence of clusters (in terms of inclusion). 
+}
+
+\noindent 这里$N_J$表示簇$J\subseteq\mathcal{I}$的邻居部分。
+根据定义，对于$k\ge1$有$\{i^*\}\subset J^{(k)} \subseteq \mathcal{I}$并且$J^{(k)}$是一个关于推论的单调递增序列。
+
+{\color[gray]{0.5}
+Notice that in a strongly connected digraph, the maximum length of the minimum path connecting any node $j\ne i^*$ to node $i^*$ is $n-1$. 
+Thus, $J^{(n-1)} = \mathcal{I}$. 
+By induction, we prove that all the nodes in $J^{(k)}$ are in agreement for $k\ge 1$. 
+The statement holds for $k=1$ (i.e. the set of first-neighbors of the max-leader). 
+Assume all the nodes in $J^{(k)}$ are in agreement with $i^*$, we show that all the nodes in $J^{(k+1)}$ are in agreement with $i^*$ as well. 
+It is sufficient to show this for an arbitrary node $i\in J^{(k)}$ with $N_i \cap (J^{(k+1)}\setminus J^{(k)}) \ne \emptyset$. 
+Otherwise, because in a strongly connected digraph $N_i \ne \emptyset$ for all $i$, we get $J^{(k+1)}=J^{(k)}$ and the statement holds. 
+For node $i$, we have
+}
+
+注意在一个强连通图中，任意节点$j\ne i^*$和节点$i^*$的最短连接路径的最大长度为$n-1$。
+因此，$J^{(n-1)} = \mathcal{I}$。
+通过归纳法，我们证明在$J^{(k)}$中所有节点对于$k\ge 1$是一致的。
+状态满足$k=1$（即最大领导者的第一邻居部分）。
+假设所有$J^{(k)}$中的节点都是关于$i^*$一致的，我们也证明了所有在$J^{(k+1)}$中的节点也是关于$i^*$一致的。
+可以充分证明对于任意状态节点$i\in J^{(k)}$有$N_i \cap (J^{(k+1)}\setminus J^{(k)}) \ne \emptyset$。
+否则的话，因为强连通图关于所有$i$都有$N_i \ne \emptyset$，我们有$J^{(k+1)}=J^{(k)}$并且状态满足。
+对于节点$i$，我们有
+
+\begin{equation}
+    \tag{47}
+    \label{47}
+    u_i = \sum_{j\in N_i} \phi_{ij}(x_j-x_i)=0
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent But $N_i=(N_i\cap J^{(k)})\cup(N_i\cap(\mathcal{I}\setminus J^{(k)}))$ and $\mathcal{I}\setminus J^{(k)}=\mathcal{I}\setminus J^{(k+1)}\cup (J^{(k+1)}\setminus J^{(k)})$. 
+Keeping in mind that $J^{(k)}\subset equ\mathcal{I}$ for all $k$ and $J^{(k+1)}$ contains the set of first neighbors of node $i$, i.e. $N_i\subseteq J^{(k+1)}$, we have
+}
+
+\noindent 但是$N_i=(N_i\cap J^{(k)})\cup(N_i\cap(\mathcal{I}\setminus J^{(k)}))$ 且 $\mathcal{I}\setminus J^{(k)}=\mathcal{I}\setminus J^{(k+1)}\cup (J^{(k+1)}\setminus J^{(k)})$。
+谨记对所有$k$有$J^{(k)}\subset equ\mathcal{I}$且$J^{(k+1)}$包含了节点$i$的第一邻居部分，即$N_i\subseteq J^{(k+1)}$，我们有
+
+\begin{equation}
+    \tag{48}
+    \label{48}
+    N_i \cap (\mathcal{I}\setminus J^{(k)}) = N_i \cap (J^{(k+1)}\setminus J^{(k)})
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent and
+}
+
+\noindent 和
+
+\begin{equation}
+    \tag{49}
+    \label{49}
+    u_i = \sum_{j\in N_i \cap J^{(k)}} \phi_{ij}(x_j-x_i) + \sum_{j\in N_i \cap (J^{(k+1)}\setminus J^{(k)})} \phi_{ij}(x_j-x_i) = 0
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent The first sum is equal to zero because $x_j=x_i$ all nodes $j\in N_i \cap J^{(k)} \subseteq J^{(k)}$. 
+Thus, the second sum must be zero. 
+But $x_{i^*}=x_i\ge x_j$ for all $i\in J^{(k)}$ and $j\in \mathcal{I}\setminus J^{(k)}$ which implies all nodes in $N_i \cap (J^{(k+1)}\setminus J^{(k)})$ are in agreement with $i^*$. 
+This means that all nodes in the cluster
+}
+
+\noindent 因为所有$j\in N_i \cap J^{(k)} \subseteq J^{(k)}$的节点$x_j=x_i$，所以第一求和为0。
+因此，第二求和必须也为0。
+但是对于所有的$i\in J^{(k)}$和$j\in \mathcal{I}\setminus J^{(k)}$有$x_{i^*}=x_i\ge x_j$，这表明所有在$N_i \cap (J^{(k+1)}\setminus J^{(k)})$中的节点关于$i^*$一致。
+这意味着所有簇中的节点
+
+\begin{equation}
+    \tag{50}
+    \label{50}
+\begin{aligned}
+    \cup_{i\in J^{(k)}} N_i \cap (J^{(k+1)} \setminus J^{(k)}) &= (\cup_{i\in J^{(k)}} N_i) \cap (J^{(k+1)} \setminus J^{(k)})\\
+    &= J^{(k+1)} \cap (J^{(k+1)} \setminus J^{(k)})\\ 
+    &= J^{(k+1)} \setminus J^{(k)}
+\end{aligned}
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent are in agreement with $i^*$, i.e. all the nodes in $J^{(k+1)}$ are in agreement. 
+Combining this with the fact that $J^{(n-1)}=\mathcal{I}$ we conclude that all the nodes in $\mathcal{I}$ are in agreement.
+}
+
+\noindent 是关于节点$i^*$一致，即所有在$J^{(k+1)}$的节点都一致。
+结合$J^{(n-1)}=\mathcal{I}$我们可以推断所有在$\mathcal{I}$中的节点一致。
+
+\subsection*{A.2 Proof of Theorem 10}
+
+{\color[gray]{0.5}
+\noindent Notice that despite the existence of a nonzero delay $\tau, \sum_{i=1}^{n} u_i=0$. 
+Thus, $\alpha=Ave(x)$ is an invariant quantity. 
+Given that the solutions of (37) globally asymptotically converge to a limit $x^*$, due to the invariance of $\alpha$, $x_i^*=Ave(x(0)), \forall i \in \mathcal{I}$ and the average-consensus will be reached. 
+To establish the stability of (37), we use a frequency domain analysis. 
+We have $X(s) = G_{\tau}(s)x(0)$ where
+}
+
+\noindent 注意尽管存在一个非零时滞$\tau, \sum_{i=1}^{n} u_i=0$。
+因此，$\alpha=Ave(x)$是一个不变量。
+给出以下事实，公式（37）全局渐进收敛到$x^*$，由于$\alpha$的不变性，$x_i^*=Ave(x(0)), \forall i \in \mathcal{I}$，并且一致性是可以达到的。
+为了建立（37）的稳定性，我们使用频域分析。
+我们有$X(s) = G_{\tau}(s)x(0)$这里
+
+\begin{equation}
+    \tag{51}
+    \label{51}
+    G_{\tau}(s) = (sI_n + e^{-\tau s}L)^{-1}
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent Define $Z_{\tau}(s) = G_{\tau}^{-1}(s) = (sI_n + e^{-\tau s}L)$. 
+We need to find sufficient conditions such that all the zeros of $Z_{\tau}(s)$ are on the open LHP or $s=0$. 
+Let $w_k$ be the $k$th normalized eigenvector of $L$ associated with the eigenvalue $\lambda_k$ in an increasing order. 
+For a connected graph $G$, $0=\lambda_1 < \lambda_2 \le \dots \le \lambda_n =\lambda_{max}(L)$. 
+Clearly, $s=0$ in the direction $w_1$ is a zero of the MIMO transfer function $Z_{\tau}(s)$, because $Z_{\tau}(0)w_1 = Lw_1 = 0$. 
+Futhermore, any eigen vector of $Z_{\tau}(s)$ is an eigen vector of $L$ and {\color{green}vice verse}. 
+Let ($s,w_k$) with $k>1$ be a right MIMO transmission zero of $Z_{\tau}(s)$ at frequency $s$ in the direction $w_k$, i.e. $Z_{\tau}(s)w_k=0$. 
+Then, $s\ne0$ satisfies the following equation
+}
+
+\noindent 定义$Z_{\tau}(s) = G_{\tau}^{-1}(s) = (sI_n + e^{-\tau s}L)$。
+我们需要找到一个充分条件如所有$Z_{\tau}(s)$的0都是在开放LHP或$s=0$。
+定义$w_k$是$L$关于特征值$\lambda_k$递增顺序排列的第$k$个标准化特征向量。
+对于一个连通图$G$，有$0=\lambda_1 < \lambda_2 \le \dots \le  \lambda_n =\lambda_{max}(L)$。
+清楚的，在方向$w_1$中$s=0$是MIMO转移函数$Z_{\tau}(s)$的0值，因为$Z_{\tau}(0)w_1 = Lw_1 = 0$。
+进一步说，任何关于$Z_{\tau}(s)$的特征向量都是一个属于$L$的特征向量和代替。
+定义($s,w_k$)$k>1$是一个在频域$s$属于方向$w_k$上关于$Z_{\tau}(s)$右MIMO转移0，即$Z_{\tau}(s)w_k=0$。
+那么，$s\ne0$满足下述方程
+
+\begin{equation}
+    \tag{52}
+    \label{52}
+    s+e^{-\tau s}\lambda_k = 0
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent or
+}
+
+\noindent 或
+
+
+\begin{equation}
+    \tag{53}
+    \label{53}
+    \frac{1}{\lambda_k} + \frac{e^{-\tau s}\lambda_k}{s} = 0
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent where $\lambda_k$ is the $k$th eigenvalue of $L$ corresponding to $w_k$. 
+This is due to the fact that
+}
+
+\noindent 这里$\lambda_k$是$L$关于$w_k$的第$k$个特征值。
+这是因为
+
+\begin{equation}
+    \tag{54}
+    \label{54}
+    Z_{\tau}(s) w_k = sw_k + e^{-\tau s}Lw_k = (s+e^{-\tau s}\lambda_k)w_k = 0
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent but $w_k\ne 0$, thus $s+e^{-\tau}\lambda_k=0$. 
+Equation (53) provides a Nyquist criterion for convergence of protocol (A2). 
+If the net encirclement of the Nyquist plot of $\Gamma(s) = e^{-\tau s}/s$ around $-1/\lambda_k$ for $k>1$ is zero, then all the zeros of $Z_\tau(s)$(or poles of $G_{\tau}(s)$) other than $s=0$ are stable.
+For the special case where $L$ is symmetric, all the eigenvalues are real and {\color{green}the Nyquist stability criterion reduces to zero net encirclement of the Nyquist plot of $\Gamma(s)$ around $-1/\lambda_n$ (note that $\lambda_n=\lambda_{max}(L))$.} 
+This is because the plot of $\Gamma(jw)$ in the s-plane remains on the right hand side of $-\tau$. 
+Since
+}
+
+\noindent 但是$w_k\ne 0$，因此$s+e^{-\tau}\lambda_k=0$。
+公式（53）协议（A2）收敛分析的奈奎斯特准则。
+如果$\Gamma(s) = e^{-\tau s}/s$在$-1/\lambda_k$其中$k>1$附近的网络包围是0，那么所有属于$Z_\tau(s)$的0值（或$G_{\tau}(s)$的极点）不是$s=0$是稳定的。
+关于$L$是对称的特殊情况，所有的特征值都是实数并且奈奎斯特稳定准则减小到0。
+这是因为$\Gamma(j\omega)$在s平面的图保持在右平面即$-\tau$。
+由于
+
+\begin{equation}
+    \tag{55}
+    \label{55}
+    \Gamma(j\omega) = \frac{e^{-j\omega\tau}}{j\omega} = -\frac{sin(\omega\tau)}{\omega} -j\frac{cos(\omega\tau)}{\omega}
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent and clearly $Re(\Gamma(j\omega))$ is sinc function satisfying $Re(\Gamma(j\omega)) \ge -\tau$. 
+A conservative upper bound on $\tau$ can be obtained according to the property $Re(\Gamma(j\omega)) \ge -\tau$ of the Nyquist plot of $\Gamma(s)$ by setting $-1/\lambda_n > -\tau$ which gives the convergence condition $\tau < 1/\lambda_n$. 
+As a by-product, for $\tau=0$, the protocol always converges regardless of the value of $\lambda_k, k>1$. 
+}
+
+\noindent 并且$Re(\Gamma(j\omega))$是一个满足$Re(\Gamma(j\omega)) \ge -\tau$的sinc函数。
+一个在$\tau$上的保守上界。
+
+{\color[gray]{0.5}
+A better upper bound on the time-delay $\tau$ can be calculated as follows. 
+Let us find the smallest value of the time-delay $\tau>0$ such that $Z_{\tau}(s)$ has a zero on the imaginary axis. 
+To do so, set $s=j\omega$ in (52), we have
+}
+
+
+
+\begin{equation}
+    \tag{56}
+    \label{56}
+    \begin{aligned}
+        j\omega + e^{-j\omega\tau} \lambda_k = 0,\\
+        -j\omega + e^{j\omega\tau} \lambda_k = 0,
+    \end{aligned}
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent multiplying both sides of the last two equations gives
+}
+
+
+
+\begin{equation}
+    \tag{57}
+    \label{57}
+    \omega^2 + \lambda_k^2 + j\omega\lambda_k(e^{j\omega\tau}-e^{-j\omega\tau})=0,
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent or
+}
+
+
+
+\begin{equation}
+    \tag{58}
+    \label{58}
+    \omega^2 + \lambda_k^2 - 2\omega\lambda_k sin(\omega\tau)=0.
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent Assuming $\omega>0$ (due to $s\ne 0$), from (58), we get
+}
+
+
+
+\begin{equation}
+    \tag{59}
+    \label{59}
+    (\omega-\lambda_k)^2 + 2\omega\lambda_k(1-sin(\omega\tau)) = 0.
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent Since both terms in the left hand side of the last equation are positive semi-deﬁnite, the equality holds if and only if both terms are zero, i.e.
+}
+
+\begin{equation}
+    \tag{60}
+    \label{60}
+    \begin{aligned}
+        \omega = \lambda_k,\\
+        sim(\omega\tau) = 1,
+    \end{aligned}
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent This implies $\tau\lambda_k = 2l\pi + \pi/2$ for $l=0,1,2,\dots$, thus the smallest $\tau>0$ satisfies $\tau\lambda_k=\pi/2$. 
+Therefore, we have
+}
+
+
+
+\begin{equation}
+    \tag{61}
+    \label{61}
+    \tau^* = \min_{\substack{\tau\lambda_k=\pi/2\\k>1}}\{\tau\} = \min_{k>1}\frac{\pi}{2\lambda_k}=\frac{\pi}{2\lambda_n}
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent Due to the continuous dependence of the roots of equation (52) in $\tau$ and the fact that all the zeros of this equation other than $s=0$ for $\tau=0$ are located on the open LHP, for all $\tau\in(0, \tau^*)$, the roots of (52) with $k>1$ are on the open LHP and therefore the poles of $G_{\tau}(s)$ (except for $s=0$) are all stable. 
+One can repeat a similar argument for the assumption that $\omega<0$ and get the equation
+}
+
+
+
+\begin{equation}
+    \tag{62}
+    \label{62}
+    (\omega+\lambda_k)^2 - 2\omega\lambda_k(1+sin(\omega\tau))=0,
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent which leads to $\omega=-\lambda_k$ and $\tau\lambda_k = 2l\pi + \pi/2$. 
+}
+
+
+
+{\color[gray]{0.5}
+For $\tau=\tau^*$, $G_{\tau}(s)$ has three poles on the imaginary axis given by 
+}
+
+
+
+\begin{equation}
+    \tag{63}
+    \label{63}
+    s = 0, s \pm j\lambda_n
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent All other poles of $G_{\tau}(s)$ are stable and in the steady-state the values of each node takes the following form: 
+}
+
+
+
+\begin{equation}
+    \tag{64}
+    \label{64}
+    x_i^{ss}(t) = a_i + b_i sin(\lambda_nt + \varphi_i),\quad i\in\mathcal{I}
+\end{equation}
+
+{\color[gray]{0.5}
+\noindent where $a_i,b_i,\varphi_i$ are constants that depend on the initial conditions. 
+}
+
+
+
+\section*{References}
+\noindent [1] N. Biggs. Algebraic Graph Theory. Cambridge Tracks in Mathematics. Cambridge University Press, 1974.
+
+\noindent [2] I. Daubechies and J. C. Lagarias. Sets of matrices all inﬁnite products of which converge. Linear Algebra and Its Applications, 161:227–263, 1992. 
+
+\noindent [3] I. Daubechies and J. C. Lagarias. Corrigendum/addendum to: Sets of matrices all inﬁnite products of which converge. Linear Algebra and Its Applications, 327:69–83, 2001. 
+
+\noindent [4] J. P. Desai, J. P. Ostrowski, and V. Kumar. Modeling and control of formations of nonholonomic mobile robots. IEEE Trans. on Robotics and Automation, 17(6), December 2002. 
+
+\noindent [5] R. Diestel. Graph Theory, volume 173 of Graduate Texts in Mathematics. SpringerVerlag, 2000.
+
+\noindent [6] A. Fax and R. M. Murray. Graph Laplacians and stabilization of vehicle formations. The 15th IFAC World Congress, June 2002. 
+
+\noindent [7] A. Fax and R. M. Murray. Information Flow and Cooperative Control of Vehicle Formations. The 15th IFAC World Congress, June 2002. 
+
+\noindent [8] M. Fiedler. Algebraic connectivity of graphs. Czechoslovak Mathematical Journal, 23(98):298–305, 1973.
+
+\noindent [9] M. Fiedler. A property of eigenvectors of nonnegative symmetric matrices and its application to graph theory. Czechoslovak Mathematical Journal, 25(100):619–633, 1975. 
+
+\noindent [10] F. R. Gantmacher. Matrix Theory, volume II. Chelsea Publishing Company, 1959. 
+
+\noindent [11] C. Godsil and G. Royle. Algebraic Graph Theory, volume 207 of Graduate Texts in Mathematics. Springer, 2001. 
+
+\noindent [12] R. A. Horn and C. R. Johnson. Matrix Analysis. Cambridge University Press, 1987. 
+
+\noindent [13] A. Jadbabaie, J. Lin, and S. A. Morse. Coordination of groups of mobile agents using nearest neighbor rules. IEEE Trans. on Automatic Control (to appear). 
+
+\noindent [14] R. W. Lawton, J. R. T. Beard and B. J. Young. A Decentralized Approach to Formation Maneuvers. IEEE Trans. on Robotics and Automation (to appear). 
+
+\noindent [15] N. A. Lynch. Distributed Algorithms. Morgan Kaufmann Publishers, Inc., 1997. 
+
+\noindent [16] M. Marcus and H. Minc. A Survey of Matrix Theory and Matrix Inequalities. Dover Publications, 1969. 
+
+\noindent [17] R. Merris. Laplacian matrices of a graph: a survey. Linear Algebra and its Applications, 197:143–176, 1994. 
+
+\noindent [18] M. Mesbahi. On a dynamic extension of the theory of graphs. Proc. of the American Control Conference, Anchorange, AL, May 2002. 
+
+\noindent [19] M. Mesbahi and F. Y. Hadegh. Formation ﬂying of multiple spacecraft via graphs, matrix inequalities, and switching. AIAA Journal of Guidance, Control, and Dynamics, 24(2):369–377, March 2000. 
+
+\noindent [20] R. Olfati Saber and R. M. Murray. Consensus Protocols for Networks of Dynamic Agents. Proc. of the American Control Conference, June 2003. 
+
+\noindent [21] F. Paganini, J. Doyle, and S Low. Scalable laws for stable network congestion control. Proc. of the Int. Conf. on Decision and Control, Orlando, FL, Dec. 2001. 
+
+\noindent [22] C. W. Reynolds. Flocks, herds, and schools: a distributed behavioral model. Computer Graphics (ACM SIGGRAPH ’87 Conference Proceedings), 21(4):25–34, July 1987. 
+
+\noindent [23] J. Toner and Y. Tu. Flocks, herds, and schools: A quantitative theory of ﬂocking. Physical Review E, 58(4):4828–4858, October 1998. 
+
+\noindent [24] T. Vicsek, A. Cziro´ok, E. Ben-Jacob, and O. Cohen, I. Shochet. Novel type of phase transition in a system of self-deriven particles. Physical Review Letters, 75(6):1226–1229, August, 1995.
+
+\noindent [25] H. Yamaguchi, T. Arai, and G. Beni. A distributed control scheme for multiple robotic vehicles to make group formations. Robotics and Autonomous Systems, 36:125–147, 2001
 
 \end{document}
