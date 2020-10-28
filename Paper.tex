@@ -111,7 +111,7 @@ We establish a connection between the performance of the linear consensus protoc
 
 本文，我们提供了有向信息流固定和切换拓扑网络的一致性协议收敛分析。
 我们的分析依赖于一些代数图论[1，11]和矩阵论[12]的工具。
-我们建立了线性一致性协议的性能和镜像图拉普拉斯算子的费德勒特征值之间的联系（镜像图与原来的有向图密切相关）。
+我们建立了线性一致性协议的性能和镜像图拉普拉斯矩阵的费德勒特征值之间的联系（镜像图与原来的有向图密切相关）。
 
 {\color[gray]{0.5}
 It turns out that a class of directed graphs called balanced graphs have a crucial role in derivation of an invariant quantity and a Lyapunov function for convergence analysis of average-consensus problems on directed graphs. 
@@ -510,7 +510,7 @@ The (weighted) graph Laplacian matrix associated with $G$ is deﬁned as
 
 \noindent 对于一个普通图，其邻接矩阵$\mathcal{A}$只有集合\{0，1\}中的这两种元素，出度$\deg_{out}(v_i) = |N_i|$等于邻居元素的数量。
 图$G$的度矩阵（degree matrix）是一个对角矩阵，记为$\Delta=[\Delta_{ij}]$，其中对于所有的$i\ne j$，$\Delta_{ij}=0$和$\Delta_{ii}=\deg_{out}(v_i)$。
-加权图拉普拉斯算子矩阵（graph Laplacian matrix）和图$G$之间的联系定义如下
+加权图拉普拉斯矩阵矩阵（graph Laplacian matrix）和图$G$之间的联系定义如下
 
 \begin{equation}
     L = \mathcal{L}(G) = \Delta-\mathcal{A}
@@ -546,7 +546,7 @@ Therefore, graph Laplacian always has a zero eigenvalue (i.e. $rank(L)\le n-1$) 
 
 我们有时使用$\mathcal{L}(\mathcal{A}) = \mathcal{L}(G)$表示图$G$的拉普拉斯矩阵。
 根据定义，拉普拉斯矩阵的每一行的和为0。
-因此，图拉普拉斯算子总是有一个为0的特征值（即$rank(L)\le n-1$)对应于一个右特征向量
+因此，图拉普拉斯矩阵总是有一个为0的特征值（即$rank(L)\le n-1$)对应于一个右特征向量
 
 \begin{equation}
     w_r = \mathbf{1} = (1,1,\dots,1)^T \notag
@@ -1143,7 +1143,7 @@ iii) $\sum_{i=1}^n u_i = 0$, $\forall x \in \mathbb{R}^n$ with $u_i = \sum_{j\in
 
 i）图$G$是平衡的；
 
-ii）$w_l = \mathbf{1}$是图$G$拉普拉斯算子相对于0特征值的左特征向量，即$\mathbf{1}^TL = 0$。
+ii）$w_l = \mathbf{1}$是图$G$拉普拉斯矩阵相对于0特征值的左特征向量，即$\mathbf{1}^TL = 0$。
 
 iii）对$\forall x \in \mathbb{R}^n$有$\sum_{i=1}^n u_i = 0$，且$u_i = \sum_{j\in N_i}a_{ij}(x_j - x_i)$。
 
@@ -1590,110 +1590,230 @@ Finally, the minimum in (35) always exists and is achieved because $\Gamma_n$ is
 
 % ------------------------------------------------------------------------------
 \section{Networks with Communication Time-Delays}
-考虑固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$连续时间网络，其节点$i$的状态经过一个时滞$\tau > 0$的通信通道（或连接）达到节点$j$。
+{\color[gray]{0.5}
+\noindent Consider a network of continuous-time integrators with a fixed topology $G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$ in which the state of node $i$ passes through a communication channel (or link) $ij$ with time-delay $\tau_{ij}>0$ before getting to node $j$. 
+The transfer function of link $ij$ can be expressed as 
+}
+
+\noindent 考虑一个固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$连续时间积分器网络，其节点$i$的状态经过一个时滞$\tau > 0$的通信通道（或连接）达到节点$j$。
 关于连接$ij$的转移函数表示如下：
+
 \begin{equation}
     h_{ij}(s) = e^{-\tau_{ij}s}
     \notag
 \end{equation}
-应用线性时滞协议(\ref{A2})，网络动态变化可写作：
+
+{\color[gray]{0.5}
+\noindent in the Laplace domain. 
+Applying the time-delayed linear protocol (A2), the network dynamics can be written as
+}
+
+\noindent 此为拉普拉斯矩阵领域。应用线性含时滞协议(\ref{A2})，网络状态变化可写作：
+
 \begin{equation}
     \dot{x}_i(t) = \sum_{j\in N_i} a_{ij} [x_j(t-\tau_{ij}) - x_i(t-\tau_{ij})].
     \tag{37}
     \label{37}
 \end{equation}
-通过对公式(\ref{37})两边进行拉氏变换，我们得到
+
+{\color[gray]{0.5}
+\noindent After taking the Laplace transform of both sides of equation (37), we get 
+}
+
+\noindent 通过对公式(\ref{37})两边进行拉氏变换，我们得到
+
 \begin{equation}
     sX_i(s) - x_i(0) = \sum_{j\in N_i} a_{ij} h_{ij}(s) (X_j(s) - X_i(s))
     \tag{38}
     \label{38}
 \end{equation}
-这里$X_i(s)$表示所有$i\in \mathcal{I}$中$x_i(t)$的拉氏变换。
-公式的最后一部分可以写作如下紧凑形式：
+
+{\color[gray]{0.5}
+\noindent where $X_i(s)$ denotes the Laplace transform of $x_i(t)$ for all $i\in \mathcal{I}$. 
+The last set of equations can be rewritten in a compact form as
+}
+
+\noindent 这里$X_i(s)$表示所有$i\in \mathcal{I}$中$x_i(t)$的拉氏变换。
+上一组方程可以改写成如下紧凑形式：
+
 \begin{equation}
     X(s) = (s+L(s))^{-1}x(0)
     \tag{39}
     \label{39}
 \end{equation}
-这里$L(x)$是图关于邻接矩阵$\mathcal{A}(s) = [a_{ij}h_{ij}(s)]$的拉普拉斯矩阵。
-总的来说，任何关于通道$ij$的过滤效果都可以合并成连接转换函数$h_{ij}(s)$。
-关于通信时滞智能体网络的协议(\ref{A2})收敛性分析减小为一个多输入多输出系统（MIMO）转移函数的稳定性分析
+
+{\color[gray]{0.5}
+\noindent where $L(x)$ is the Laplacian matrix of a graph with adjacency matrix $\mathcal{A}(s) = [a_{ij}h_{ij}(s)]$. 
+In general, any filtering effect of channel $ij$ can be incorporated in the link transfer function $h_{ij}(s)$. 
+The convergence analysis of protocol (A2) for a network of integrator agents with communication time-delays reduces to stability analysis for a MIMO transfer function 
+}
+
+\noindent 这里$L(x)$是图关于邻接矩阵$\mathcal{A}(s) = [a_{ij}h_{ij}(s)]$的拉普拉斯矩阵。
+总的来说，任何关于通道$ij$的过滤效果都可以合并成连接转移函数$h_{ij}(s)$。
+关于含通信时滞的积分器网络协议(\ref{A2})的收敛性分析可以转换为一个多输入多输出系统（MIMO）转移函数的稳定性分析
+
 \begin{equation}
     G(s) = (sI+L(s))^{-1}.
     \notag
 \end{equation}
 
-为了得到图拉普拉斯算子和一致性协议(\ref{A2})收敛性质之间进一步关键点，我们聚焦在最简单的可能情况，这里所有通道的时滞都等于一个无向固定拓扑图$G$网络中的$\tau > 0$。
+{\color[gray]{0.5}
+\noindent To gain further insight in the relation between the graph Laplacian and the convergence properties of the consensus protocol (A2), we focus on the simplest possible case where the time-delays in all channels are equal to $\tau>0$ in a network with an undirected and fixed topology $G$. 
+Immediately, it follows that $\sum_i u_i \equiv 0$ and thus $\alpha = Ave(x(t))$ is an invariant quantity. 
+In addition, we have
+}
+
+\noindent 为了得到图拉普拉斯矩阵和一致性协议(\ref{A2})收敛性之间进一步关键联系，我们聚焦在最简单的可能情况，一个无向固定拓扑图$G$网络中的所有通道的时滞都等于$\tau > 0$。
 立即推，其遵循$\sum_i u_i \equiv 0$并且因此$\alpha = Ave(x(t))$是一个不变的量。
 另外，我们有
+
 \begin{equation}
     L(s) = e^{-\tau s}L
     \notag
 \end{equation}
-这里$L=\mathcal{L}(G)$。
-这是我们关于通信时滞网络(\ref{20})一致性协议的主要研究成果。
 
-\noindent \textbf{Theorem 10.} 考虑一个带有相等通信时滞$\tau > 0$的智能体网络。
+{\color[gray]{0.5}
+\noindent where $L=\mathcal{L}(G)$. 
+Here is our main result for average-consensus in a network with communication time-delays[20]: 
+}
+
+\noindent 这里$L=\mathcal{L}(G)$。
+这是我们对含通信时滞网络(\ref{20})平均一致性协议的主要研究成果。
+
+{\color[gray]{0.5}
+\noindent \textbf{Theorem 10.} Consider a network of integrator agents with equal communication time-delay $\tau>0$ in all links.
+Assume the information flow $G$ of the network is undirected and connected. 
+Then, protocol (A2) with $\tau_{ij}=\tau$ globally asymptotically solves average-consensus problem if and only if either of the following two equivalent coditions are satisfied: 
+
+i) $\tau \in (0, \tau^*)\ \text{with}\ \tau^*=\frac{\pi}{2\lambda_n}, \lambda_n=\lambda_{max}(L)$.
+
+ii) The Nquist plot of $\Gamma(s) = e^{-\tau s}/s$ has a zero encirclement around $-1/\lambda_k,\ \forall k > 1$. 
+}
+
+\noindent \textbf{Theorem 10.} 考虑一个具有相等通信时滞$\tau > 0$的积分器网络。
 假设网络信息流$G$是无向且连通的。
 那么，当且仅当以下两个等价情况任何一个满足时，带有$\tau_{ij} = \tau$的协议(\ref{A2})能全局渐进解决平均一致性问题：
 
 i）$\tau \in (0, \tau^*)\ \text{with}\ \tau^*=\frac{\pi}{2\lambda_n}, \lambda_n=\lambda_{max}(L)$.
 
-ii）关于$\Gamma(s) = e^{-\tau s}/s$的奈奎斯特图(Nuquist plot)有在$-1/\lambda_k,\ \forall k > 1$附近的零包围。
+ii）关于$\Gamma(s) = e^{-\tau s}/s$的奈奎斯特图(Nyquist plot)有在$-1/\lambda_k,\ \forall k > 1$附近的零包围。
 
-此外，对于$\tau=\tau^*$，系统有关于频率$w=\lambda_n$的全局渐进稳定振荡解决方案。
+{\color[gray]{0.5}
+\noindent Moreover, for $\tau=\tau^*$ the system has a globally asymptotically stabel oscillatory solution with frequency $w=\lambda_n$. 
+}
+
+\noindent 此外，对于$\tau=\tau^*$，系统有关于频率$w=\lambda_n$的全局渐进稳定振荡解决。
+
+{\color[gray]{0.5}
+\noindent \textbf{Proof.} See Section A.2 in the Appendix
+}
 
 \noindent \textbf{Proof.} 证明过程详见附录A.2。
 
-基于定理10的i），可以推断网络的时滞可受理通道的上界是$\lambda_n$的相反部分，即信息流拉普拉斯矩阵的最大特征值。
+{\color[gray]{0.5}
+Based on part i) of Theorem 10, one concludes that the upper bound on the admissible channel time-delay in the network is inversely proportional to $\lambda_n$， i.e. the largest eigenvalue of the Laplacian of the information flow. 
+From Gersgorin theorem, we know that $\lambda_n\le 2d_{max}(G)$, where $d_{max}(G)$ is the maximum out-degree of the nodes of $G$. 
+Therefore, a sufficient condition for convergence of protocol (A2) is 
+}
+
+基于定理10的i）部分，可以推断网络通道时滞的可承受上界是$\lambda_n$的反转部分，即信息流拉普拉斯矩阵的最大特征值。
 根据盖尔圆定理，我们可以知道$\lambda_n\le 2d_{max}(G)$，这里$d_{max}(G)$是图$G$节点的最大出度。
 因此，收敛性协议(\ref{A2})的一个充分条件是：
+
 \begin{equation}
     \tau \le \frac{\pi}{4d_{max}(G)}
     \tag{40}
     \label{40}
 \end{equation}
-这也就意味着具有高出度节点的网络不能忍受相当高的沟通时滞。
-另一方面，使$\tilde{\mathcal{A}}=k\mathcal{A}$，$k>0$是$\tilde{G}$的邻接矩阵。
-定义$\tilde{L}=\mathcal{L}(\tilde{G})$，并且记$\lambda_n(\tilde{L}) = k\lambda_n(L)$。
-因此，对于任意大小的延迟$\tau>0$，都存在一个足够小的$k>0$使得$\tau < \pi/(2k\lambda_n)$。
-结果就是，通过调整图权重的大小，任意大小的时滞都能忍受。
-权衡的是因子$1/k>0$协商速度。
-换句话说，在一致性算法的鲁棒性和时滞收敛速度之间存在权衡。
+
+{\color[gray]{0.5}
+\noindent This means that networks with nodes that have relatively high out-degrees cannot tolerate relatively high communication time-delays. 
+On the other hand, let $\tilde{\mathcal{A}}=k\mathcal{A}$ with $k>0$ be the adjacency matrix of $\tilde{G}$. 
+Let $\tilde{L}=\mathcal{L}(\tilde{G})$ and notice that $\lambda_n(\tilde{L}) = k\lambda_n(L)$. 
+Thus, for any arbitrary delay $\tau>0$ , there exists a sufficiently small $k>0$ such that $\tau < \pi/(2k\lambda_n)$. 
+As a result, by scaling the weights of the graph, any arbitrary time-delay can be tolerated. 
+The trade-off is that the negotiation speed degrades by a factor of $1/k>0$. 
+In other words, there is trade-off between robustness to time-delays and speed of convergence (or performance) of the agreement algorithm. 
+}
+
+\noindent 这也就意味着具有高出度节点的网络不能承受很高的通信时滞。
+另一方面，令$\tilde{\mathcal{A}}=k\mathcal{A}$，$k>0$为$\tilde{G}$的邻接矩阵。
+定义$\tilde{L}=\mathcal{L}(\tilde{G})$，并且$\lambda_n(\tilde{L}) = k\lambda_n(L)$。
+因此，对于任意大小的时滞$\tau>0$，都存在一个足够小的$k>0$使得$\tau < \pi/(2k\lambda_n)$。
+结果就是，通过调整图权重的大小，任意大小的时滞都能承受。
+权衡的是通过因子$1/k>0$协商速度。
+换句话说，在一致性算法的含时滞鲁棒性和收敛速度之间存在权衡。
 
 % ------------------------------------------------------------------------------
 \section{Max-Consensus and Leader Determination}
-在这部分，我们讨论带有一个唯一的最大领导者（max-leader）网络的最大一致性问题，即节点$i^*=\arg\max_ix_i(0)$。
+{\color[gray]{0.5}
+\noindent In this section, we discuss the problem of max-consensus in a network of agents with a unique max-leader, i.e. a node $i^*=\arg\max_ix_i(0)$. 
+The max-consensus problem can be described as follows. 
+Each agent has the following discrete-time model
+}
+
+\noindent 在这部分，我们讨论带有一个唯一的最大领导者（max-leader）网络的最大一致性问题，即节点$i^*=\arg\max_ix_i(0)$。
 最大一致性问题描述如下。
 每一个智能体都有下述离散模型
+
 \begin{equation}
     \tag{41}
     \label{41}
     x_i(k+1)=max(x_i(k),u_i(k))
 \end{equation}
-且被称作最大智能体（max-agent）。
-最大智能体的动态等价描述为一个非线性离散时间系统如下：
+
+{\color[gray]{0.5}
+\noindent and is called a max-agent. 
+The dynamics of a max-agent can be equivalently expressed as a nonlinear discrete-time system
+}
+
+\noindent 被称作最大智能体（max-agent）。
+最大智能体的动态描述等价为一个下述的非线性离散时间模型：
+
 \begin{equation}
     \tag{42}
     \label{42}
     x_i(k+1) = \frac{1}{2}(x_i(k)+u_i(k)+|x_i(k)-u_i(k)|)
 \end{equation}
-图$G=(\mathcal{V},\mathcal{E})$所有节点的值必须反复收敛到最大领导者的值。
-另外，分布式的每一个节点都必须决定其是否是最大领导者。
-最大一致性问题的一个应用是决定群组中的领导者（或协调者）具备关于特别兴趣量（例如，序列号，花费，高度，等等）的优先级，其必须执行或协调任务。
+
+{\color[gray]{0.5}
+\noindent The value of all nodes in the digraph $G=(\mathcal{V},\mathcal{E})$ has to iteratively converge to the value of the max-leader. 
+In addition, each node in a distributed way has to determine whether it is the max-leader or not. 
+One of the applications of the max-consensus problem is to determine a leader (or coordinator) in a group with superiority in terms of a particular quantity of interest (e.g. index number, cost, height, and so on) that has to perform or coordinate a task.
+}
+
+\noindent 图$G=(\mathcal{V},\mathcal{E})$所有节点的值都迭代收敛到最大领导者的值。
+另外，每一个节点都必须以分布式的方式来决定自身是否是最大领导者。
+最大一致性问题的一个应用是决定群组中的领导者（或协调者）关于需要执行或协调任务的特殊量（例如，序列号，损耗，高度，等等）的优先级。
+
+{\color[gray]{0.5}
+We use the following protocol to solve the max-consensus problem:
+}
 
 我们使用下述协议来解决最大一致性问题：
+
 \begin{equation}
     \tag{A4}
     \label{A4}
     u_i(k) = \max_{j\in N_i}x_j
 \end{equation}
 
+{\color[gray]{0.5}
+\noindent{\em Remark} 8. Apparently, the min-consensus problem can be deﬁned and solved in a similar way to the max-consensus problem and will not be discussed here.
+}
+
 \noindent{\em Remark} 8. 表现上，最小一致性问题（min-consensus problem）能被最大一致性问题类似的定义和解决，这里不再讨论。
 
+{\color[gray]{0.5}
+Notice that the value of each max-agent is non-decreasing, i.e. $x_i(k+1)\ge x_i(k)$ for all $i\in\mathcal{I}$. 
+To keep track of whether a node is the max-leader or not, we augment the state each agent with a Boolean variable $f_i(k)\in\{0,1\}$ called the max-ﬂag of node $i$. 
+The max-ﬂag evolves according to the following rule (or state feedback)
+}
+
 注意到最大智能体的值是非减的，即所有的$i\in\mathcal{I}$都有$x_i(k+1)\ge x_i(k)$。
-为了保持追踪一个节点是否是最大领导者，我们使用一个叫做最大标记（max-flag）的布尔变量$f_i(k)\in\{0,1\}$来扩大每个节点的状态。
+为了追踪一个节点是否是最大领导者，我们使用一个关于节点$i$的叫做最大标记（max-flag）的布尔变量$f_i(k)\in\{0,1\}$来增强每个节点的状态。
 最大标记（max-flag）根据下述规则（或状态反馈）变化：
+
 \begin{equation}
     \tag{43}
     \label{43}
@@ -1705,11 +1825,23 @@ ii）关于$\Gamma(s) = e^{-\tau s}/s$的奈奎斯特图(Nuquist plot)有在$-1/
         \end{matrix}
     \right.
 \end{equation}
-这里的bar操作是布尔变量无效。
-最初的，所有的节点他们都是最大领导者，或所有的$i$都是$f_i(0)=1$。
-如果即节点的值相比与最初的值增加了，那么它就意味着不再是最大领导者。
+
+{\color[gray]{0.5}
+\noindent where the bar operation negates a Boolean variable. 
+Initially, all nodes assume that they are the max leader, or $f_i(0)=1$ for all $i$. 
+If the value of each node increases compared to its initial value, then it realizes that it is no more a max-leader.
+}
+
+\noindent 这里的bar操作是使布尔变量无效。
+最初的，假设所有的节点都是最大领导者，或所有的$i$都是$f_i(0)=1$。
+如果节点的值相比与最初的值增加了，那么就意味着它不再是最大领导者。
+
+{\color[gray]{0.5}
+\noindent\textbf{Theorem 11.} Consider a network of max-agents with the following dynamics
+}
 
 \noindent\textbf{Theorem 11.} 考虑一个最大智能体网络具有如下动态变化：
+
 \begin{equation}
     \tag{44}
     \label{44}
@@ -1720,15 +1852,31 @@ ii）关于$\Gamma(s) = e^{-\tau s}/s$的奈奎斯特图(Nuquist plot)有在$-1/
         \end{matrix}
     \right.
 \end{equation}
-这里映射$K:\{0,1\}\times \mathbb{R}\times\mathbb{R}\rightarrow\{0,1\}$定义在公式(\ref{43})。
-假设$G=(\mathcal{V},\mathcal{E})$是一个强连通图。
-那么，协议(\ref{A4})在有限次迭代$l\le n-1$中解决了最大一致性问题，即所有节点值收敛到最大领导者的值，最大标记的值而不是最大领导者的值收敛到0在$O(n)$时间。
 
-\noindent\textbf{Proof.} 令$l$为连接每个节点到最大领导者的最短路径的最大长度。
+{\color[gray]{0.5}
+\noindent where the map $K:\{0,1\}\times \mathbb{R}\times\mathbb{R}\rightarrow\{0,1\}$ is deﬁned in (43). 
+Assume $G=(\mathcal{V},\mathcal{E})$ is a connected digraph. 
+Then, protocol (A4) solves the max-consensus problem in finite number of iterations $l\le n-1$, i.e. the value of all nodes converges to the value of the max-leader and the max-flag of all nodes but the max-leader converges to zero in $O(n)$ time. 
+}
+
+\noindent 这里映射$K:\{0,1\}\times \mathbb{R}\times\mathbb{R}\rightarrow\{0,1\}$由公式(\ref{43})定义。
+假设$G=(\mathcal{V},\mathcal{E})$是一个强连通图。
+那么，协议(\ref{A4})在有限次迭代$l\le n-1$中解决了最大一致性问题，即所有节点值都收敛到最大领导者和所有节点的最大标记，但最大领导者的值在$O(n)$时间内收敛到0。
+
+{\color[gray]{0.5}
+\noindent\textbf{Proof.} Let $l$ be the maximum length of the shortest path connecting each node of the digraph to the max-leader. 
+Since $G$ is strongly connected $l\le n-1$. 
+Observe that the value of the max-leader $\alpha=x_i(k)$ remains invariant in time, because the value of all other nodes are smaller than the value of the max leader and from (43), $f_{i^*}(k)=f_{i^*}(0)=1$ for all $k > 0$. 
+Similar to the line of proof of Theorem 1, let $J^{(k)}$ denote a cluster of nodes that are the $k$th neighbors of the max-leader $i^*$ (for the deﬁnition of $J^{(k)}$, see equation (46) in the Appendix). 
+Given protocol (A4), it is easy to see that the value of all the $k$th neighbors of $i^*$ becomes equal to $\alpha$ and the max-ﬂag of all nodes in $j^{(k)}\backslash {i^*}$ becomes zero after $k$ iterations. 
+On the other hand, by deﬁnition of $l\le n-1$, $J^{(l)}=\mathcal{I}$ and the result follows.
+}
+
+\noindent\textbf{Proof.} 令$l$为每个节点连接到最大领导者最短路径的最大长度。
 由于图$G$是强连通的$l\le n-1$。
-观察到最大领导者的值$\alpha=x_i(k)$在时间内保持不变，因为所有其他节点的值是小于最大领导者的值，公式(\ref{43})，$f_{i^*}(k)=f_{i^*}(0)=1$对所有的$k>0$。
-类似于关于定理1的证明，使$J^{(k)}$表示一个关于最大领导者$i^*$的第$k$个邻居簇（关于$J^{(k)}$的定义，看附录中的公式(\ref{46}）。
-给出协议(\ref{A4})，很容易便可看到节点$i^*$的第$k$个邻居簇的所有节点变得等于$\alpha$，所有在$j^{(k)}\backslash {i^*}$中的节点最大标记在$k$此迭代后变为0。
+观察到最大领导者的值$\alpha=x_i(k)$在一定时间内保持不变，因为其他所有节点的值都小于最大领导者的，看公式(\ref{43})，对所有的$k>0$都有$f_{i^*}(k)=f_{i^*}(0)=1$。
+类似于关于定理1的证明，使$J^{(k)}$表示为最大领导者$i^*$的第$k$个邻居簇（关于$J^{(k)}$的定义，看附录中的公式(\ref{46}）。
+给出协议(\ref{A4})，很容易便可看到节点$i^*$的第$k$个邻居簇的所有节点变得等于$\alpha$，所有在$j^{(k)}\backslash {i^*}$中节点的最大标记在$k$此迭代后都变为0。
 另一方面，关于$l\le n-1$的定义，$J^{(l)}=\mathcal{I}$和结果在之后。
 
 % ------------------------------------------------------------------------------
@@ -1740,17 +1888,32 @@ ii）关于$\Gamma(s) = e^{-\tau s}/s$的奈奎斯特图(Nuquist plot)有在$-1/
     \caption{强连接的平衡图}
 \end{figure}
 
-图（4）展示了四个不同的网络，每个都有$n=10$个节点，这些网络都是强连接并且平衡的。
+{\color[gray]{0.5}
+\noindent Figure 4 shows four diﬀerent networks each with $n=10$ nodes that are all strongly connected and balanced. 
+The weights associated with all the edges are 1. 
+For the following initial node values satisfying $\text{Ave(x(0))} = 0$
+}
+
+\noindent 图（4）展示了四个不同的网络，每个都有$n=10$个节点，这些网络都是强连接并且平衡的。
 与所有边相关的权重大小都是1。
 对于以下的节点初始值都满足$\text{Ave(x(0))} = 0$
+
 \begin{equation}
     x(0) = (−10.2999, 0.2575, −4.4997, 3.6258, 3.0922, 9.0156, 3.5099, −2.6645, 2.4552, −4.4921)^T
     \notag
 \end{equation}
-我们已经绘制出状态轨迹，和关于这四个图的非一致函数$||\delta||^2$，如图（5）所示。
-可以清楚的知道，随着图的边的数量的增加，代数连通度（或$\lambda^2$）增加，节点的轨迹稳定时间减小。
-长度为$n=10$或$G_a$的有向周期，具有最大的过冲情况。
-在所有的四种情况下，一致性都是逐渐达到的，并且性能随着函数$\lambda_2(\hat{G}_k)$而改善，其中$k\in \{a,b,c,d\}$。
+
+{\color[gray]{0.5}
+\noindent we have plotted the state trajectories and the disagreement function $||\delta||^2$ associated with these four digraphs in Figure 5. 
+It is clear that as the number of the edges of the graph increase, algebraic connectivity (or $\lambda^2$) increases, and the settling time of the trajectory of the node values decreases. 
+The case of a directed cycle of length $n = 10$, or $G_a$, has the largest over-shoot. 
+In all four cases, an agreement is asymptotically reached and the performance is improved as a function of $\lambda_2(\hat{G}_k)$ for $k\in \{a,b,c,d\}$.
+}
+
+\noindent 我们已经在图（5）中绘制出了状态轨迹，和关于这四个图的非一致函数$||\delta||^2$。
+可以清楚的知道，随着图中边数量的增加，代数连通度（或$\lambda^2$）增加，节点的轨迹稳定时间减小。
+长度为$n=10$的有向环或$G_a$，具有最大的过冲情况。
+在四种情况中，一致性都是逐渐达到的，并且性能随着函数$\lambda_2(\hat{G}_k)$在$k\in \{a,b,c,d\}$中变换而改善。
 
 \begin{figure}[htbp]
     \centering
@@ -1759,12 +1922,22 @@ ii）关于$\Gamma(s) = e^{-\tau s}/s$的奈奎斯特图(Nuquist plot)有在$-1/
     \caption{图的轨迹}
 \end{figure}
 
-在图6（a）中，一个有限自动机包含了状态集合\{$G_a, G_b, G_c, G_d$\}，表示切换拓扑网络离散状态，作为一个混合系统。
+{\color[gray]{0.5}
+In Figure 6(a), a ﬁnite automaton is shown with the set of states \{$G_a, G_b, G_c, G_d$\} representing the discrete-states of a network with switching topology as a hybrid system. 
+The hybrid system starts at the discrete-state $G_b$ band switches every $T=1$ second to the next state according to the state machine in Figure 6(a). 
+The continuous-time state trajectories and the group disagreement (i.e. $||\delta||^2$) of the network are shown in Figure 6(b). 
+Clearly, the group disagreement is monotonically decreasing. 
+One can observe that an average-consensus is reached asymptotically. 
+Moreover, the group disagreement vanishes exponentially fast.
+}
+
+在图6（a）中，一个有限自动机包含了状态集合\{$G_a, G_b, G_c, G_d$\}，表示切换拓扑网络作为一个混合系统的离散状态。
 这个混合系统从离散状态$G_b$开始，之后每经过$T=1$秒切换至图6（a）所示的下个状态。
 网络的连续时间状态轨迹和群组非一致性（即$||\delta||^2$）如图6（b）所示。
 清楚的看到，群组非一致性是单调递减的。
-可以观看到平均一致性是逐渐达成的。
+可以看到平均一致性是逐渐达成的。
 此外，群组非一致性呈指数级快速消失。
+
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=14.5cm]{figures/Fig6-Automaton.jpeg}
@@ -1772,7 +1945,20 @@ ii）关于$\Gamma(s) = e^{-\tau s}/s$的奈奎斯特图(Nuquist plot)有在$-1/
     \caption{有限自动机}
 \end{figure}
 
-之后，我们展示了关于网络信息流的沟通时滞平均一致性问题的结果，如图7所示。
+{\color[gray]{0.5}
+Next, we present simulation results for average-consensus problem with communication time-delays for a network with information ﬂow shown in Figure 7. 
+Figure 8 shows the state trajectories of $n=10$ nodes for a network with communication time-delay $\tau$ for $\tau=0, 0.5\tau_{max}, \tau_{max} = \pi / 2\tau_{max}(G_a) = 0.266$ for a zero-mean random set of initial conditions. 
+Clearly, the agreement is achieved for the cases with $\tau < \tau_{max}$ in Figures 8(a), (b), and (c). 
+For the case with $\tau = \tau_{max}$, synchronous oscillations are demonstrated in Figure 8(d). 
+{\color{green} A third-order Pade approximation is used to model the time-delay as a ﬁnite-order LTI system.}
+}
+
+之后，如图7展示了网络信息流的含通信时滞的平均一致性问题结果。
+图8展示了节点$n=10$的含通信时滞网络状态轨迹，沟通时滞$\tau$的值有$\tau=0, 0.5\tau_{max}, \tau_{max} = \pi / 2\tau_{max}(G_a) = 0.266$，做了关于初始条件的0均值随机集合。
+清楚的看到，当$\tau < \tau_{max}$时达到一致，如图8（a），（b）和（c）所示。
+针对于$\tau = \tau_{max}$的情况，同步振荡如图8（d）所示。
+时滞模型使用三阶帕德近似（Pade approximation）作为一个有限阶线性时不变（Linear Time-Invariant, LTI）系统。
+
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=8cm]{figures/Fig7-Undirected.jpeg}
@@ -1780,22 +1966,34 @@ ii）关于$\Gamma(s) = e^{-\tau s}/s$的奈奎斯特图(Nuquist plot)有在$-1/
     \caption{用作沟通时滞一致性的无向图$G_e$}
 \end{figure}
 
-图8展示了$n=10$网络节点状态轨迹，网络包含沟通时滞$\tau$，$\tau$的值有$\tau=0, 0.5\tau_{max}, \tau_{max} = \pi / 2\tau_{max}(G_a) = 0.266$，对于0均值随机初始条件的随机集合。
-清楚的看到，当$\tau < \tau_{max}$时达到一致，如图8（a），（b）和（c）所示。
-针对于$\tau = \tau_{max}$的情况，同步振荡如图8（d）所示。
-三阶帕德近似（Pade approximation）被用在时滞模型作为一个有限阶线性时不变（Linear Time-Invariant, LTI）系统。
-
 % ------------------------------------------------------------------------------
 \section{Conclusions}
-我们提供了具备有向信息流和固定或切换拓扑网络的一致性协议的收敛性分析。
-我们的分析依赖于一些代数图论和矩阵论的工具。
-我们建立了线性一致性协议的性质和镜像图拉普拉斯算子的费德勒特征值之间的联系。
-介绍了简单的非一致性函数，其作为李雅普诺夫方程，允许切换拓扑网络的一致性协议的收敛性分析。
-给出的交换图，该图表明了平衡图的加权邻接矩阵采用矩阵交换的拉普拉斯算子和对称部分矩阵的运算。
+{\color[gray]{0.5}
+\noindent We provided convergence analysis of consensus protocol for a network of integrators with a directed information ﬂow and ﬁxed or switching topology. 
+Our analysis relies on several tools from algebraic graph theory and matrix theory. 
+We established a connection between the performance of the linear consensus protocol and the Fiedler eigenvalue of graph Laplacian of the mirror graph. 
+A simple disagreement function was introduced as a Lyapunov function for the group disagreement dynamics. 
+This was later used to provide a common Lyapunov function that allowed convergence analysis of an agreement protocol for a network with switching topology. 
+A commutative diagram was given that shows the operations of taking Laplacian and symmetric part of a matrix commute for weighted adjacency matrices of balanced graphs. 
+Balanced graphs turned out to be instrumental in solving average-consensus problems.
+}
+
+\noindent 我们展示了了具备有向信息流和固定或切换拓扑积分器网络的一致性协议的收敛性分析。
+我们的分析使用了一些代数图论和矩阵论的工具。
+我们建立了线性一致性协议的性质和镜像图拉普拉斯矩阵的费德勒特征值之间的联系。
+介绍了一个关于群组非一致性变化的李亚普诺夫方程。
+这后来作为一个常用的李亚普诺夫函数，用作切换拓扑网络一致性的收敛分析。
+给出的交换图展示了将拉普拉斯矩阵和矩阵的渐进部分转变为平衡图的加权邻接矩阵的操作。
 平衡图被证明对解决平均一致性问题是有帮助的。
 
+{\color[gray]{0.5}
+For networks with undirected graphs, we gave suﬃcient and necessary conditions for consensus in networks with communication time-delays. 
+It was shown that there is a trade-oﬀ between robustness to time-delays and the speed of convergence of a linear consensus protocol. 
+}
+
 对于无向图网络，我们给出了通信时滞网络一致性的充分必要条件。
-这表明在时滞鲁棒性和线性一致性协议的收敛速度之间存在折中。
+这表明在时滞鲁棒性和线性一致性协议收敛速度之间存在折中。
+
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=14.5cm]{figures/Fig8-ConsensusProblem.jpeg}
@@ -1803,10 +2001,22 @@ ii）关于$\Gamma(s) = e^{-\tau s}/s$的奈奎斯特图(Nuquist plot)有在$-1/
     \caption{一致性问题}
 \end{figure}
 
-为了确定智能体群组的领导性问题，我们介绍了最大化智能体，它拥有一个简单的离散时间模型并且通过最大化的$n-1$次迭代（$n$代表智能体的总数），给出了使用分布式方式解决最大一致性问题的协议。
+{\color[gray]{0.5}
+To determine a superior or leader in a group of agents, we introduced max-agents that have a very simple discrete-time model and gave a protocol that solves the max-consensus problem in a distributed way after a maximum of $n−1$ iterations ($n$ is the number of agents).
+}
 
-我们提出了复杂的仿真结果以此演示了我们理论结果的有效性。
+为了确定智能体群组的领导性问题，我们介绍了最大智能体，它拥有一个简单的离散时间模型并且通过最大化的$n-1$次迭代（$n$代表智能体的总数），给出了使用分布式方式解决最大一致性问题的协议。
 
-综合智能体离散时间渐进的一致性问题主要依赖非负矩阵理论，这将在下个文章中指出。
+{\color[gray]{0.5}
+We presented extensive simulation results that demonstrate the eﬀectiveness of our theoretical results.
+}
+
+我们展示了复杂的仿真结果以此演示了我们理论结果的有效性。
+
+{\color[gray]{0.5}
+The consensus problems for discrete-time approximation of integrator agents relies on the theory of nonnegative matrices and will be presented in an upcoming paper.
+}
+
+积分器智能体的离散时间渐进一致性问题主要依赖非负矩阵理论，这将在下个文章中指出。
 
 \end{document}
