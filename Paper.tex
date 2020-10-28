@@ -636,11 +636,11 @@ We will later establish a connection between $\lambda_2(\hat{L})$ with $\hat{L}=
 
 {\color[gray]{0.5}
 The key in the stability analysis of system (6) is in the spectral properties of graph Laplacian. 
-The following result is well-known (e.g. see [17]) and is based on Gerˇsgorin disk theorem [12].
+The following result is well-known (e.g. see [17]) and is based on Ger\v sgorin disk theorem [12].
 }
 
 系统(\ref{6})稳定性分析的关键是拉普拉斯图的谱图特性。
-接下来的结果已经众所周知（例如，文献[17]），它是基于Gesgorin圆盘定理（Gersgorin disk theorem），参考文献[12]。
+接下来的结果已经众所周知（例如，文献[17]），它是基于Gesgorin圆盘定理（Ger\v sgorin disk theorem），参考文献[12]。
 
 {\color[gray]{0.5}
 \noindent \textbf{Theorem} 2. (spectral localization) Let $G=(\mathcal{V},\mathcal{E},\mathcal{A})$ be a digraph with the Laplacian $L$. 
@@ -667,12 +667,12 @@ Then, all the eigenvalues of $L=\mathcal{L}(G)$ are located in the following dis
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=8cm]{figures/Fig1-DiskTheorem.jpeg}
-    \caption{圆盘定理应用在图拉普拉斯的效果演示}
+    \caption{A demonstration of Ger\v sgorin Theorem applied to graph Laplacian.}
     \label{DiskTheorem}
 \end{figure}
 
 {\color[gray]{0.5}
-\noindent \textbf{Proof.}  Based on the Gerˇsgorin disk theorem, all the eigenvalues of $L=[l_{ij}]$ are located in the union of the following $n$ disks
+\noindent \textbf{Proof.}  Based on the Ger\v sgorin disk theorem, all the eigenvalues of $L=[l_{ij}]$ are located in the union of the following $n$ disks
 }
 
 \noindent \textbf{Proof.} 基于圆盘定理，所有$L=[l_{ij}]$的特征值都位于下面的$n$个圆盘的并集中
@@ -766,7 +766,7 @@ A simple counterexample is a strongly connected digraph of order $n$ = 3, shown 
     \centering
     \includegraphics[width=4cm]{figures/Fig2-ConnectedDigraph.jpeg}
     \label{ConnectedDigraph}
-    \caption{一个不能使用协议(\ref{A1})解决平均一致性问题的3阶连通图}
+    \caption{A connected digraph of order 3 that does not solve the average-consensus problem using Protocols (A1)}
 \end{figure}
 
 {\color[gray]{0.5}
@@ -930,7 +930,7 @@ A graph $G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$ is called balanced if and on
     \centering
     \includegraphics[width=12cm]{figures/Fig3-BalancedGraphs.jpeg}
     \label{BalancedGraphs}
-    \caption{平衡图的三个例子}
+    \caption{Three examples of balanced graphs.}
 \end{figure}
 
 {\color[gray]{0.5}
@@ -1712,7 +1712,7 @@ ii）关于$\Gamma(s) = e^{-\tau s}/s$的奈奎斯特图(Nyquist plot)有在$-1/
 
 {\color[gray]{0.5}
 Based on part i) of Theorem 10, one concludes that the upper bound on the admissible channel time-delay in the network is inversely proportional to $\lambda_n$， i.e. the largest eigenvalue of the Laplacian of the information flow. 
-From Gersgorin theorem, we know that $\lambda_n\le 2d_{max}(G)$, where $d_{max}(G)$ is the maximum out-degree of the nodes of $G$. 
+From Ger\v sgorin theorem, we know that $\lambda_n\le 2d_{max}(G)$, where $d_{max}(G)$ is the maximum out-degree of the nodes of $G$. 
 Therefore, a sufficient condition for convergence of protocol (A2) is 
 }
 
@@ -1885,7 +1885,7 @@ On the other hand, by deﬁnition of $l\le n-1$, $J^{(l)}=\mathcal{I}$ and the r
     \centering
     \includegraphics[width=12cm]{figures/Fig4-BalancedSC.jpeg}
     \label{Fig4}
-    \caption{强连接的平衡图}
+    \caption{For examples of balanced and strongly connected digraphs: (a) $G_a$, (b) $G_b$, (c) $G_c$, and (d) $G_d$ satisfying.}
 \end{figure}
 
 {\color[gray]{0.5}
@@ -1919,7 +1919,7 @@ In all four cases, an agreement is asymptotically reached and the performance is
     \centering
     \includegraphics[width=14.5cm]{figures/Fig5-Simulation.jpeg}
     \label{Simulation}
-    \caption{图的轨迹}
+    \caption{For examples of balanced and strongly connected digraphs: (a) $G_a$, (b) $G_b$, (c) $G_c$, and (d) $G_d$ satisfying.}
 \end{figure}
 
 {\color[gray]{0.5}
@@ -1942,7 +1942,7 @@ Moreover, the group disagreement vanishes exponentially fast.
     \centering
     \includegraphics[width=14.5cm]{figures/Fig6-Automaton.jpeg}
     \label{Automaton}
-    \caption{有限自动机}
+    \caption{(a) A finite automaton with for states representing the discrete-states of a network with variable topology and (b) trajectory of the node values and the group disagreement for a network with a switching information flow.}
 \end{figure}
 
 {\color[gray]{0.5}
@@ -1963,7 +1963,7 @@ For the case with $\tau = \tau_{max}$, synchronous oscillations are demonstrated
     \centering
     \includegraphics[width=8cm]{figures/Fig7-Undirected.jpeg}
     \label{Undirected}
-    \caption{用作沟通时滞一致性的无向图$G_e$}
+    \caption{Undirected graph $G_e$ used for consensus with communication time-delays}
 \end{figure}
 
 % ------------------------------------------------------------------------------
@@ -1998,7 +1998,7 @@ It was shown that there is a trade-oﬀ between robustness to time-delays and th
     \centering
     \includegraphics[width=14.5cm]{figures/Fig8-ConsensusProblem.jpeg}
     \label{ConsensusProblem}
-    \caption{一致性问题}
+    \caption{Consensus problem with communication time-delay on $G_b$ in Figure 7: (a)$\tau$=0, (b)$\tau=0.5\tau_{max}$, (c)$\tau=0.7\tau_{max}$, and (d)$\tau=\tau_{max}$ .}
 \end{figure}
 
 {\color[gray]{0.5}
@@ -2018,5 +2018,6 @@ The consensus problems for discrete-time approximation of integrator agents reli
 }
 
 积分器智能体的离散时间渐进一致性问题主要依赖非负矩阵理论，这将在下个文章中指出。
+
 
 \end{document}
