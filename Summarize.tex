@@ -28,9 +28,9 @@
 \end{abstract}
 
 
-\clearpage
-% 生成目录
-\tableofcontents
+% \clearpage
+% % 生成目录
+% \tableofcontents
 
 \clearpage
 % ------------------------------------------------------------------------------
@@ -39,32 +39,387 @@
 % ------------------------------------------------------------------------------
 \section{Consensus Problems}
 
+\begin{equation}
+    N_J:=\cup_{i\in J}N_i=\{j\in \mathcal{I}:i\in J, ij\in \mathcal{E}\}
+    \tag{1}
+    \label{1}
+\end{equation}
+
+\begin{equation}
+    \dot{x}_i = f(x_i, u_i), i\in \mathcal{I}
+    \tag{2}
+    \label{2}
+\end{equation}
+
+\begin{equation}
+    u_i = k_i(x_{j_1},\dots,x_{j_{m_i}})
+    \tag{3}
+    \label{3}
+\end{equation}
+
 % ------------------------------------------------------------------------------
 \section{Consensus Protocols}
+
+\begin{equation}
+    \dot{x}_i(t) = u_i(t)
+    \tag{4}
+    \label{4}
+\end{equation}
+
+\begin{equation}
+    x_i(k+1) = x_i(k)+\epsilon u_i(k)
+    \tag{5}
+    \label{5}
+\end{equation}
+
+\begin{equation}
+    \dot{x}(t) = -Lx(t) 
+    \tag{6}
+    \label{6}
+\end{equation}
+
+\begin{equation}
+    l_{ij} = \left\{
+        \begin{array}{ll}
+            \sum_{k=1,k\ne i}^n a_{ik}, & j=i\\
+            -a_{ij}, & j\ne i
+        \end{array}\right.
+        \tag{7}
+        \label{7}
+\end{equation}
+
+\begin{equation}
+    \dot{x}(t) = -L_kx(t),\ k=s(t) 
+    \tag{8}
+    \label{8}
+\end{equation}
+
+\begin{equation}
+    x(k+1) = P_\epsilon x(k)
+    \tag{9}
+    \label{9}
+\end{equation}
+
+\begin{equation}
+    P_\epsilon = I - \epsilon L
+    \tag{10}
+    \label{10}
+\end{equation}
+
+\begin{equation}
+    u_i = \sum_{j\in N_i}a_{ij}(x_j-x_i)
+    \tag{A1}
+    \label{A1}
+\end{equation}
+
+\begin{equation}
+    u_i(t) = \sum_{j\in N_i}a_{ij}[x_j(t-\tau_{ij})-x_i(t-\tau_{ij})]
+    \tag{A2}
+    \label{A2}
+\end{equation}
 
 % ------------------------------------------------------------------------------
 \section{Algebraic Graph Theory: Properties of Laplacians}
 
+\begin{equation}
+    \deg_{in}(v_i) = \sum_{j=1}^{n}a_{ji},\quad \deg_{out}(v_i) = \sum_{j=1}^{n}a_{ij}
+    \tag{11}
+    \label{11}
+\end{equation}
+
+\begin{equation}
+    L = \mathcal{L}(G) = \Delta-\mathcal{A}
+    \tag{12}
+    \label{12}
+\end{equation}
+
+\noindent \textbf{Theorem 1.} 定义$G=(\mathcal{V},\mathcal{E},\mathcal{A})$是关于拉普拉斯矩阵$L$的加权有向图。
+那么，当且仅当$\text{rank}(L)=n-1$时，$G$就是强连接的。
+
+\begin{equation}
+    \Phi_G(x) = x^T Lx = \frac{1}{2} \sum_{ij\in \mathcal{E}}(x_j - x_i)^2
+    \tag{13}
+    \label{13}
+\end{equation}
+
+\begin{equation}
+    \min_{\substack{x\ne 0\\   \mathbf{1}^Tx=0}} \frac{x^T Lx}{||x||^2}=\lambda_2(L)
+    \tag{14}
+    \label{14}
+\end{equation}
+
+\noindent \textbf{Theorem 2.} (spectral localization) 定义$G=(\mathcal{V},\mathcal{E},\mathcal{A})$是关于拉普拉斯矩阵$L$的加权有向图。
+记图$G$的节点的最大化出度为$d_{max}(G) = \max_i \deg_{out}(v_i)$。
+那么，所有的$L=\mathcal{L}(G)$的特征值都位于下面的圆盘中
+
+\begin{equation}
+    D(G) = \{ z\in \mathbb{C}: |z-d_{max}(G)| \le d_{max}(G) \}
+    \tag{15}
+    \label{15}
+\end{equation}
+
+\begin{equation}
+    D_i = \{ z\in \mathbb{C}: |z-l_{ii}| \le \sum_{j\in \mathcal{I},j\ne i}|l_{ij}| \}
+    \tag{16}
+    \label{16}
+\end{equation}
+
 % ------------------------------------------------------------------------------
 \section{A Counterexample for Average-Consensus}
 
-% ------------------------------------------------------------------------------
-\section{Networks with Fixed or Switching Topology}
+
+\begin{equation}
+    \begin{aligned}
+        x(t) = exp(-Lt)x(0)\\
+        x(t) = e^{-Lt}x(0)\\
+        u(t) = -Lx(t)
+    \end{aligned}
+    \tag{17}
+    \label{17}
+\end{equation}
+
+\noindent \textbf{Theorem 3.} 假设$G$是一个强连通图，拉普拉斯矩阵$L$满足$Lw_r=0$，$w_l^TL = 0$，$w_l^Tw_r=1$。那么
+
+\begin{equation}
+    R = \lim_{t\rightarrow +\infty} exp(-Lt) = w_r w_l^T \in M_n
+    \tag{18}
+    \label{18}
+\end{equation}
 
 % ------------------------------------------------------------------------------
+\section{Networks with Fixed or Switching Topology}
+% ------------------------------------------------------------------------------
 \subsection{Balanced Graphs and Average-Consensus on Digraphs}
+
+\noindent \textbf{Theorem 4.} 考虑一个含有有向信息流$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$的积分器网络，网络是强连通的。
+那么，当且仅当图$G$是平衡图时，协议(\ref{A1})全局渐进的解决了平均一致性问题。
+
+\noindent \textbf{Theorem 5.} 考虑一个积分器智能体网络图$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$是强连通的。
+那么，当且仅当$\mathbf{1}^TL=0$时，协议(\ref{A1})全局渐进的解决了平均一致性问题。
+
+\begin{equation}
+    \alpha = \frac{\sum_i \gamma_ix_i(0)}{\sum_i\gamma_i}
+    \tag{19}
+    \label{19}
+\end{equation}
+
+\begin{equation}
+    \gamma_i \dot{x}_i=u_i,\quad \gamma_i>0,\forall i \in \mathcal{I}
+    \tag{20}
+    \label{20}
+\end{equation}
+
+\begin{equation}
+    \alpha = \frac{\sum_i \gamma_ix_i(0)}{\sum_i\gamma_i}
+    \tag{21}
+    \label{21}
+\end{equation}
+
+\noindent \textbf{Theorem 6.} 定义一个具有邻接矩阵$\mathcal{A}=[a_{ij}]$的图$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$。
+那么，下列所有的条件都是等价的：
+
+i）图$G$是平衡的；
+
+ii）$w_l = \mathbf{1}$是图$G$拉普拉斯矩阵相对于0特征值的左特征向量，即$\mathbf{1}^TL = 0$。
+
+iii）对$\forall x \in \mathbb{R}^n$有$\sum_{i=1}^n u_i = 0$，且$u_i = \sum_{j\in N_i}a_{ij}(x_j - x_i)$。
 
 % ------------------------------------------------------------------------------
 \subsection{Performance of Group Agreement and Mirror Graphs}
 
+\begin{equation}
+    x = \alpha \mathbf{1} + \delta
+    \tag{22}
+    \label{22}
+\end{equation}
+
+\begin{equation}
+    \dot{\delta} = -L\delta
+    \tag{23}
+    \label{23}
+\end{equation}
+
+\begin{equation}
+    \Phi_G(x) = x^T Lx
+    \tag{24}
+    \label{24}
+\end{equation}
+
+\begin{equation}
+    \hat{a}_{ij}=\hat{a}_{ji}=\frac{a_{ij}+a_{ji}}{2}\ge 0
+    \tag{25}
+    \label{25}
+\end{equation}
+
+\noindent \textbf{Theorem 7.} 定义$G$是一个具有邻接矩阵$\mathcal{A}=adj(G)$和拉普拉斯矩阵$L=\mathcal{L}(G)$的图。
+那么当且仅当$G$是平衡图时，$L_s = Sym(L) = (L+L^T)/2$是一个关于$\hat{G}=\mathcal{M}(G)$的可用拉普拉斯矩阵，即有下述转换形式
+
+\begin{equation}
+    \begin{aligned}
+                    &G \xrightarrow{adj}         &\mathcal{A} \xrightarrow{\mathcal{L}}          &L \\
+        \mathcal{M} &\downarrow \quad\quad Sym   &\downarrow  Sym                      &\downarrow \\
+                    &\hat{G} \xrightarrow[adj]{} &\hat{\mathcal{A}} \xrightarrow[\mathcal{L}]{}  &\hat{L} 
+    \end{aligned}
+    \tag{26}
+    \label{26}
+\end{equation}
+
+\noindent\textbf{Theorem 8.} （一致性的性能）考虑带有有向信息流$G$是平衡和强连通的积分器网络。
+那么，给出协议(\ref{A1})，下述状态满足：
+
+i）群组的非一致向量$\delta$是非一致变化在公式(\ref{23})全局渐进消失的结果，消失速度等于$\kappa=\lambda_2(\hat{G})$（或图$G$镜像的费德勒特征值），即
+
+\begin{equation}
+    \tag{27}
+    \label{27}
+    ||\delta(t)||\le ||\delta(0)||exp(-kt)
+\end{equation}
+
+ii）下述的流畅的，正定的，适当的函数
+
+\begin{equation}
+    \tag{28}
+    \label{28}
+    V(\delta) = \frac{1}{2}||\delta||^2
+\end{equation}
+
+是一个关于非一致动态变化的有效李亚普诺夫函数。
+
+\begin{equation}
+    \tag{29}
+    \label{29}
+    \dot{V} = -\delta^TL\delta = -\delta^TL_s\delta = -\delta^T\hat{L}\delta \le -\lambda_2(\hat{G})||\delta||^2 = -2\kappa V(\delta) < 0, \forall \delta \ne 0
+\end{equation}
+
+\begin{equation}
+    \tag{30}
+    \label{30}
+    \delta^T \hat{L} \delta \ge \lambda_2(\hat{G})||\delta||^2,\quad \forall\delta:\mathbf{1}^T\delta=0
+\end{equation}
+
 % ------------------------------------------------------------------------------
 \subsection{Consensus in Networks with Switching Topology}
+
+\begin{equation}
+    \Gamma_n = \{ G=(\mathcal{V}, \mathcal{E}, \mathcal{A}): \text{rank}(\mathcal{L}(G)) =n-1, \mathbf{1}^T\mathcal{L}(G) = 0\}
+    \tag{31}
+    \label{31}
+\end{equation}
+
+\begin{equation}
+    \dot{x}(t) = -\mathcal{L}(G_k)x(t),\quad k=s(t), G_k\in \Gamma_n
+    \tag{32}
+    \label{32}
+\end{equation}
+
+\noindent \textbf{Theorem 9.} 对于任意的切换信号$s(\cdot)$，切换系统(\ref{32})的解决方法是全局渐进收敛到$Ave(x(0))$（即达成平均一致性）。
+此外，下述的平滑，正定，合适函数
+
+\begin{equation}
+    V(\delta) = \frac{1}{2}||\delta||^2
+    \label{33}
+    \tag{33}
+\end{equation}
+
+\begin{equation}
+    \dot{\delta}(t) = -\mathcal{L}(G_k)\delta(t),\quad k=s(t),G_k\in \Gamma_n.
+    \tag{34}
+    \label{34}
+\end{equation}
+
+\begin{equation}
+    \kappa^* = \min_{G\in \Gamma_n} \lambda^2(\mathcal{L}(\hat{G})).
+    \tag{35}
+    \label{35}
+\end{equation}
+
+\begin{equation}
+    \tag{36}
+    \label{36}
+    \dot{V} = \delta^T\mathcal{L}(G_k)\delta = -\delta^T\mathcal{L}(\hat{G}_k)\delta \le -\lambda_2(\mathcal{L}(\hat{G}_k))||\delta||^2 \le -\kappa^*||\delta||^2 = -2\kappa^*V(\delta)<0,\forall \delta \ne 0
+\end{equation}
 
 % ------------------------------------------------------------------------------
 \section{Networks with Communication Time-Delays}
 
+\begin{equation}
+    \dot{x}_i(t) = \sum_{j\in N_i} a_{ij} [x_j(t-\tau_{ij}) - x_i(t-\tau_{ij})].
+    \tag{37}
+    \label{37}
+\end{equation}
+
+\begin{equation}
+    sX_i(s) - x_i(0) = \sum_{j\in N_i} a_{ij} h_{ij}(s) (X_j(s) - X_i(s))
+    \tag{38}
+    \label{38}
+\end{equation}
+
+\begin{equation}
+    X(s) = (s+L(s))^{-1}x(0)
+    \tag{39}
+    \label{39}
+\end{equation}
+
+\noindent \textbf{Theorem 10.} 考虑一个具有相等通信时滞$\tau > 0$的积分器网络。
+假设网络信息流$G$是无向且连通的。
+那么，当且仅当以下两个等价情况任何一个满足时，带有$\tau_{ij} = \tau$的协议(\ref{A2})能全局渐进解决平均一致性问题：
+
+i）$\tau \in (0, \tau^*)\ \text{with}\ \tau^*=\frac{\pi}{2\lambda_n}, \lambda_n=\lambda_{max}(L)$.
+
+ii）关于$\Gamma(s) = e^{-\tau s}/s$的奈奎斯特图(Nyquist plot)有在$-1/\lambda_k,\ \forall k > 1$附近的零包围。
+
+\begin{equation}
+    \tau \le \frac{\pi}{4d_{max}(G)}
+    \tag{40}
+    \label{40}
+\end{equation}
+
 % ------------------------------------------------------------------------------
 \section{Max-Consensus and Leader Determination}
+
+\begin{equation}
+    \tag{41}
+    \label{41}
+    x_i(k+1)=max(x_i(k),u_i(k))
+\end{equation}
+
+\begin{equation}
+    \tag{42}
+    \label{42}
+    x_i(k+1) = \frac{1}{2}(x_i(k)+u_i(k)+|x_i(k)-u_i(k)|)
+\end{equation}
+
+\begin{equation}
+    \tag{A4}
+    \label{A4}
+    u_i(k) = \max_{j\in N_i}x_j
+\end{equation}
+
+\begin{equation}
+    \tag{43}
+    \label{43}
+    f_i(k+1) = K(f_i(k),x_i(k),u_i(k)):=
+    \left\{
+        \begin{matrix}
+            f_i(k)\quad x_i(k+1)=x_i(k)\\
+            \bar{f}_i(k) \quad x_i(k+1)>x_i(k)
+        \end{matrix}
+    \right.
+\end{equation}
+
+\noindent\textbf{Theorem 11.} 考虑一个最大智能体网络具有如下动态变化：
+
+\begin{equation}
+    \tag{44}
+    \label{44}
+    \left\{
+        \begin{matrix}
+            x_i(k+1) = \max(x_i(k),u_i(k))\\
+            f_i(k+1) = K(f_i(k),x_i(k),u_i(k))
+        \end{matrix}
+    \right.
+\end{equation}
+
 
 % ------------------------------------------------------------------------------
 \section{Simulation Results}

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.24)  30 OCT 2020 08:21
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.24)  30 OCT 2020 09:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -546,22 +546,16 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 23.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-] (./Summarize.toc)
-\tf@toc=\write3
-\openout3 = `Summarize.toc'.
+] [2
 
- [2
-
-] [3
-
-] (./Summarize.aux) ) 
+] [3] [4] [5] [6] [7] (./Summarize.aux) ) 
 Here is how much of TeX's memory you used:
- 15123 strings out of 492916
- 333755 string characters out of 6133345
- 418328 words of memory out of 5000000
- 19091 multiletter control sequences out of 15000+600000
- 538834 words of font info for 69 fonts, out of 8000000 for 9000
+ 15261 strings out of 492916
+ 340466 string characters out of 6133345
+ 424836 words of memory out of 5000000
+ 19228 multiletter control sequences out of 15000+600000
+ 538850 words of font info for 71 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 44i,11n,64p,440b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,17n,64p,440b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Summarize.pdf (3 pages).
+Output written on Summarize.pdf (7 pages).
