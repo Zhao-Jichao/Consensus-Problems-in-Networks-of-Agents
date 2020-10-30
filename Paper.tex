@@ -64,7 +64,7 @@ This is partly due to broad applications of multi-agent systems in many areas in
 
 {\color[gray]{0.5}
 Agreement problems have a long history in the ﬁeld of computer science, particularly in automata theory and distributed computation [15]. 
-In many applications involving multiagent/multi-vehicle systems, groups of agents need to agree upon certain quantities of {\color{green}interest}. 
+In many applications involving multiagent/multi-vehicle systems, groups of agents need to agree upon certain quantities of interest. 
 Such quantities might or might not be related to the motion of the individual agents. 
 As a result, it is important to address agreement problems in their general form for networks of dynamic agents with directed information ﬂow under link failure and creation (i.e. variable network topology).
 }
@@ -83,12 +83,12 @@ In each case, we provide convergence analysis and for linear protocols establish
 在每种情况，我们都提供了收敛性分析，并且针对线性协议建立了性能和关于图的拉氏变化和一致性协议的鲁棒性之间的定向关系。
 
 {\color[gray]{0.5}
-In the past, a number of researchers have worked in problems that are essentially diﬀerent forms of agreement problems with diﬀerences regarding the types of agent dynamics, the properties of the graphs, and {\color{green}the names of the tasks of interest}. 
+In the past, a number of researchers have worked in problems that are essentially diﬀerent forms of agreement problems with diﬀerences regarding the types of agent dynamics, the properties of the graphs, and the names of the tasks of interest. 
 In [25, 7, 6], graph Laplacians are used for the task of formation stabilization for groups of agents with linear dynamics. 
 Their method for formation stabilization has not yet been extended to systems with nonlinear dynamics that are not feedback linearizable. 
 Special cases of this approach are known as leader-follower type architectures and have been widely used by numerous researchers [19, 4, 14]. 
 In [18], graph Laplacians are used in the context of dynamic graph theory. 
-In [24, 23], {\color{green}ﬂocking and heading angle} alignment for multiple particles is analyzed from the point of view of statistical mechanics and a phase transition phenomenon is observed that occurs the information ﬂow in the network becomes connected. 
+In [24, 23], ﬂocking and heading angle alignment for multiple particles is analyzed from the point of view of statistical mechanics and a phase transition phenomenon is observed that occurs the information ﬂow in the network becomes connected. 
 The work in [13] focuses on attitude alignment for undirected graphs in which the agents have simple dynamics motivated by the model used in [24]. 
 It is claimed that the connectivity of the graph on average is suﬃcient for convergence of the heading angles of the agents. 
 In [20], the authors addressed convergence of linear and nonlinear protocols for networks with undirected graphs in presence or lack of communication time-delays. 
@@ -107,7 +107,7 @@ Theoretically, analyzing consensus on directed graphs is more challenging and is
 理论上，有向图的一致性分析更具有挑战性，并且在接下来的文献中进行讨论。
 
 {\color[gray]{0.5}
-In this paper, we provide convergence analysis of consensus protocol for a network of {\color{green}integrators} with a directed information ﬂow and ﬁxed or switching topology. 
+In this paper, we provide convergence analysis of consensus protocol for a network of integrators with a directed information ﬂow and ﬁxed or switching topology. 
 Our analysis relies on several tools from algebraic graph theory [1, 11] and matrix theory [12]. 
 We establish a connection between the performance of the linear consensus protocol and the Fiedler eigenvalue of graph Laplacian of a graph called the mirror graph (that is closely-related to the original directed graph).
 }
@@ -228,7 +228,7 @@ Suppose each node of a graph is a dynamic agent with dynamics
 \end{equation}
 
 {\color[gray]{0.5}
-\noindent A dynamic graph (or dynamic network) is deﬁned as a 4-tuple $G_{x(t)} = (\mathcal{V},\mathcal{E},\mathcal{A},x(t))$ together with dynamics $\dot{x}=F(x,u)$ where $x$ denotes the state of the dynamic graph and {\color{green}$F(x,u)$ is the column-wise concatenation of the elements $F_i(x,u)=f(x_i,u_i)$}.
+\noindent A dynamic graph (or dynamic network) is deﬁned as a 4-tuple $G_{x(t)} = (\mathcal{V},\mathcal{E},\mathcal{A},x(t))$ together with dynamics $\dot{x}=F(x,u)$ where $x$ denotes the state of the dynamic graph and $F(x,u)$ is the column-wise concatenation of the elements $F_i(x,u)=f(x_i,u_i)$.
 }
 
 \noindent 一个动态图或（动态网络）定义为随着$\dot{x}=F(x,u)$动态变化的的4元组$G_{x(t)} = (\mathcal{V},\mathcal{E},\mathcal{A},x(t))$，其中$x$表示动态图的状态，$F(x,u)$是$F_i(x,u)=f(x_i,u_i)$中元素的列合并。
@@ -251,7 +251,7 @@ We say a protocol
 
 {\color[gray]{0.5}
 \noindent with $j_1,\dots,j_{m_i}\in \{i\} \cup N_i$ and $m_i\leq n$ asymptotically solves the $\chi$ -consensus problem if and only if there exists an asymptotically stable equilibrium $x^*$ of $\dot{x}=F(x,k(x))$ such that $x^*=\chi(x(0))$ for all $i\in \mathcal{I}$. 
-We are interested in solving the $\chi$ -consensus problem in a distributed fashion in which {\color{green}no node is connected to all other nodes (i.e. $m_i < n$ for all $i$)}.
+We are interested in solving the $\chi$ -consensus problem in a distributed fashion in which no node is connected to all other nodes (i.e. $m_i < n$ for all $i$).
 }
 
 \noindent 其中$j_1,\dots,j_{m_i}\in \{i\} \cup N_i$和$m_i\leq n$渐进的解决了$\chi$-一致性问题，当且仅当存在一个渐进稳定的平衡$x^*$属于$\dot{x}=F(x,k(x))$对于所有的$i\in \mathcal{I}$满足$x^*=\chi(x(0))$。
@@ -284,7 +284,7 @@ This is more challenging than just reaching a general agreement.
 % ------------------------------------------------------------------------------
 \section{Consensus Protocols}
 {\color[gray]{0.5}
-\noindent In this section, we present three consensus protocols that solve agreement problems in a network of continuous-time (CT) {\color{green}integrator agents} with dynamics
+\noindent In this section, we present three consensus protocols that solve agreement problems in a network of continuous-time (CT) integrator agents with dynamics
 }
 
 \noindent 这一部分，我们介绍了三种一致性协议，分别用来解决连续时间（continuous-time，CT）动态积分器智能体
@@ -448,7 +448,7 @@ In a network with switching topology, convergence analysis of Protocol (A1) is e
 % \end{equation}
 
 {\color[gray]{0.5}
-\noindent where $L_k = \mathcal{L}(G_k)$ is the Laplacian of $G_k$, $s(t)$ : $\mathbb{R}\rightarrow \mathcal{I} \subset \mathbb{Z}$ is a switching signal, and {\color{green}$\Gamma\ni G_k$ is a ﬁnite collection of digraphs (of order $n$) with the index set $\mathcal{I}_\Gamma$}. 
+\noindent where $L_k = \mathcal{L}(G_k)$ is the Laplacian of $G_k$, $s(t)$ : $\mathbb{R}\rightarrow \mathcal{I} \subset \mathbb{Z}$ is a switching signal, and $\Gamma\ni G_k$ is a ﬁnite collection of digraphs (of order $n$) with the index set $\mathcal{I}_\Gamma$. 
 Later, we will see that $\Gamma$ is a relatively large set for $n\gg 1$. 
 The task of stability analysis for the hybrid system in (8) is rather challenging partly because, in general, the product of two Laplacian matrices do not commute.
 }
@@ -498,7 +498,7 @@ For agents with discrete-time models, applying protocol (A1) gives the following
 {\color[gray]{0.5}
 The convergence analysis of Protocol (A1) for discrete-time agents heavily relies on the theory of nonnegative matrices [10, 12, 16] and will be discussed in a separate paper. 
 Our approach presents a Lyapunov-based convergence analysis for agreement in networks with discrete-time models. 
-This is diﬀerent than the approach pursued in the work by Jadbabaie et al. which strongly relies on matrix theoretic properties and {\color{green}inﬁnite right-convergent products (RCP) of stochastic matrices [2, 3]}.
+This is diﬀerent than the approach pursued in the work by Jadbabaie et al. which strongly relies on matrix theoretic properties and inﬁnite right-convergent products (RCP) of stochastic matrices [2, 3].
 }
 
 智能体离散时间协议(\ref{A1})的收敛性分析严重依赖于非负矩阵理论[10, 12, 16]，并且将会在一个单独的文章中讨论。
@@ -1088,7 +1088,7 @@ Then, the value of all nodes converges to the value of $x_{i^*}$.
 In other words, the agent $i^*$ plays the role of a leader in leader-follower type architecture.
 }
 
-接下来的结果表明，如果一个智能体使用了一个相当小的更新速率（或step-size），即$\gamma_{i^*}\gg\gamma_i$且所有的$i\ne i^*$。
+接下来的结果表明，如果一个智能体使用了一个相当小的更新速率（或step-size），即$\gamma_{i^*}\gg\gamma_i$对于所有的$i\ne i^*$。
 那么，所有节点的决策值收敛至$x_{i^*}$。
 换句话说，智能体$i^*$在领导者跟随（leader-follower）类型结构中扮演领导者的角色。
 
@@ -1134,7 +1134,7 @@ Then, an agreement is globally asymptotically reached and the decision value of 
 The last equation can be rewritten as
 }
 
-\noindent 这里，$D=diag(\gamma)$是具有$i$个对角元素的对角矩阵，对角元素满足$\gamma_i>0$。
+\noindent 这里，$D=diag(\gamma)$是具有第$i$个对角元素的对角矩阵，对角元素满足$\gamma_i>0$。
 上边的公式可以改写为：
 
 \begin{equation}
@@ -1144,11 +1144,11 @@ The last equation can be rewritten as
 
 {\color[gray]{0.5}
 \noindent where $\tilde{L} = D^{-1}L = diag(\frac{1}{\gamma_1},\dots,\frac{1}{\gamma_n})L$ is a valid Laplacian matrix for a digraph $\tilde{G}$ with adjacency matrix $\tilde{A}=D^{-1}\mathcal{A}$ (i.e. the weights of the edges leaving node $i$ are divided by $\gamma_i$ ). 
-{\color{green}Clearly, $\gamma$ is a vector with positive elements that is the left eigenvector of $\tilde{L}$ and based on Corollary 2 the decision value is in the weighted average of $x_i(0)$’s with weights speciﬁed by $\gamma$} .
+Clearly, $\gamma$ is a vector with positive elements that is the left eigenvector of $\tilde{L}$ and based on Corollary 2 the decision value is in the weighted average of $x_i(0)$’s with weights speciﬁed by $\gamma$ .
 }
 
 \noindent 这里，$\tilde{L} = D^{-1}L = diag(\frac{1}{\gamma_1},\dots,\frac{1}{\gamma_n})L$是图$\tilde{G}$和邻接矩阵$\tilde{A}=D^{-1}\mathcal{A}$（即从节点$i$出发的边的权重被$\gamma_i$分割）的拉普拉斯矩阵。
-清晰的，$\gamma$是一个正元素向量，它是$\tilde{L}$的左特征向量，并且基于推论2的决策值是位于被$x_i(0)$的平均权重中被$\gamma$。
+清晰的，$\gamma$是一个正元素向量，它是$\tilde{L}$的左特征向量，并且基于推论2决策值是位于被$x_i(0)$的平均权重中被$\gamma$整除。
 
 {\color[gray]{0.5}
 \noindent {\em Remark} 6. The discrete-time model and attitude alignment protocol discussed in Jadbabaie et al. [13] correspond to the ﬁrst-order Euler approximation of equation (20) with protocol (A1) and the special choice of $\gamma_i=deg_{out}(v_i)+1$ in Corollary 3. 
@@ -1156,7 +1156,7 @@ In [6], a Laplacian matrix is deﬁned as $I-D\mathcal{A}$ which in the context 
 The singularity of $D$ that is caused by the choice of $\gamma_i=deg_{out}(v_i)$ is avoided in [13] by properly adding a positive constant (e.g. 1) to $deg_{out}(v_i)$.
 }
 
-\noindent {\em Remark} 6. Jadbabaie等人讨论了关于公式(\ref{20})和协议(\ref{A1})的一阶Euler渐进（Euler approximation）离散时间模型和姿态位置协议，以及推论3中的特殊选择$\gamma_i=deg_{out}(v_i)+1$。
+\noindent {\em Remark} 6. Jadbabaie等[13]人讨论了关于公式(\ref{20})和协议(\ref{A1})的一阶Euler渐进（Euler approximation）离散时间模型和姿态位置协议，以及推论3中的特殊选择$\gamma_i=deg_{out}(v_i)+1$。
 在文献[6]，拉普拉斯矩阵被定义为$I-D\mathcal{A}$，在本文中这等价于一个$\gamma_i=deg_{out}(v_i)\ge 0$多比例积分网络。
 $D$的奇异性由$\gamma_i=deg_{out}(v_i)$的选择决定，这在文献[13]中通过增加合适的正常量（即1）到$deg_{out}(v_i)$上来避免。
 
@@ -1282,7 +1282,7 @@ In addition, for any balanced digraph $G$, there exists an undirected graph that
 In the following, we formally deﬁne this induced undirected graph.
 }
 
-平衡图的一个有效性质是，它们的拉普拉斯矩阵非一致函数是半正定的。
+平衡图的一个有用性质是，它们的拉普拉斯矩阵非一致函数是半正定的。
 另外，对于任意的平衡图$G$，都存在一个具有相同拉普拉斯非一致函数的无向图$G$。
 接下来，我们正式定义这个感应无向图。
 
@@ -1314,7 +1314,7 @@ Then $L_s = Sym(L) = (L+L^T)/2$ is a valid Laplacian matrix for $\hat{G}=\mathca
 }
 
 \noindent \textbf{Theorem 7.} 定义$G$是一个具有邻接矩阵$\mathcal{A}=adj(G)$和拉普拉斯矩阵$L=\mathcal{L}(G)$的图。
-那么当且仅当$G$是平衡图时，$L_s = Sym(L) = (L+L^T)/2$是一个关于$\hat{G}=\mathcal{M}(G)$的可用拉普拉斯矩阵，即有下述转换形式
+那么当且仅当$G$是平衡图时，$L_s = Sym(L) = (L+L^T)/2$是一个关于$\hat{G}=\mathcal{M}(G)$的有效拉普拉斯矩阵，即有下述转换形式
 
 \begin{equation}
     \begin{aligned}
@@ -1458,7 +1458,7 @@ The fact that $L_s = \hat{L}$ is a valid Laplacian matrix for an undirected grap
 A well-known observation regarding the Fiedler eigenvalue of an undirected graph is that for dense graphs $\lambda_2$ is relatively large and for sparse graphs $\lambda_2$ is relatively small [11] (this is why $\lambda_2$ is called the algebraic connectivity). 
 According to this observation, from Theorem 8, one can conclude that a network with dense interconnections solves an agreement problem faster than a connected but sparse network. 
 This is consistent with common sense regarding agreement in a group. 
-As a special case, {\color{green}a cycle of length $n$ that creates a balanced digraph on $n$ nodes solves an agreement problem.} 
+As a special case, a cycle of length $n$ that creates a balanced digraph on $n$ nodes solves an agreement problem. 
 However, this is a relatively slow way to solve such a consensus problem.
 }
 
@@ -1530,7 +1530,7 @@ Clearly, $\Gamma_n$ is a ﬁnite set, because either a digraph has no edges or i
 {\color[gray]{0.5}
 The key in solving the agreement problem for mobile networks with switching topology is a basic property of the Lyapunov function in (28) and the properties of balanced graphs. 
 Note that the function $V(\delta)=\frac{1}{2}||\delta||^2$ does not depend on $G$ or $L=\mathcal{L}(G)$. 
-This property of $V(\delta)$ makes it an {\color{green}appropriate candidate} as a common Lyapunov function for stability analysis of the switching system (32).
+This property of $V(\delta)$ makes it an appropriate candidate as a common Lyapunov function for stability analysis of the switching system (32).
 }
 
 解决具有切换拓扑的移动网络的一致性问题的关键是公式(\ref{28})提到的李亚普诺夫函数的基本性质和平衡图的性质。
@@ -1983,7 +1983,7 @@ Next, we present simulation results for average-consensus problem with communica
 Figure 8 shows the state trajectories of $n=10$ nodes for a network with communication time-delay $\tau$ for $\tau=0, 0.5\tau_{max}, \tau_{max} = \pi / 2\tau_{max}(G_a) = 0.266$ for a zero-mean random set of initial conditions. 
 Clearly, the agreement is achieved for the cases with $\tau < \tau_{max}$ in Figures 8(a), (b), and (c). 
 For the case with $\tau = \tau_{max}$, synchronous oscillations are demonstrated in Figure 8(d). 
-{\color{green} A third-order Pade approximation is used to model the time-delay as a ﬁnite-order LTI system.}
+A third-order Pade approximation is used to model the time-delay as a ﬁnite-order LTI system.
 }
 
 之后，如图7展示了网络信息流的含通信时滞的平均一致性问题结果。
@@ -2223,7 +2223,7 @@ We need to find sufficient conditions such that all the zeros of $Z_{\tau}(s)$ a
 Let $w_k$ be the $k$th normalized eigenvector of $L$ associated with the eigenvalue $\lambda_k$ in an increasing order. 
 For a connected graph $G$, $0=\lambda_1 < \lambda_2 \le \dots \le \lambda_n =\lambda_{max}(L)$. 
 Clearly, $s=0$ in the direction $w_1$ is a zero of the MIMO transfer function $Z_{\tau}(s)$, because $Z_{\tau}(0)w_1 = Lw_1 = 0$. 
-Futhermore, any eigen vector of $Z_{\tau}(s)$ is an eigen vector of $L$ and {\color{green}vice verse}. 
+Futhermore, any eigen vector of $Z_{\tau}(s)$ is an eigen vector of $L$ and vice verse. 
 Let ($s,w_k$) with $k>1$ be a right MIMO transmission zero of $Z_{\tau}(s)$ at frequency $s$ in the direction $w_k$, i.e. $Z_{\tau}(s)w_k=0$. 
 Then, $s\ne0$ satisfies the following equation
 }
@@ -2274,7 +2274,7 @@ This is due to the fact that
 \noindent but $w_k\ne 0$, thus $s+e^{-\tau}\lambda_k=0$. 
 Equation (53) provides a Nyquist criterion for convergence of protocol (A2). 
 If the net encirclement of the Nyquist plot of $\Gamma(s) = e^{-\tau s}/s$ around $-1/\lambda_k$ for $k>1$ is zero, then all the zeros of $Z_\tau(s)$(or poles of $G_{\tau}(s)$) other than $s=0$ are stable.
-For the special case where $L$ is symmetric, all the eigenvalues are real and {\color{green}the Nyquist stability criterion reduces to zero net encirclement of the Nyquist plot of $\Gamma(s)$ around $-1/\lambda_n$ (note that $\lambda_n=\lambda_{max}(L))$.} 
+For the special case where $L$ is symmetric, all the eigenvalues are real and the Nyquist stability criterion reduces to zero net encirclement of the Nyquist plot of $\Gamma(s)$ around $-1/\lambda_n$ (note that $\lambda_n=\lambda_{max}(L))$. 
 This is because the plot of $\Gamma(jw)$ in the s-plane remains on the right hand side of $-\tau$. 
 Since
 }
