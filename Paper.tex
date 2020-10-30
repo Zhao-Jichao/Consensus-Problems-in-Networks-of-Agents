@@ -7,6 +7,23 @@
 \usepackage{color}
 \usepackage{graphicx}
 
+\usepackage{listings} 
+\usepackage{xcolor}
+\lstset{
+  language=Matlab,  %代码语言使用的是matlab
+  frame=shadowbox, %把代码用带有阴影的框圈起来
+  rulesepcolor=\color{red!20!green!20!blue!20},%代码块边框为淡青色
+  keywordstyle=\color{blue!90}\bfseries, %代码关键字的颜色为蓝色，粗体
+  commentstyle=\color{red!10!green!70}\textit,    % 设置代码注释的颜色
+  showstringspaces=false,%不显示代码字符串中间的空格标记
+  numbers=left, % 显示行号
+  numberstyle=\tiny,    % 行号字体
+  stringstyle=\ttfamily, % 代码字符串的特殊格式
+  breaklines=true, %对过长的代码自动换行
+  extendedchars=false,  %解决代码跨页时，章节标题，页眉等汉字不显示的问题
+%   escapebegin=\begin{CJK*},escapeend=\end{CJK*},      % 代码中出现中文必须加上，否则报错
+  texcl=true}
+
 \geometry{a4paper,scale=0.8}
 \geometry{a4paper,left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}
 \linespread{1.5}
@@ -16,7 +33,7 @@
 
 \title{Consensus Problems in Networks of Agents\\ with Switching Topology and Time-Delays}
 \author{ Jichao Zhao\thanks{E-mail: zhaojichao@imakerlab.cn}}
-\date{25-10-2020}
+\date{30-10-2020}
 
 % 正文开始
 \begin{document}
@@ -2479,5 +2496,257 @@ For $\tau=\tau^*$, $G_{\tau}(s)$ has three poles on the imaginary axis given by
 \noindent [24] T. Vicsek, A. Cziro´ok, E. Ben-Jacob, and O. Cohen, I. Shochet. Novel type of phase transition in a system of self-deriven particles. Physical Review Letters, 75(6):1226–1229, August, 1995.
 
 \noindent [25] H. Yamaguchi, T. Arai, and G. Beni. A distributed control scheme for multiple robotic vehicles to make group formations. Robotics and Autonomous Systems, 36:125–147, 2001
+
+
+\section*{Code}
+\subsection*{Chapter 5}
+\begin{lstlisting}
+    clear;
+    clc;
+    % 此为Paper中Scetion5代码
+    % 拉普拉斯矩阵如下
+    L = [2, -1, -1;
+         0,  1, -1;
+        -1,  0,  1;];
+    
+    % 根据所给出的拉普拉斯矩阵推断可知：
+    % 节点顺序为3-1
+    % 度矩阵为
+    D = [2, 0, 0;
+         0, 1, 0;
+         1, 0, 1;];
+    % 邻接矩阵为
+    A = [0, 1, 1;
+         0, 0, 1;
+         1, 0, 0;];
+     
+    % 求其特征值和特征向量
+    % 依次返回（右）特征向量，特征值，左特征向量
+    [eigenVector, eigenValue, lefteigenVector] = eig(L);
+    
+    % Equation 17
+    syms x1 x2 x3 real;
+    X0 = [x1 x2 x3]';
+    Xt = -L * X0;
+    sum(Xt);
+    
+    % Equation 18
+    syms t;
+    R = expm(-L * t);
+    R1 = limit(R, t, inf);
+    R2 = eigenVector * lefteigenVector'; 
+\end{lstlisting}
+
+\subsection*{Figure 5}
+\begin{lstlisting}
+clear;
+clc;
+% 此为原Paper中第六部分测试代码
+
+% 状态初值如下
+X0  = [-10.2999, 0.2575, -4.4997, 3.6258, 3.0922, 9.0156, 3.5099, -2.6645, 2.4552, -4.4921]';
+
+Node_Nums = 10;
+
+% b图度矩阵，邻接矩阵，拉普拉斯矩阵
+D_a = [ 1 0 0 0 0 0 0 0 0 0;
+        0 1 0 0 0 0 0 0 0 0;
+        0 0 1 0 0 0 0 0 0 0;
+        0 0 0 1 0 0 0 0 0 0;
+        0 0 0 0 1 0 0 0 0 0;
+        0 0 0 0 0 1 0 0 0 0;
+        0 0 0 0 0 0 1 0 0 0;
+        0 0 0 0 0 0 0 1 0 0;
+        0 0 0 0 0 0 0 0 1 0;
+        0 0 0 0 0 0 0 0 0 1;];
+A_a = [ 0 1 0 0 0 0 0 0 0 0;
+        0 0 1 0 0 0 0 0 0 0;
+        0 0 0 1 0 0 0 0 0 0;
+        0 0 0 0 1 0 0 0 0 0;
+        0 0 0 0 0 1 0 0 0 0;
+        0 0 0 0 0 0 1 0 0 0;
+        0 0 0 0 0 0 0 1 0 0;
+        0 0 0 0 0 0 0 0 1 0;
+        0 0 0 0 0 0 0 0 0 1;
+        1 0 0 0 0 0 0 0 0 0;];
+L_a = D_a - A_a;
+
+% b图度矩阵，邻接矩阵，拉普拉斯矩阵
+D_b = [ 1 0 0 0 0 0 0 0 0 0;
+        0 2 0 0 0 0 0 0 0 0;
+        0 0 2 0 0 0 0 0 0 0;
+        0 0 0 2 0 0 0 0 0 0;
+        0 0 0 0 1 0 0 0 0 0;
+        0 0 0 0 0 2 0 0 0 0;
+        0 0 0 0 0 0 1 0 0 0;
+        0 0 0 0 0 0 0 2 0 0;
+        0 0 0 0 0 0 0 0 1 0;
+        0 0 0 0 0 0 0 0 0 2;];
+A_b = [ 0 1 0 0 0 0 0 0 0 0;
+        0 0 1 0 0 0 0 0 0 1;
+        0 0 0 1 0 0 0 1 0 0;
+        0 0 0 0 1 1 0 0 0 0;
+        0 0 0 0 0 1 0 0 0 0;
+        0 0 0 1 0 0 1 0 0 0;
+        0 0 0 0 0 0 0 1 0 0;
+        0 0 1 0 0 0 0 0 1 0;
+        0 0 0 0 0 0 0 0 0 1;
+        1 1 0 0 0 0 0 0 0 0;];
+L_b = D_b - A_b;
+
+% c图度矩阵，邻接矩阵，拉普拉斯矩阵
+D_c = [ 2 0 0 0 0 0 0 0 0 0;
+        0 1 0 0 0 0 0 0 0 0;
+        0 0 1 0 0 0 0 0 0 0;
+        0 0 0 2 0 0 0 0 0 0;
+        0 0 0 0 1 0 0 0 0 0;
+        0 0 0 0 0 1 0 0 0 0;
+        0 0 0 0 0 0 1 0 0 0;
+        0 0 0 0 0 0 0 2 0 0;
+        0 0 0 0 0 0 0 0 2 0;
+        0 0 0 0 0 0 0 0 0 1;];
+A_c = [ 0 1 0 0 0 0 0 0 1 0;
+        0 0 1 0 0 0 0 0 0 0;
+        0 0 0 1 0 0 0 0 0 0;
+        0 0 0 0 1 0 0 1 0 0;
+        0 0 0 0 0 1 0 0 0 0;
+        0 0 0 0 0 0 1 0 0 0;
+        0 0 0 0 0 0 0 1 0 0;
+        0 0 0 1 0 0 0 0 1 0;
+        1 0 0 0 0 0 0 0 0 1;
+        1 0 0 0 0 0 0 0 0 0;];
+L_c = D_c - A_c;
+
+% d图度矩阵，邻接矩阵，拉普拉斯矩阵
+D_d = [ 2 0 0 0 0 0 0 0 0 0;
+        0 2 0 0 0 0 0 0 0 0;
+        0 0 1 0 0 0 0 0 0 0;
+        0 0 0 2 0 0 0 0 0 0;
+        0 0 0 0 2 0 0 0 0 0;
+        0 0 0 0 0 1 0 0 0 0;
+        0 0 0 0 0 0 2 0 0 0;
+        0 0 0 0 0 0 0 3 0 0;
+        0 0 0 0 0 0 0 0 2 0;
+        0 0 0 0 0 0 0 0 0 1;];
+% 邻接矩阵，有向拓扑结构
+A_d = [ 0 1 0 0 0 0 0 0 1 0;
+        0 0 1 0 0 0 0 1 0 0;
+        0 0 0 1 0 0 0 0 0 0;
+        0 0 0 0 1 0 0 1 0 0;
+        0 0 0 0 0 1 1 0 0 0;
+        0 0 0 0 0 0 1 0 0 0;
+        0 0 0 0 1 0 0 1 0 0;
+        0 1 0 1 0 0 0 0 1 0;
+        1 0 0 0 0 0 0 0 0 1;
+        1 0 0 0 0 0 0 0 0 0;];
+L_d = D_d - A_d;
+
+% 设置收敛相关参数
+tBegin = 0;                     % 开始时间 
+tEnd   = 15;                    % 结束时间
+dt     = 0.1;                   % 最小时间间隔
+times  = (tEnd-tBegin) / dt;    % 迭代计算次数
+time   = 1;
+% 定义记录时间数组
+t(:,1)   = tBegin;
+% 定义图a数据存储数组
+X_a(:,1) = X0;
+U_a(:,1) = -L_a * X0;
+Delta_a(:,1) = X0' * L_a * X0;
+% 定义图b数据存储数组
+X_b(:,1) = X0;
+U_b(:,1) = -L_b * X0;
+Delta_b(:,1) = X0' * L_b * X0;
+
+X_c(:,1) = X0;
+U_c(:,1) = -L_c * X0;
+Delta_c(:,1) = X0' * L_c * X0;
+
+X_d(:,1) = X0;
+U_d(:,1) = -L_d * X0;
+Delta_d(:,1) = X0' * L_d * X0;
+% 开始收敛计算
+while(time <= times)
+    t(:,time+1) = tBegin + time * dt;
+    % 图a数据迭代
+    X_a(:,time+1) = expm(-L_a * t(:,time+1)) * X0;                          % Xt = expm(-Lx)*X0 添加更新后的Xt值
+    U_a(:,time+1) = -L_a * X_a(:,time+1);                                   % Ut = -LXt 添加更新后的Ut值 
+    Delta_a(:,time+1) = X_a(:,time+1)'*L_a*X_a(:,time+1);                   % Delta = XT * L * X
+    % 图b数据迭代
+    X_b(:,time+1) = expm(-L_b * t(:,time+1)) * X0;
+    U_b(:,time+1) = -L_b * X_b(:,time+1);
+    Delta_b(:,time+1) = X_b(:,time+1)'*L_b*X_b(:,time+1);
+
+    X_c(:,time+1) = expm(-L_c * t(:,time+1)) * X0;
+    U_c(:,time+1) = -L_c * X_c(:,time+1);
+    Delta_c(:,time+1) = X_c(:,time+1)'*L_c*X_c(:,time+1);
+
+    X_d(:,time+1) = expm(-L_d * t(:,time+1)) * X0;
+    U_d(:,time+1) = -L_d * X_d(:,time+1);
+    Delta_d(:,time+1) = X_d(:,time+1)'*L_d*X_d(:,time+1);
+
+    time = time + 1;
+end
+
+% 矩阵的代数连通度
+eig_val_a = eig(L_a);                       % L a的特征值
+eig_val_a = sort(eig_val_a,'ascend');       % 从小到大排序，最小特征值为0
+AC_a      = real(eig_val_a(2));             % algebraic connectivity 代数连通度：lap matrix的第二小特征值>0，连通图
+
+eig_val_b = eig(L_b);                       % L b的特征值
+eig_val_b = sort(eig_val_b,'ascend');       % 从小到大排序，最小特征值为0
+AC_b      = real(eig_val_b(2));             % algebraic connectivity 代数连通度：lap matrix的第二小特征值>0，连通图
+
+eig_val_c = eig(L_c);
+eig_val_c = sort(eig_val_c,'ascend');
+AC_c      = real(eig_val_c(2));
+
+eig_val_d = eig(L_d);
+eig_val_d = sort(eig_val_d,'ascend');
+AC_d      = real(eig_val_d(2));
+
+% 绘制图a数据
+subplot(4,2,1);
+plot(t,X_a(1,:), t,X_a(2,:), t,X_a(3,:), t,X_a(4,:), t,X_a(5,:), t,X_a(6,:), t,X_a(7,:), t,X_a(8,:), t,X_a(9,:), t,X_a(10,:), 'linewidth',1.0)
+xlabel("time(sec)");ylabel("node value");
+title("Algebraic Connectivity="+num2str(AC_a));
+subplot(4,2,3);
+plot(t,Delta_a, 'linewidth',1.0);
+xlabel("time(sec)");ylabel("disagreement");
+
+subplot(4,2,2);
+plot(t,X_b(1,:), t,X_b(2,:), t,X_b(3,:), t,X_b(4,:), t,X_b(5,:), t,X_b(6,:), t,X_b(7,:), t,X_b(8,:), t,X_b(9,:), t,X_b(10,:), 'linewidth',1.0)
+xlabel("time(sec)");ylabel("node value");
+title("Algebraic Connectivity="+num2str(AC_b));
+subplot(4,2,4);
+plot(t,Delta_b, 'linewidth',1.0);
+xlabel("time(sec)");ylabel("disagreement");
+
+subplot(4,2,5);
+plot(t,X_c(1,:), t,X_c(2,:), t,X_c(3,:), t,X_c(4,:), t,X_c(5,:), t,X_c(6,:), t,X_c(7,:), t,X_c(8,:), t,X_c(9,:), t,X_c(10,:), 'linewidth',1.0)
+xlabel("time(sec)");ylabel("node value");
+title("Algebraic Connectivity="+num2str(AC_c));
+subplot(4,2,7);
+plot(t,Delta_c, 'linewidth',1.0);
+xlabel("time(sec)");ylabel("disagreement");
+
+subplot(4,2,6);
+plot(t,X_d(1,:), t,X_d(2,:), t,X_d(3,:), t,X_d(4,:), t,X_d(5,:), t,X_d(6,:), t,X_d(7,:), t,X_d(8,:), t,X_d(9,:), t,X_d(10,:), 'linewidth',1.0)
+xlabel("time(sec)");ylabel("node value");
+title("Algebraic Connectivity="+num2str(AC_d));
+subplot(4,2,8);
+plot(t,Delta_d, 'linewidth',1.0);
+xlabel("time(sec)");ylabel("disagreement");
+\end{lstlisting}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=14.5cm]{figures/UserFig5.png}
+    \caption{Result}
+    \label{UserFig5}
+\end{figure}
+
+
+
 
 \end{document}
