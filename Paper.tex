@@ -220,11 +220,13 @@ Suppose each node of a graph is a dynamic agent with dynamics
 }
 
 假设图的每一个节点都是一个具有动态性能的动态智能体
+
 \begin{equation}
     \dot{x}_i = f(x_i, u_i), i\in \mathcal{I}
     \tag{2}
     \label{2}
 \end{equation}
+
 {\color[gray]{0.5}
 \noindent A dynamic graph (or dynamic network) is deﬁned as a 4-tuple $G_{x(t)} = (\mathcal{V},\mathcal{E},\mathcal{A},x(t))$ together with dynamics $\dot{x}=F(x,u)$ where $x$ denotes the state of the dynamic graph and {\color{green}$F(x,u)$ is the column-wise concatenation of the elements $F_i(x,u)=f(x_i,u_i)$}.
 }
@@ -240,11 +242,13 @@ We say a protocol
 定义$\chi: \mathbb{R}^n \rightarrow \mathbb{R}$是一个包含$n$个变量$x_1,\dots,x_n$的函数。
 在一个动态图中的$\chi$-一致性问题，是通过利用输入$u_i$以一种分布式的方式来计算$\chi(x(0))$，其中输入$u_i$仅依赖于节点$i$的和它的邻居的值。
 我们定义一个协议
+
 \begin{equation}
     u_i = k_i(x_{j_1},\dots,x_{j_{m_i}})
     \tag{3}
     \label{3}
 \end{equation}
+
 {\color[gray]{0.5}
 \noindent with $j_1,\dots,j_{m_i}\in \{i\} \cup N_i$ and $m_i\leq n$ asymptotically solves the $\chi$ -consensus problem if and only if there exists an asymptotically stable equilibrium $x^*$ of $\dot{x}=F(x,k(x))$ such that $x^*=\chi(x(0))$ for all $i\in \mathcal{I}$. 
 We are interested in solving the $\chi$ -consensus problem in a distributed fashion in which {\color{green}no node is connected to all other nodes (i.e. $m_i < n$ for all $i$)}.
@@ -284,29 +288,35 @@ This is more challenging than just reaching a general agreement.
 }
 
 \noindent 这一部分，我们介绍了三种一致性协议，分别用来解决连续时间（continuous-time，CT）动态积分器智能体
+
 \begin{equation}
     \dot{x}_i(t) = u_i(t)
     \tag{4}
     \label{4}
 \end{equation}
+
 % \begin{equation}
 %     \text{\color{userColor}位置状态的一阶导数 = 输入}
 %     \notag
 % \end{equation}
+
 {\color[gray]{0.5}
 \noindent or agents with discrete-time (DT) model
 }
 
 \noindent 和离散时间（discrete-time，DT）动态智能体模型的网络一致性问题，
+
 \begin{equation}
     x_i(k+1) = x_i(k)+\epsilon u_i(k)
     \tag{5}
     \label{5}
 \end{equation}
+
 % \begin{equation}
 %     \color{userColor}\text{ 下一时刻的状态 = 此刻的状态 + }\epsilon \text{ * 此时的输入}
 %     \notag
 % \end{equation}
+
 {\color[gray]{0.5}
 \noindent and step-size $\epsilon>0$. 
 In this paper, we consider three scenarios:
@@ -320,15 +330,18 @@ i) Fixed or switching topology and zero communication time-delay: We use the fol
 }
 
 i）固定或切换拓扑的零通信时滞：我们使用下边的线性一致性协议：
+
 \begin{equation}
     u_i = \sum_{j\in N_i}a_{ij}(x_j-x_i)
     \tag{A1}
     \label{A1}
 \end{equation}
+
 % \begin{equation}
 %     \color{userColor}\text{控制输入 = 对所有的\ 节点j和i的位置差值 * 两节点的权重\ 求和，其中j是所有i的邻居节点}
 %     \notag
 % \end{equation}
+
 {\color[gray]{0.5}
 \noindent where the set of neighbors $N_i=N_i(G)$ of node $i$ is variable in networks with switching topology.
 }
@@ -340,11 +353,13 @@ ii) Fixed topology $G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$ and communication
 }
 
 ii）固定拓扑$G=(\mathcal{V}, \mathcal{E}, \mathcal{A})$和对应于边$ij\in \mathcal{E}$的通信时滞$\tau_{ij}>0$：我们使用下边的线性时滞一致性协议：
+
 \begin{equation}
     u_i(t) = \sum_{j\in N_i}a_{ij}[x_j(t-\tau_{ij})-x_i(t-\tau_{ij})]
     \tag{A2}
     \label{A2}
 \end{equation}
+
 % \begin{equation}
 %     \color{userColor}\text{控制输入 = 对所有的\ 节点j和i的位置差值（减去时滞） * 两节点的权重\ 求和，其中j是所有i的邻居节点}
 %     \notag
@@ -377,20 +392,24 @@ Given Protocol (A1), the state of a network of continuous-time integrator agents
 }
 
 所给的协议（A1），连续时间网络的智能体状态会随着下面的线性系统进行变化
+
 \begin{equation}
     \dot{x}(t) = -Lx(t) 
     \tag{6}
     \label{6}
 \end{equation}
+
 % \begin{equation}
 %     \color{userColor}\text{位置状态的一阶导数 = 拉普拉斯矩阵 * 位置状态值}
 %     \notag
 % \end{equation}
+
 {\color[gray]{0.5}
 \noindent where L is called the graph Laplacian induced by the information ﬂow G and is deﬁned by
 }
 
 \noindent 这里，$L$是信息流网络$G$的图拉普拉斯矩阵，并且定义如下
+
 \begin{equation}
 l_{ij} = \left\{
     \begin{array}{ll}
@@ -400,6 +419,7 @@ l_{ij} = \left\{
     \tag{7}
     \label{7}
 \end{equation}
+
 {\color[gray]{0.5}
 \noindent The properties of graph Laplacian is one of the main areas of research in algebraic graph theory and is discussed in Section 4.
 }
@@ -415,15 +435,18 @@ In a network with switching topology, convergence analysis of Protocol (A1) is e
 }
 
 在一个切换拓扑（switching topology）网络中，协议(\ref{A1})的收敛性分析等价于混合系统（hybrid system）的稳定性分析
+
 \begin{equation}
     \dot{x}(t) = -L_kx(t),\ k=s(t) 
     \tag{8}
     \label{8}
 \end{equation}
+
 % \begin{equation}
 %     \color{userColor}\text{位置状态的一阶导数 = 拉普拉斯矩阵（关于切换信号变换） * 位置状态值}
 %     \notag
 % \end{equation}
+
 {\color[gray]{0.5}
 \noindent where $L_k = \mathcal{L}(G_k)$ is the Laplacian of $G_k$, $s(t)$ : $\mathbb{R}\rightarrow \mathcal{I} \subset \mathbb{Z}$ is a switching signal, and {\color{green}$\Gamma\ni G_k$ is a ﬁnite collection of digraphs (of order $n$) with the index set $\mathcal{I}_\Gamma$}. 
 Later, we will see that $\Gamma$ is a relatively large set for $n\gg 1$. 
@@ -439,11 +462,13 @@ For agents with discrete-time models, applying protocol (A1) gives the following
 }
 
 对于离散时间的智能体模型，应用协议(\ref{A1})给出了如下的动态离散网络
+
 \begin{equation}
     x(k+1) = P_\epsilon x(k)
     \tag{9}
     \label{9}
 \end{equation}
+
 % \begin{equation}
 %     \color{userColor}\text{ 下一时刻的状态 = 非负随机矩阵 * 此刻的状态}
 %     \notag
@@ -454,15 +479,18 @@ For agents with discrete-time models, applying protocol (A1) gives the following
 }
 
 \noindent 其中
+
 \begin{equation}
     P_\epsilon = I - \epsilon L
     \tag{10}
     \label{10}
 \end{equation}
+
 % \begin{equation}
 %     \color{userColor}\text{ 非负随机矩阵 = 单位矩阵 - }\epsilon \text{ * 拉普拉斯矩阵}
 %     \notag
 % \end{equation}
+
 \noindent Let $d_{max} = \max_il_{ii}$, then for $\epsilon\in (0,1/d_{max})$, $P_\epsilon$ is a nonnegative and stochastic matrix that we call Perron matrix, i.e. $P_\epsilon$ in element-wise nonnegative and all of its row sums are 1.
 
 \noindent 定义$d_{max} = \max_il_{ii}$，那么对于$\epsilon\in (0,1/d_{max})$，$P_\epsilon$是一个非负随机矩阵，我们称之为门阶矩阵（Perron matrix），即$P_\epsilon$所有元素非负且所有的行和为1。
@@ -520,6 +548,7 @@ The (weighted) graph Laplacian matrix associated with $G$ is deﬁned as
     \tag{12}
     \label{12}
 \end{equation}
+
 % \begin{equation}
 %     \color{userColor}\text{这和之前参考的文献中的关于拉氏矩阵定义的阐述一致} L = D - A
 %     \notag
@@ -679,6 +708,7 @@ Then, all the eigenvalues of $L=\mathcal{L}(G)$ are located in the following dis
 }
 
 \noindent \textbf{Proof.} 基于圆盘定理，所有$L=[l_{ij}]$的特征值都位于下面的$n$个圆盘的并集中
+
 \begin{equation}
     D_i = \{ z\in \mathbb{C}: |z-l_{ii}| \le \sum_{j\in \mathcal{I},j\ne i}|l_{ij}| \}
     \tag{16}
@@ -686,7 +716,7 @@ Then, all the eigenvalues of $L=\mathcal{L}(G)$ are located in the following dis
 \end{equation}
 
 {\color[gray]{0.5}
-But l ii = ∆ ii and
+But $l_{ii} = \Delta_{ii}$ and
 }
 
 如果$l_{ii} = \Delta_{ii}$那么
@@ -779,7 +809,7 @@ On the other hand, the reader can verify that for this example
 }
 
 对于图$G=(\mathcal{V}, \mathcal{E})$，$\sum_{i=1}^{3}u_i = x_3 - x_1$。
-因此，如果节点1和3不一致，那么属性$\sum_{i=1}^{3}u_i = 0$不是对于所有的$x$都成立。
+因此，如果节点1和3状态不相等，那么$\sum_{i=1}^{3}u_i = 0$不是对于所有的$x$都成立。
 另一方面，读者可以在本例中来验证这一点
 
 \begin{equation}
@@ -832,7 +862,7 @@ This is because the solution of (6) is given by
 }
 
 在提出我们第一次的主要结果之前，我们需要提出一个指数矩阵如$e^{(-Lt)}$形式的极限理论。
-这是因为系统(\ref{6})的解决办法是通过以下公式给出
+这是因为公式(\ref{6})的解决办法是通过以下公式给出
 
 \begin{equation}
     x(t) = exp(-Lt)x(0)
