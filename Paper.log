@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.24)  31 OCT 2020 00:27
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2020.1.24)  2 NOV 2020 09:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -638,7 +638,14 @@ Overfull \hbox (3.44574pt too wide) in paragraph at lines 2464--2465
 \TU/lmr/m/n/10 [8] M. Fiedler. Algebraic connectivity of graphs. Czechoslovak Mathematical Journal, 23(98):298 |\TU/FandolSong-Regular(0)/m/n/10 –|
  []
 
-[43] [44] [45] [46] [47]
+[43]
+File: figures/UserFig5.png Graphic file (type bmp)
+<figures/UserFig5.png>
+File: figures/UserFig6.png Graphic file (type bmp)
+<figures/UserFig6.png>
+File: figures/UserFig83.png Graphic file (type bmp)
+<figures/UserFig83.png>
+ [44] [45] [46] [47] [48] [49]
 
 Package fontspec Warning: Font "FandolFang-Regular" does not contain requested
 (fontspec)                Script "CJK".
@@ -655,26 +662,18 @@ Package fontspec Info: Font family 'FandolFang-Regular(0)' created for font
 (fontspec)             <->"[FandolFang-Regular.otf]/OT"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
-[48] [49]
-File: figures/UserFig5.png Graphic file (type bmp)
-<figures/UserFig5.png>
- [50] [51] [52] [53]
-File: figures/UserFig6.png Graphic file (type bmp)
-<figures/UserFig6.png>
-File: figures/UserFig82.png Graphic file (type bmp)
-<figures/UserFig82.png>
- [54] [55] (./Paper.aux)
+[50] [51] [52] [53] [54] [55] [56] [57] [58] [59] (./Paper.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 17742 strings out of 492916
- 380992 string characters out of 6133345
+ 17759 strings out of 492916
+ 381117 string characters out of 6133345
  843860 words of memory out of 5000000
- 21658 multiletter control sequences out of 15000+600000
+ 21675 multiletter control sequences out of 15000+600000
  538890 words of font info for 76 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  49i,17n,78p,456b,1467s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Paper.pdf (55 pages).
+Output written on Paper.pdf (59 pages).
