@@ -7,7 +7,7 @@ X0  = [-10.2999, 0.2575, -4.4997, 3.6258, 3.0922, 9.0156, 3.5099, -2.6645, 2.455
 
 Node_Nums = 10;
 
-% b图度矩阵，邻接矩阵，拉普拉斯矩阵
+% a图度矩阵，邻接矩阵，拉普拉斯矩阵
 D_a = [ 1 0 0 0 0 0 0 0 0 0;
         0 1 0 0 0 0 0 0 0 0;
         0 0 1 0 0 0 0 0 0 0;
@@ -102,7 +102,7 @@ L_d = D_d - A_d;
 
 % 设置收敛相关参数
 tBegin = 0;                     % 开始时间 
-tEnd   = 15;                    % 结束时间
+tEnd   = 20;                    % 结束时间
 dt     = 0.1;                   % 最小时间间隔
 times  = (tEnd-tBegin) / dt;    % 迭代计算次数
 time   = 1;
@@ -196,3 +196,6 @@ title("Algebraic Connectivity="+num2str(AC_d));
 subplot(4,2,8);
 plot(t,Delta_d, 'linewidth',1.5);
 xlabel("time(sec)");ylabel("disagreement");
+
+figure(2)
+plot(t,X_a(1,:), t,X_a(2,:), t,X_a(3,:), t,X_a(4,:), t,X_a(5,:), t,X_a(6,:), t,X_a(7,:), t,X_a(8,:), t,X_a(9,:), t,X_a(10,:), 'linewidth',1.5)
